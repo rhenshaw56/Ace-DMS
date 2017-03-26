@@ -2,9 +2,6 @@ dist: trusty
 language: node_js
 node_js:
   - stable
-addons:
-    code_climate:
-        repo_token: 41edd587a0166804f3bb6fbbb07a921db099a37c
 script:
   - npm test
 after_script:
