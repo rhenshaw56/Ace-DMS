@@ -3,3 +3,6 @@ node_modules
 coverage/
 server/.DS_Store
 .env
+npm-debug.log
+coverage
+.DS_Store
