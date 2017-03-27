@@ -1,1 +1,5 @@
 ./node_modules
+./coverage
+./server/test/test.js
+.server/myCar.js
+
