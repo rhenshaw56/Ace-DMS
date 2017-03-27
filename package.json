@@ -29,6 +29,7 @@
   "homepage": "https://github.com/andela-rhenshaw/Ace-DMS#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "express": "^4.15.2",
     "webpack": "^2.3.2"
   },
   "devDependencies": {
