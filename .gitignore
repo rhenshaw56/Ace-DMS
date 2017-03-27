@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 coverage/
 server/.DS_Store
+.env
 npm-debug.log
 coverage
 .DS_Store
