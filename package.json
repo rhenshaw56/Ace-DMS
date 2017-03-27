@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/andela-rhenshaw/Ace-DMS#readme",
   "dependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "webpack": "^2.3.2"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -46,6 +47,8 @@
     "eslint-plugin-react": "^6.9.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
+    "mocha-lcov-reporter": "^1.2.0",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.17.1"
   }
 }
