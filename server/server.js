@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import morgan from 'morgan';
+import logger from 'morgan';
+import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 // import routes from './routes/index';
@@ -14,7 +15,7 @@ const port = process.env.port || 5600;
 // Load middlewares
 
 // log out request to console with morgan
-app.use(morgan('tiny'));
+app.use(logger('tiny'));
 
 // parse incoming request bodies as json with body-parser
 app.use(bodyParser.json());

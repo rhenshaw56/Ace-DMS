@@ -4,6 +4,9 @@
   "description": "a document management system",
   "main": "server.js",
   "scripts": {
+    "start:server": "nodemon server/server.js --exec babel-node",
+    "migrate": "sequelize db:migrate",
+    "undo:migrate": "sequelize db:migrate:undo:all",
     "mocha": "mocha --compilers js:babel-core/register",
     "test": "NODE_ENV=test npm run mocha server/test",
     "lint": "node_modules/.bin/eslint . || true",
@@ -28,6 +31,7 @@
   },
   "homepage": "https://github.com/andela-rhenshaw/Ace-DMS#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "webpack": "^2.3.2"
@@ -44,6 +48,7 @@
     "body-parser": "^1.17.1",
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.4.1",
+    "cors": "^2.8.1",
     "coveralls": "^2.11.15",
     "eslint": "^3.14.0",
     "eslint-plugin-react": "^6.9.0",
@@ -51,6 +56,7 @@
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.30.4",
