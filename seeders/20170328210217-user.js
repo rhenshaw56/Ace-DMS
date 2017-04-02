@@ -25,7 +25,8 @@ module.exports = {
         roleId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
-      },{
+      },
+      {
         email: 'user1@userMail.com',
         firstName: 'user1',
         lastName: 'users',
