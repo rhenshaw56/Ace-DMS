@@ -3,9 +3,8 @@ import auth from '../middlewares/Auth';
 import UsersMiddleware from '../middlewares/Users';
 import UserController from '../controllers/User.Controller';
 
-const Routes = (router, swaggerSpec) => {
-    console.log('indexxxx');
-    UserRoutes(router, swaggerSpec);
+const Routes = (router) => {
+    UserRoutes(router);
 };
 
 export default Routes;
