@@ -4,5 +4,13 @@ node_js:
   - stable
 script:
   - npm test
-after_script:
+after_success:
   - npm run coveralls
+  services:
+  - postgresql
+before_script:
+  - psql -c 'drop database if exists cp3_test;' -U postgres
+  - psql -c 'create database cp3_test;' -U postgres
+  - NODE_ENV=test npm run migrate
+addons:
+  postgresql: "9.3"
