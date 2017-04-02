@@ -29,9 +29,9 @@ export default class Auth {
     if (token) {
       const decoded = Auth.verifyToken(token);
       if (decoded) {
-          userDb.findById(decoded.userId, {
-              attributes: ['activeToken', 'roleId']
-            })
+        userDb.findById(decoded.userId, {
+          attributes: ['currentToken', 'roleId']
+        })
                 .then((user) => {
                   if (user && user.activeToken) {
                     request.decoded = decoded;
@@ -42,17 +42,17 @@ export default class Auth {
                     responseHandler.send401(response, body);
                   }
                 });
-        } else {
-          const body = { message: 'Invalid Token' };
-          responseHandler.send401(response, body);
-        }
+      } else {
+        const body = { message: 'Invalid Token' };
+        responseHandler.send401(response, body);
+      }
     } else {
       const body = { message: 'Authentication Token Required' };
       responseHandler.send401(response, body);
     }
   }
-  static activateToken(user, activeToken) {
-    return user.update({ activeToken });
+  static activateToken(user, currentToken) {
+    return user.update({ currentToken });
   }
 
   static verifyAdmin(roleId) {
