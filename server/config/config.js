@@ -9,7 +9,7 @@ const config = {
     logging: false
   },
   test: {
-    url: process.env.TEST_DB_URL,
+    url: 'postgres://andeladeveloper:postgres@localhost:5432/acedms-test',
     dialect: 'postgres',
     logging: false
   },
@@ -19,4 +19,4 @@ const config = {
     logging: false
   }
 };
-module.exports = config;
+module.exports = config[process.env.NODE_ENV || 'development'];
