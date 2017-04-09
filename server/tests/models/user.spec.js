@@ -45,9 +45,6 @@ describe('USER MODEL:-', () => {
       userDb.create(user)
       .catch((error) => {
         expect(error).to.be.instanceOf(Error);
-        // expect(user.lastName).to.equal((createdUser.lastName));
-        // expect(user.email).to.equal(createdUser.email);
-        // expect(user.roleId).to.equal((createdUser.roleId));
         done();
       });
     });

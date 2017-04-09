@@ -67,7 +67,7 @@ export default (sequelize, DataTypes) => {
     },
     instanceMethods: {
       verifyPassword(password) {
-        return bcrypt.compareSync(password, this.passWord);
+        return bcrypt.compareSync(password, this.password);
       },
       hashPassword() {
         this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));

@@ -1,7 +1,6 @@
 import ResponseHandler from './responseHandler';
 
 class ErrorHandler {
-
   static parseErrors(errors) {
     return errors.map(error => ({ message: error.message }));
   }

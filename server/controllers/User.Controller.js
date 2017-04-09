@@ -24,7 +24,7 @@ class UserController {
     model.User.findOne({ where: { email: user.email } })
      .then((existingUser) => {
        if (existingUser) {
-         ResponseHandler.send409(response);
+         return ResponseHandler.send409(response);
        }
        model.User.create(request.body)
         .then((newUser) => {
@@ -47,12 +47,45 @@ class UserController {
         });
      });
   }
-
-  // check: (req, res) => {
-  //   res.status(200).send({ message: `Inv successfullly` });
-  // }
-  // static createUser(req, res) {
-  //   res.send({ message: 'i am in the controller'});
-  // }
+  static login(request, response) {
+    if (request.body.email && request.body.password) {
+      const newUser = request.body;
+      model.User.findOne({ where: { email: newUser.email } })
+      .then((user) => {
+        if (user) {
+          if (user.verifyPassword(newUser.password)) {
+            const token = Auth.generateToken(user);
+            user.update({ currentToken: token })
+            .then(() => {
+              response.status(200).json({
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                roleId: user.roleId,
+                id: user.id,
+                createdAt: user.createdAt,
+                token
+              });
+            });
+          } else {
+            ResponseHandler.send401(
+              response,
+              { message: 'Wrong password!' }
+            );
+          }
+        } else {
+          ResponseHandler.send404(response);
+        }
+      })
+      .catch((error) => {
+        response.send(error);
+      });
+    } else {
+      ResponseHandler.send400(
+        response,
+        { message: 'Invalid Operation! Please Enter valid login details' }
+      );
+    }
+  }
 }
 export default UserController;

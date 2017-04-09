@@ -54,7 +54,6 @@ export default class Auth {
   static activateToken(user, currentToken) {
     return user.update({ currentToken });
   }
-
   static verifyAdmin(roleId) {
     return Number(roleId) === 1;
   }

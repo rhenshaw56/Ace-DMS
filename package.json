@@ -9,7 +9,7 @@
     "seeds": "sequelize db:seed:all",
     "undo:seeds": "sequelize db:seed:undo:all",
     "undo:migrations": "sequelize db:migrate:undo:all",
-    "mocha": "mocha --timeout 3000 --compilers js:babel-core/register",
+    "mocha": "mocha --timeout 20000 --compilers js:babel-core/register",
     "test": "NODE_ENV=test npm run mocha server/tests/**/*.spec.js",
     "lint": "node_modules/.bin/eslint . || true",
     "lint:watch": "npm run lint -- --watch",
