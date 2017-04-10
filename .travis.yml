@@ -9,7 +9,7 @@ after_success:
 services:
   - postgresql
 before_script:
-  - psql -c 'drop database if exists acedms_test;' -U postgres
-  - psql -c 'create database acedms_test;' -U postgres
+  - psql -c 'drop database if exists acedms-test;' -U postgres
+  - psql -c 'create database acedms-test;' -U postgres
 addons:
   postgresql: "9.3"
