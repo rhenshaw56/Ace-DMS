@@ -1,4 +1,4 @@
-import ResponseHandler from './responseHandler';
+import ResponseHandler from './ResponseHandler';
 
 class ErrorHandler {
   static parseErrors(errors) {
