@@ -30,24 +30,34 @@ describe('Users Requests:', () => {
   // });
 
   describe('Create User', () => {
-    before((done) => {
-      SpecSeeders.init()
-      .then(() => {
-        client.post('/api/users')
-        .send(testUser)
-        .end((error, response) => {
-          // token = response.body.token;
-          // testUserId = response.body.id;
-          done();
-        });
-      });
-    });
+    // before((done) => {
+    //   SpecSeeders.init()
+    //   .then(() => {
+    //     client.post('/api/users')
+    //     .send(testUser)
+    //     .end((error, response) => {
+    //       // token = response.body.token;
+    //       // testUserId = response.body.id;
+    //       done();
+    //     });
+    //   });
+    // });
 
-    after((done) => {
-      db.sequelize.sync({ force: false })
-    .then(() => {
-      done();
-    });
+    // after((done) => {
+    //   db.sequelize.sync({ force: false })
+    // .then(() => {
+    //   done();
+    // });
+    // });
+    before((done) => {
+      db.sequelize.authenticate()
+      .then(() => {
+        db.User.destroy({
+          where: {
+            roleId: 1
+          }
+        }).then(() => done());
+      });
     });
   });
   it('should return a status code of 400 if User specifies Id during creation',
