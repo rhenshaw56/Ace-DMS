@@ -11,11 +11,21 @@ let token;
 let testUserId;
 
 describe('Users Requests:', () => {
+  // before((done) => {
+  //   db.sequelize.sync({ force: true })
+  //   .then(() => {
+  //     SpecSeeders.populateRoleTable();
+  //     done();
+  //   });
+  // });
   before((done) => {
-    db.sequelize.sync({ force: true })
+    db.sequelize.authenticate()
     .then(() => {
-      SpecSeeders.populateRoleTable();
-      done();
+      db.User.destroy({
+        where: {
+          roleId: 1
+        }
+      }).then(() => done());
     });
   });
 
@@ -23,7 +33,7 @@ describe('Users Requests:', () => {
     before((done) => {
       SpecSeeders.init()
       .then(() => {
-        client.post('/api/users/signup')
+        client.post('/api/users')
         .send(testUser)
         .end((error, response) => {
           // token = response.body.token;
@@ -44,7 +54,7 @@ describe('Users Requests:', () => {
     (done) => {
       const invalidUser = FakeData.generateRandomUser();
       invalidUser.id = 1;
-      client.post('/api/users/signup')
+      client.post('/api/users')
        .send(invalidUser)
        .end((error, response) => {
          expect(response.status).to.equal(400);
@@ -53,7 +63,7 @@ describe('Users Requests:', () => {
     });
   it('should not allow a user to signup as Admin', (done) => {
     const fakeAdminUser = FakeData.generateRandomUser(1);
-    client.post('/api/users/signup')
+    client.post('/api/users')
        .send(fakeAdminUser)
       .end((error, response) => {
         expect(response.status).to.equal(403);
@@ -61,17 +71,16 @@ describe('Users Requests:', () => {
       });
   });
   it('should successfully signup users', (done) => {
-    client.post('/api/users/signup')
+    client.post('/api/users')
     .send(testUser)
     .send(testUser)
     .end((error, response) => {
-      console.log(response);
       expect(response.status).to.equal(201);
       done();
     });
   });
   it('should not signup users with duplicate emails', (done) => {
-    client.post('/api/users/signup')
+    client.post('/api/users')
     .send(testUser)
     .send(testUser)
     .end((error, response) => {
@@ -81,7 +90,7 @@ describe('Users Requests:', () => {
   });
   it('should return tokens after succefully registering users',
     (done) => {
-      client.post('/api/users/signup')
+      client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
         // expect(response.status).to.equal(201);
@@ -91,7 +100,7 @@ describe('Users Requests:', () => {
     });
   it('should return details of the created User',
     (done) => {
-      client.post('/api/users/signup')
+      client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
         // expect(response.status).to.equal(201);
@@ -104,7 +113,7 @@ describe('Users Requests:', () => {
     });
   it('should not return password of the registered User',
     (done) => {
-      client.post('/api/users/signup')
+      client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
         // expect(response.status).to.equal(201);
@@ -114,7 +123,7 @@ describe('Users Requests:', () => {
     });
   it(`should by default assign roles of Regular User if no roleId
       is specified on signup`, (done) => {
-    client.post('/api/users/signup')
+    client.post('/api/users')
       .send(FakeData.generateRandomUser())
       .end((error, response) => {
         expect(response.status).to.equal(201);
@@ -122,7 +131,7 @@ describe('Users Requests:', () => {
       });
   });
   it('should return a 400 status code for a an invalid roleId', (done) => {
-    client.post('/api/users/signup')
+    client.post('/api/users')
       .send(FakeData.generateRandomUser(10))
       .end((error, response) => {
         expect(response.status).to.equal(400);

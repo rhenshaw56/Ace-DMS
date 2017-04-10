@@ -88,18 +88,21 @@ class UserController {
     }
   }
   static logOut(request, response) {
-    const id = request.decoded.userId;
-    model.User.findById(id)
+    const userId = request.body.id;
+    model.User.findById(userId)
     .then((user) => {
-      user.update({ activeToken: null })
+      user.update({ currentToken: null })
       .then(() => {
         ResponseHandler.sendResponse(
           response,
           200,
-          { message: 'Logout Successful' }
+          { message: 'Successfully Logged out' }
         );
       });
     });
+  }
+  static findUser(request,response) {
+    
   }
 }
 export default UserController;
