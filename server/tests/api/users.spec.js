@@ -21,15 +21,16 @@ describe('Users Request: ', () => {
   const testUser = FakeData.RegularUser1;
   const testAdminUser = FakeData.AdminUser;
   describe('Creates Regular Users', () => {
-    it('should return a status code of 201 after creating regular users', 
+    it('should return a status code of 201 after signing up regular users',
     (done) => {
       client.post('/api/users')
       .send(testUser)
       .end((err, res) => {
         expect(res.status).to.equal(201);
         done();
-      })
-    })
+      });
+    });
+    it('should return user details on successful signup', )
   });
 });
 
