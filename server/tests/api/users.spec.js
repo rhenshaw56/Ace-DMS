@@ -83,7 +83,6 @@ describe('Users Requests:', () => {
       client.post('/api/users/signup')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        expect(response.status).to.equal(201);
         expect(response.body).to.have.property('token');
         done();
       });
@@ -93,7 +92,6 @@ describe('Users Requests:', () => {
       client.post('/api/users/signup')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        expect(response.status).to.equal(201);
         expect(response.body).to.have.property('firstName');
         expect(response.body).to.have.property('lastName');
         expect(response.body).to.have.property('email');
@@ -106,7 +104,6 @@ describe('Users Requests:', () => {
       client.post('/api/users/signup')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        expect(response.status).to.equal(201);
         expect(response.body).to.not.have.property('password');
         done();
       });

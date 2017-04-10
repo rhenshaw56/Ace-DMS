@@ -47,7 +47,7 @@ class UserController {
         });
      });
   }
-  static login(request, response) {
+  static logIn(request, response) {
     if (request.body.email && request.body.password) {
       const newUser = request.body;
       model.User.findOne({ where: { email: newUser.email } })
@@ -86,6 +86,20 @@ class UserController {
         { message: 'Invalid Operation! Please Enter valid login details' }
       );
     }
+  }
+  static logOut(request, response) {
+    const id = request.decoded.userId;
+    model.User.findById(id)
+    .then((user) => {
+      user.update({ activeToken: null })
+      .then(() => {
+        ResponseHandler.sendResponse(
+          response,
+          200,
+          { message: 'Logout Successful' }
+        );
+      });
+    });
   }
 }
 export default UserController;
