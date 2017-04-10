@@ -11,23 +11,23 @@ let token;
 let testUserId;
 
 describe('Users Requests:', () => {
-  // before((done) => {
-  //   db.sequelize.sync({ force: true })
-  //   .then(() => {
-  //     SpecSeeders.populateRoleTable();
-  //     done();
-  //   });
-  // });
   before((done) => {
-    db.sequelize.authenticate()
+    db.sequelize.sync({ force: true })
     .then(() => {
-      db.User.destroy({
-        where: {
-          roleId: 1
-        }
-      }).then(() => done());
+      SpecSeeders.populateRoleTable();
+      done();
     });
   });
+  // before((done) => {
+  //   db.sequelize.authenticate()
+  //   .then(() => {
+  //     db.User.destroy({
+  //       where: {
+  //         roleId: 1
+  //       }
+  //     }).then(() => done());
+  //   });
+  // });
 
   describe('Create User', () => {
     before((done) => {
@@ -70,7 +70,7 @@ describe('Users Requests:', () => {
         done();
       });
   });
-  it('should successfully signup users', (done) => {
+  it('*should successfully signup users', (done) => {
     client.post('/api/users')
     .send(testUser)
     .send(testUser)
@@ -79,7 +79,7 @@ describe('Users Requests:', () => {
       done();
     });
   });
-  it('should not signup users with duplicate emails', (done) => {
+  it('*should not signup users with duplicate emails', (done) => {
     client.post('/api/users')
     .send(testUser)
     .send(testUser)
@@ -88,7 +88,7 @@ describe('Users Requests:', () => {
       done();
     });
   });
-  it('should return tokens after succefully registering users',
+  it('*should return tokens after succefully registering users',
     (done) => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
@@ -103,7 +103,7 @@ describe('Users Requests:', () => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        // expect(response.status).to.equal(201);
+        expect(response.status).to.equal(201);
         expect(response.body).to.have.property('firstName');
         expect(response.body).to.have.property('lastName');
         expect(response.body).to.have.property('email');
@@ -121,7 +121,7 @@ describe('Users Requests:', () => {
         done();
       });
     });
-  it(`should by default assign roles of Regular User if no roleId
+  it(`*should by default assign roles of Regular User if no roleId
       is specified on signup`, (done) => {
     client.post('/api/users')
       .send(FakeData.generateRandomUser())
