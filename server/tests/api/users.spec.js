@@ -60,6 +60,15 @@ describe('Users Requests:', () => {
       });
     });
   });
+  it('*should successfully signup users', (done) => {
+    client.post('/api/users')
+    .send(testUser)
+    .send(testUser)
+    .end((error, response) => {
+      expect(response.status).to.equal(201);
+      done();
+    });
+  });
   it('should return a status code of 400 if User specifies Id during creation',
     (done) => {
       const invalidUser = FakeData.generateRandomUser();
@@ -71,24 +80,6 @@ describe('Users Requests:', () => {
          done();
        });
     });
-  it('should not allow a user to signup as Admin', (done) => {
-    const fakeAdminUser = FakeData.generateRandomUser(1);
-    client.post('/api/users')
-       .send(fakeAdminUser)
-      .end((error, response) => {
-        expect(response.status).to.equal(403);
-        done();
-      });
-  });
-  it('*should successfully signup users', (done) => {
-    client.post('/api/users')
-    .send(testUser)
-    .send(testUser)
-    .end((error, response) => {
-      expect(response.status).to.equal(201);
-      done();
-    });
-  });
   it('*should not signup users with duplicate emails', (done) => {
     client.post('/api/users')
     .send(testUser)
@@ -98,48 +89,57 @@ describe('Users Requests:', () => {
       done();
     });
   });
+  it('should not allow a user to signup as Admin', (done) => {
+    const fakeAdminUser = FakeData.generateRandomUser(1);
+    client.post('/api/users')
+       .send(fakeAdminUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(403);
+        done();
+      });
+  });
   it('*should return tokens after succefully registering users',
     (done) => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        // expect(response.status).to.equal(201);
+        expect(response.status).to.equal(201);
         expect(response.body).to.have.property('token');
         done();
       });
-  //   });
-  // it('should return details of the created User',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(FakeData.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       // expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('firstName');
-  //       expect(response.body).to.have.property('lastName');
-  //       expect(response.body).to.have.property('email');
-  //       expect(response.body).to.have.property('id');
-  //       done();
-  //     });
+    });
+  it('should return details of the created User',
+    (done) => {
+      client.post('/api/users')
+      .send(FakeData.generateRandomUser(2))
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body).to.have.property('firstName');
+        expect(response.body).to.have.property('lastName');
+        expect(response.body).to.have.property('email');
+        expect(response.body).to.have.property('id');
+        done();
+      });
     });
   it('should not return password of the registered User',
     (done) => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
-        // expect(response.status).to.equal(201);
+        expect(response.status).to.equal(201);
         expect(response.body).to.not.have.property('password');
         done();
       });
     });
-  // it(`*should by default assign roles of Regular User if no roleId
-  //     is specified on signup`, (done) => {
-  //   client.post('/api/users')
-  //     .send(FakeData.generateRandomUser())
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       done();
-  //     });
-  // });
+  it(`*should by default assign roles of Regular User if no roleId
+      is specified on signup`, (done) => {
+    client.post('/api/users')
+      .send(FakeData.generateRandomUser())
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        done();
+      });
+  });
   it('should return a 400 status code for a an invalid roleId', (done) => {
     client.post('/api/users')
       .send(FakeData.generateRandomUser(10))
