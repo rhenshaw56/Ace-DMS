@@ -20,16 +20,12 @@ describe('Users Requests:', () => {
   });
 
   describe('Create User', () => {
-    // Clear and populate the database first
     before((done) => {
       SpecSeeders.init()
       .then(() => {
-      // fetch regular user token and id for further tests
         client.post('/api/users/signup')
         .send(testUser)
         .end((error, response) => {
-          cosole.log(response);
-        // set regular user token and id for other tests below
           token = response.body.token;
           testUserId = response.body.id;
           done();
