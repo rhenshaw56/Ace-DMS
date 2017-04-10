@@ -6,8 +6,6 @@ import SpecSeeders from '../helpers/SpecSeeders';
 import FakeData from '../helpers/SpecFakers';
 
 const client = supertest.agent(app);
-let token;
-let testUserId;
 
 before((done) => {
   db.sequelize.authenticate()
@@ -22,5 +20,16 @@ before((done) => {
 describe('Users Request: ', () => {
   const testUser = FakeData.RegularUser1;
   const testAdminUser = FakeData.AdminUser;
+  describe('Creates Regular Users', () => {
+    it('should return a status code of 201 after creating regular users', 
+    (done) => {
+      client.post('/api/users')
+      .send(testUser)
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        done();
+      })
+    })
+  });
 });
 
