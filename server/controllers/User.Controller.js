@@ -1,5 +1,5 @@
 import model from '../models';
-import Auth from '../middlewares/auth';
+import Auth from '../middlewares/Auth';
 import ErrorHandler from '../helpers/ErrorHandler';
 import ResponseHandler from '../helpers/ResponseHandler';
 
