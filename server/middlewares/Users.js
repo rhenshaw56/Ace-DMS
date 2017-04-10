@@ -1,5 +1,5 @@
 import ResponseHandler from '../helpers/ResponseHandler';
-import auth from './auth';
+import auth from './Auth';
 
 export default class User {
 
