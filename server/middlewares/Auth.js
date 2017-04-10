@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import responseHandler from '../helpers/responseHandler';
+import responseHandler from '../helpers/ResponseHandler';
 import db from '../models';
 
 const secret = process.env.SECRET;
