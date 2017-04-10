@@ -70,15 +70,15 @@ describe('Users Requests:', () => {
         done();
       });
   });
-  // it('*should successfully signup users', (done) => {
-  //   client.post('/api/users')
-  //   .send(testUser)
-  //   .send(testUser)
-  //   .end((error, response) => {
-  //     expect(response.status).to.equal(201);
-  //     done();
-  //   });
-  // });
+  it('*should successfully signup users', (done) => {
+    client.post('/api/users')
+    .send(testUser)
+    .send(testUser)
+    .end((error, response) => {
+      expect(response.status).to.equal(201);
+      done();
+    });
+  });
   it('*should not signup users with duplicate emails', (done) => {
     client.post('/api/users')
     .send(testUser)
@@ -88,28 +88,28 @@ describe('Users Requests:', () => {
       done();
     });
   });
-  // it('*should return tokens after succefully registering users',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(FakeData.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       // expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('token');
-  //       done();
-  //     });
-  //   });
-  it('should return details of the created User',
+  it('*should return tokens after succefully registering users',
     (done) => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(2))
       .end((error, response) => {
         // expect(response.status).to.equal(201);
-        expect(response.body).to.have.property('firstName');
-        expect(response.body).to.have.property('lastName');
-        expect(response.body).to.have.property('email');
-        expect(response.body).to.have.property('id');
+        expect(response.body).to.have.property('token');
         done();
       });
+  //   });
+  // it('should return details of the created User',
+  //   (done) => {
+  //     client.post('/api/users')
+  //     .send(FakeData.generateRandomUser(2))
+  //     .end((error, response) => {
+  //       // expect(response.status).to.equal(201);
+  //       expect(response.body).to.have.property('firstName');
+  //       expect(response.body).to.have.property('lastName');
+  //       expect(response.body).to.have.property('email');
+  //       expect(response.body).to.have.property('id');
+  //       done();
+  //     });
     });
   it('should not return password of the registered User',
     (done) => {
