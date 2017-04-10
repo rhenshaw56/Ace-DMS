@@ -26,8 +26,8 @@ describe('Users Requests:', () => {
         client.post('/api/users/signup')
         .send(testUser)
         .end((error, response) => {
-          token = response.body.token;
-          testUserId = response.body.id;
+          // token = response.body.token;
+          // testUserId = response.body.id;
           done();
         });
       });
