@@ -91,6 +91,16 @@ describe('USER MODEL:-', () => {
         done();
       });
     });
+    it('should verify user passwords', (done) => {
+      const field = { password: 'super-powers' };
+      const user = FakeData.alterUserDetail(FakeData.RegularUser8, field);
+      userDb.create(user)
+      .then((newUser) => {
+        const check = newUser.verifyPassword(user.password, newUser.password);
+        expect(check).to.equal(true);
+        done();
+      });
+    });
   });
   describe('Updates User', () => {
     let testUser = {};
@@ -130,6 +140,18 @@ describe('USER MODEL:-', () => {
           done();
         });
       });
+    });
+    it('should allow updates of passwords on update', (done) => {
+      const newDetails = { password: 'the-script-Vs-U2' };
+      userDb.findById(testUser.id)
+        .then((foundUser) => {
+          foundUser.update(newDetails)
+          .then(() => {
+            const check = foundUser.verifyPassword(newDetails.password, foundUser.password);
+            expect(check).to.equal(true);
+            done();
+          });
+        });
     });
     it('should allow updates of LastName for a user',
     (done) => {
