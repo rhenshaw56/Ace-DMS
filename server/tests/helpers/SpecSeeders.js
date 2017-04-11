@@ -4,9 +4,9 @@ import SpecFakers from './SpecFakers';
 export default class SpecSeeders {
   static init() {
         return db.sequelize.sync({ force: true })
-        .then(() => SpecSeeders.populateUserTable())
         .then(() => SpecSeeders.populateRoleTable())
-        .then(() => SpecSeeders.populateDocumentTable());
+        .then(() => SpecSeeders.populateUserTable());
+        // .then(() => SpecSeeders.populateDocumentTable());
   }
   static populateUserTable() {
     const users = [
@@ -27,7 +27,8 @@ export default class SpecSeeders {
   static populateRoleTable() {
     const roles = [
       SpecFakers.AdminRole,
-      SpecFakers.RegularRole
+      SpecFakers.RegularRole,
+      SpecFakers.generateRandomRole('random')
     ];
     return db.Role.bulkCreate(roles, { individualHooks: true });
   }

@@ -1,10 +1,10 @@
 import UserMiddleware from '../middlewares/Users';
 import UserController from '../controllers/User.Controller';
+import Auth from '../middlewares/Auth';
 
 const UserRoutes = (router) => {
-  router.route('/api/users')
-    .post(UserMiddleware.validateOnCreate, UserController.createUser)
-    .get(UserController.findUser);
+  router.route('/api/users/')
+    .post(UserMiddleware.validateOnCreate, UserController.createUser);
 
   router.route('/api/users/login')
     .post(UserController.logIn);

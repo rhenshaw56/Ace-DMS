@@ -88,8 +88,8 @@ class UserController {
     }
   }
   static logOut(request, response) {
-    const userId = request.body.id;
-    model.User.findById(userId)
+    const id = request.body.id;
+    model.User.findById(id)
     .then((user) => {
       user.update({ currentToken: null })
       .then(() => {
@@ -100,9 +100,6 @@ class UserController {
         );
       });
     });
-  }
-  static findUser(request,response) {
-    
   }
 }
 export default UserController;
