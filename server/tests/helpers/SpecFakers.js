@@ -91,6 +91,90 @@ const fakes = {
   AdminRole: {
     title: 'admin'
   },
+  publicDocument: {
+    title: faker.company.catchPhrase(),
+    access: 'public',
+    content: faker.lorem.paragraph(),
+    ownerId: 1,
+    ownerRoleId: 1
+  },
+  publicDocument1: {
+    title: faker.company.catchPhrase(),
+    access: 'public',
+    content: faker.lorem.paragraph(),
+    ownerId: 7,
+    ownerRoleId: 2
+  },
+  publicDocument2: {
+    title: faker.company.catchPhrase(),
+    access: 'public',
+    content: faker.lorem.paragraph(),
+    ownerId: 6,
+    ownerRoleId: 2
+  },
+  publicDocument3: {
+    title: faker.company.catchPhrase(),
+    access: 'public',
+    content: faker.lorem.paragraph(),
+    ownerId: 5,
+    ownerRoleId: 2
+  },
+  privateDocument: {
+    title: faker.company.catchPhrase(),
+    access: 'private',
+    content: faker.lorem.paragraph(),
+    ownerId: 1,
+    ownerRoleId: 1
+  },
+  privateDocument1: {
+    title: faker.company.catchPhrase(),
+    access: 'private',
+    content: faker.lorem.paragraph(),
+    ownerId: 6,
+    ownerRoleId: 2
+  },
+  privateDocument2: {
+    title: faker.company.catchPhrase(),
+    access: 'private',
+    content: faker.lorem.paragraph(),
+    ownerId: 3,
+    ownerRoleId: 2
+  },
+  privateDocument3: {
+    title: faker.company.catchPhrase(),
+    access: 'private',
+    content: faker.lorem.paragraph(),
+    ownerId: 1,
+    ownerRoleId: 1
+  },
+  roleDocument: {
+    title: faker.company.catchPhrase(),
+    access: 'role',
+    content: faker.lorem.paragraph(),
+    ownerId: 4,
+    ownerRoleId: 2
+  },
+  roleDocument1: {
+    title: faker.company.catchPhrase(),
+    access: 'role',
+    content: faker.lorem.paragraph(),
+    ownerId: 3,
+    ownerRoleId: 2
+  },
+  roleDocument2: {
+    title: faker.company.catchPhrase(),
+    access: 'role',
+    content: faker.lorem.paragraph(),
+    ownerId: 1,
+    ownerRoleId: 1
+  },
+  roleDocument3: {
+    title: faker.company.catchPhrase(),
+    access: 'role',
+    content: faker.lorem.paragraph(),
+    ownerId: 2,
+    ownerRoleId: 2
+  },
 
   alterUserDetail(userDetails, newValue) {
     return Object.assign({}, userDetails, newValue);
@@ -109,6 +193,13 @@ const fakes = {
     return {
       title: roleTitle
     };
+  },
+  generateRandomDocument(accessLevel) {
+    return {
+      title: faker.company.catchPhrase(),
+      access: accessLevel,
+      content: faker.lorem.paragraph()
+    };
   }
-}
+};
 export default fakes;

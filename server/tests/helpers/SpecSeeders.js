@@ -5,8 +5,8 @@ export default class SpecSeeders {
   static init() {
         return db.sequelize.sync({ force: true })
         .then(() => SpecSeeders.populateRoleTable())
-        .then(() => SpecSeeders.populateUserTable());
-        // .then(() => SpecSeeders.populateDocumentTable());
+        .then(() => SpecSeeders.populateUserTable())
+        .then(() => SpecSeeders.populateDocumentTable());
   }
   static populateUserTable() {
     const users = [
@@ -34,18 +34,18 @@ export default class SpecSeeders {
   }
   static populateDocumentTable() {
     const documents = [
-      SpecFakers.validPrivateDocument,
-      SpecFakers.validPrivateDocument1,
-      SpecFakers.validPrivateDocument2,
-      SpecFakers.validPrivateDocument3,
-      SpecFakers.validPublicDocument,
-      SpecFakers.validPublicDocument1,
-      SpecFakers.validPublicDocument2,
-      SpecFakers.validPublicDocument3,
-      SpecFakers.validRoleDocument,
-      SpecFakers.validRoleDocument1,
-      SpecFakers.validRoleDocument2,
-      SpecFakers.validRoleDocument3
+      SpecFakers.PrivateDocument,
+      SpecFakers.PrivateDocument1,
+      SpecFakers.PrivateDocument2,
+      SpecFakers.PrivateDocument3,
+      SpecFakers.PublicDocument,
+      SpecFakers.PublicDocument1,
+      SpecFakers.PublicDocument2,
+      SpecFakers.PublicDocument3,
+      SpecFakers.RoleDocument,
+      SpecFakers.RoleDocument1,
+      SpecFakers.RoleDocument2,
+      SpecFakers.RoleDocument3
     ];
     return db.Document.bulkCreate(documents, { individualHooks: true });
   }

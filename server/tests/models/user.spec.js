@@ -13,6 +13,13 @@ describe('USER MODEL:-', () => {
       done();
     });
   });
+  after((done) => {
+    db.sequelize.sync({ force: true })
+    .then(() => {
+      done();
+    });
+  });
+
   describe('Creates User', () => {
     it('should be able to create a regular user with valid data',
     (done) => {
