@@ -34,18 +34,18 @@ export default class SpecSeeders {
   }
   static populateDocumentTable() {
     const documents = [
-      SpecFakers.PrivateDocument,
-      SpecFakers.PrivateDocument1,
-      SpecFakers.PrivateDocument2,
-      SpecFakers.PrivateDocument3,
-      SpecFakers.PublicDocument,
-      SpecFakers.PublicDocument1,
-      SpecFakers.PublicDocument2,
-      SpecFakers.PublicDocument3,
-      SpecFakers.RoleDocument,
-      SpecFakers.RoleDocument1,
-      SpecFakers.RoleDocument2,
-      SpecFakers.RoleDocument3
+      SpecFakers.privateDocument,
+      SpecFakers.privateDocument1,
+      SpecFakers.privateDocument2,
+      SpecFakers.privateDocument3,
+      SpecFakers.publicDocument,
+      SpecFakers.publicDocument1,
+      SpecFakers.publicDocument2,
+      SpecFakers.publicDocument3,
+      SpecFakers.roleDocument,
+      SpecFakers.roleDocument1,
+      SpecFakers.roleDocument2,
+      SpecFakers.roleDocument3
     ];
     return db.Document.bulkCreate(documents, { individualHooks: true });
   }
