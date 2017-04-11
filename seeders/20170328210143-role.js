@@ -12,7 +12,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Roles', [
+    return queryInterface.bulkInsert('Role', [
       {
         title: 'admin',
         createdAt: new Date(),
@@ -36,6 +36,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-    return queryInterface.bulkDelete('Roles', null, {});
+    return queryInterface.bulkDelete('Role', null, {});
   }
 };
