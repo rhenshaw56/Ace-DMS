@@ -8,13 +8,7 @@ import SpecSeeders from '../helpers/SpecSeeders';
 import FakeData from '../helpers/SpecFakers';
 
 const client = supertest.agent(app);
-const regularUser = {
-  firstName: 'mattew',
-  lastName: 'obi',
-  email: 'm@obi.com',
-  password: 'hdhdkkdn',
-  roleId: 2
-};
+const regularUser = FakeData.generateRandomUser(2);
 let regularUserToken;
 let adminUserToken;
 let regularUserId;
@@ -69,18 +63,18 @@ describe('Users:', () => {
       });
     });
 
-    // it(`should return a 401 status code if User ID is specified
-    // in new User to be created`,
-    // (done) => {
-    //   const invalidNewUser = SpecHelper.generateRandomUser();
-    //   invalidNewUser.id = 1;
-    //   client.post('/api/users')
-    //   .send(invalidNewUser)
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(400);
-    //     done();
-    //   });
-    // });
+    it(`should return a 401 status code if User ID is specified
+    in new User to be created`,
+    (done) => {
+      const invalidNewUser = SpecHelper.generateRandomUser();
+      invalidNewUser.id = 1;
+      client.post('/api/users')
+      .send(invalidNewUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+    });
 
   //   it('should NOT allow Users with Duplicate Email address to be created',
   //   (done) => {
@@ -352,7 +346,7 @@ describe('Users:', () => {
   //     });
   //   });
 
-  //   it(`should return a 400 status code when an authenticated user
+  //   it(`should return a 400 status code when an authenticated user 
   //   passes an invalid user id when trying to fetch a user`,
   //   (done) => {
   //     client.get('/api/users/xxx')

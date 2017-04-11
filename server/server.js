@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 const router = express.Router();
-const port = process.env.port || 7600;
+const port = process.env.PORT || 7600;
 
 // Load middlewares
 
