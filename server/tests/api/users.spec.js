@@ -1,726 +1,752 @@
-import supertest from 'supertest';
 import { expect } from 'chai';
+import supertest from 'supertest';
+import should from 'should';
 
-import db from '../../models';
 import app from '../../server';
-
+import db from '../../models';
 import SpecSeeders from '../helpers/SpecSeeders';
 import FakeData from '../helpers/SpecFakers';
 
 const client = supertest.agent(app);
-const regularUser = FakeData.generateRandomUser(2);
-let regularUserToken;
-let adminUserToken;
-let regularUserId;
+
+before((done) => {
+  db.sequelize.authenticate()
+  .then(() => {
+    db.User.destroy({
+      where: {
+        roleId: 2
+      }
+    }).then(() => done());
+  });
+});
 
 describe('Users:', () => {
-  // // Clear and populate the database first
-  // before((done) => {
-  //   SpecSeeders.init()
-  //   .then(() => {
-  //     // fetch regular user token and id for further tests
-  //     client.post('/api/users')
-  //     .send(regularUser)
-  //     .end((error, response) => {
-  //       // set regular user token and id for other tests below
-  //       regularUserToken = response.body.token;
-  //       regularUserId = response.body.id;
-  //       done();
-  //     });
-  //   });
-  // });
-
-  // after((done) => {
-  //   db.sequelize.sync({ force: true })
-  //   .then(() => {
-  //     done();
-  //   });
-  // });
-  before((done) => {
-    db.sequelize.sync({ force: true })
-    .then(() => {
-      SpecSeeders.populateRoleTable();
-      done();
-    });
-  });
-  after((done) => {
-    db.sequelize.sync({ force: true })
-    .then(() => {
-      done();
-    });
-  });
-
-  describe('Create User', () => {
-    const newRegularUser = FakeData.generateRandomUser(2);
-    it(`should return http code 201
-      if a Regular User is successfully created`, (done) => {
+  const regularUser = FakeData.RegularUser8;
+  const adminUser = FakeData.AdminUser;
+  let regularUserId, adminUserToken, regularUserToken;
+  describe('Create Regular User', () => {
+    it('Should return http code 201 if a Regular User is created', (done) => {
       client.post('/api/users')
-      .send(newRegularUser)
+      .send(regularUser)
       .end((error, response) => {
-        console.log(response);
-        expect(response.status).to.equal(201);
+        console.log(response.body.message);
+        // regularUserId = response.body.message.id;
+        response.status.should.equal(201);
         done();
       });
     });
 
-    it(`should return a 401 status code if User ID is specified
-    in new User to be created`,
-    (done) => {
-      const invalidNewUser = SpecHelper.generateRandomUser();
-      invalidNewUser.id = 1;
-      client.post('/api/users')
-      .send(invalidNewUser)
-      .end((error, response) => {
-        expect(response.status).to.equal(400);
-        done();
-      });
-    });
+//     it('Should be be successful and return created user details', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.validUser2)
+//       .end((error, response) => {
+//         response.body.success.should.equal(true);
+//         response.body.message.roleId.should.equal(1);
+//         response.body.message.should.have.property('id');
+//         response.body.message.should.have.property('roleId').equal(1);
+//         response.body.message.should.have.property('email');
+//         response.body.message.should.have.property('createdAt');
+//         response.body.message.should.have.property('username');
+//         response.body.message.should.have.property('updatedAt');
+//         response.body.message.should.have.property('firstname');
+//         response.body.message.should.have.property('lastname');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow Users with Duplicate Email address to be created',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(newRegularUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow duplicate username/email in the database', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.validUser1)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Oops. There is an existing account with this email address.');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow an Admin User to be created',
-  //   (done) => {
-  //     const newAdminUser = SpecHelper.generateRandomUser(1);
-  //     client.post('/api/users')
-  //     .send(newAdminUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+//     it(`Should disallow user creation if the password does not match
+// password confirmation`,
+//     (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser1)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Password confirmation does not match password');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow Users with invalid Role type to be created',
-  //   (done) => {
-  //     const invalidRoleUser = SpecHelper.generateRandomUser('super-admin');
-  //     client.post('/api/users')
-  //     .send(invalidRoleUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should disallow user creation if request body contains invalid keys',
+//     (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser2)
+//       .end((error, response) => {
+//         const badKeys = '( usernam,hacked,firstnam,passw )';
+//         response.status.should.equal(409);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal(`badly formatted request body including ${badKeys}`);
+//         done();
+//       });
+//     });
 
-  //   it('should return a TOKEN if a Regular User is successfully created',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('token');
-  //       done();
-  //     });
-  //   });
+//     it('Should require a password of atleast eight characters', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser3)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Please choose a longer password');
+//         done();
+//       });
+//     });
 
-  //   it('should return public details of the created Regular User',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('firstName');
-  //       expect(response.body).to.have.property('lastName');
-  //       expect(response.body).to.have.property('email');
-  //       expect(response.body).to.have.property('id');
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow roleId in request body during creation', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser4)
+//       .end((error, response) => {
+//         response.status.should.equal(409);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('badly formatted request body including ( roleId )');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT create a User if Required fields/attributes are missing',
-  //   (done) => {
-  //     const invalidUser = {};
-  //     client.post('/api/users')
-  //     .send(invalidUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow usernames having more than 2 characters', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser5)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Username must start with a letter, have no spaces, and \
+// be 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  //   it(`should make a User role be regular by default if no roleId
-  //     is supplied`, (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser())
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow usernames having less than 40 characters', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser6)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Username must start with a letter, have no spaces, and be \
+// 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  //   it(`should retrun a 400 status code if the User specify a an invalid
-  //   Role type`, (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(10))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
-  // });
+//     it('Should only allow firstnames having more than 2 characters', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser7)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Firstname must start with a letter, have no spaces, and be \
+// 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  // describe('Login', () => {
-  //   it('should allow login for only CORRECT details of an Admin', (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validAdminUser.email,
-  //       password: SpecHelper.validAdminUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow firstnames having less than 40 characters',
+//     (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser8)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Firstname must start with a letter, have no spaces, and be \
+// 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  //   it('should return a TOKEN if Admin Login is successful', (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validAdminUser.email,
-  //       password: SpecHelper.validAdminUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.have.property('token');
-  //       // set the admin user token for other tests
-  //       adminUserToken = response.body.token;
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow lastnames having more than 2 characters', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser9)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Username must start with a letter, have no spaces, and be \
+// 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT return a TOKEN if Admin Login FAILS', (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validAdminUser.email,
-  //       password: 'wrongpassword'
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       expect(response.body).to.not.have.property('token');
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow lastnames having less than 50 characters',
+//     (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser10)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal('Username must start with a letter, have no spaces, and be \
+// 3 - 40 characters long.');
+//         done();
+//       });
+//     });
 
-  //   it('should return a TOKEN if Regular User Login is successful', (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validRegularUser.email,
-  //       password: SpecHelper.validRegularUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.have.property('token');
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow valid emails having more than 6 characters',
+//     (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.invalidUser11)
+//       .end((error, response) => {
+//         response.status.should.equal(400);
+//         response.body.message.should
+//         .equal(`Validation error: Validation isEmail failed,
+// Validation error: Validation len failed`);
+//         done();
+//       });
+//     });
 
-  //   it(`should ensure payload of returned token does not contain
-  //   sensitivedata of the User(for security reasons, only the user id
-  //   should be exposed if necessary)`,
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validRegularUser.email,
-  //       password: SpecHelper.validRegularUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       const tokenPayload = response.body.token.split('.')[1];
-  //       const decodedToken = JSON.parse(
-  //         new Buffer(tokenPayload, 'base64').toString()
-  //       );
-  //       expect(decodedToken).to.have.property('userId');
-  //       expect(decodedToken).to.not.have.property('roleId');
-  //       done();
-  //     });
-  //   });
+//     it(`Should not return the security details of 
+// the created Regular User`, (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.validUser3)
+//       .end((error, response) => {
+//         response.status.should.equal(201);
+//         response.body.message.should.not.have.property('password');
+//         response.body.message.should.not.have.property('password_confirmation');
+//         response.body.message.should.not.have.property('password_digest');
+//         response.body.message.should.not.have.property('auth_token');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT return a TOKEN if Regular User Login FAILS', (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validRegularUser.email,
-  //       password: 'wrongpassword'
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       expect(response.body).to.not.have.property('token');
-  //       done();
-  //     });
-  //   });
+//     it('Should create a user without admin privileges', (done) => {
+//       app.post('/api/v1/users')
+//       .send(testData.validUser4)
+//       .end((error, response) => {
+//         response.status.should.equal(201);
+//         response.body.message.roleId.should.not.equal(0);
+//         done();
+//       });
+//     });
+//   });
 
-  //   it('should NOT allow login for a User that does NOT exist',
-  //   (done) => {
-  //     const nonRegisteredUser = SpecHelper.generateRandomUser(2);
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: nonRegisteredUser.email,
-  //       password: nonRegisteredUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(404);
-  //       done();
-  //     });
-  //   });
+//   describe('Login', () => {
+//     it('Should allow login for admin user with valid credentials', (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: adminUser.email,
+//         password: adminUser.password
+//       })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow login if email is not provided',
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       password: SpecHelper.validRegularUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should disallow login for invalid admin user password', (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: adminUser.email,
+//         password: 'invalidpassword'
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Authentication failed! Wrong password.');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow login if password is not provided',
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: SpecHelper.validRegularUser.email
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
-  // });
+//     it(`Should fail with message 'Authentication failed. User not found'.
+// if admin user does not exist`, (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         username: '00p',
+//         password: 'invalidpassword'
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Authentication failed! User not found.');
+//         done();
+//       });
+//     });
 
-  // describe('Get Users', () => {
-  //   it('should allow NON-Admin with a valid token access to list of users',
-  //   (done) => {
-  //     client.get('/api/users')
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.be.instanceof(Object);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow either username or passowrd login, not both for admin',
+//     (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         username: adminUser.username,
+//         email: adminUser.email,
+//         password: adminUser.password
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Please supply either user name or email, plus your password');
+//         done();
+//       });
+//     });
 
-  //   it('should Allow an Admin User access to list of Users', (done) => {
-  //     client.get('/api/users')
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.be.instanceOf(Object);
-  //       done();
-  //     });
-  //   });
+//     it('Should return a token if the admin user login is successful',
+//     (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: adminUser.email,
+//         password: adminUser.password
+//       })
+//       .end((error, response) => {
+//         adminUserToken = response.body.token;
+//         response.status.should.equal(200);
+//         response.body.message.should.equal('Enjoy your token!');
+//         response.body.should.have.property('token').which.is.a.String();
+//         response.body.token.length.should.be.above(1);
+//         done();
+//       });
+//     });
 
-  //   it('should Not Allow Un-Authorized access to list of Users', (done) => {
-  //     client.get('/api/users')
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
-  // });
+//     it('Should not return a token if admin user login fails', (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: adminUser.email,
+//         password: 'invaidpassword'
+//       })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         response.body.should.not.have.property('token');
+//         done();
+//       });
+//     });
 
-  // describe('Get User', () => {
-  //   it('should allow NON-Admin  User with valid token fetch another User',
-  //   (done) => {
-  //     client.get(`/api/users/${regularUserId + 1}`)
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.be.instanceOf(Object);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow login for a regular user with valid credentials',
+//     (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: regularUser.email,
+//         password: regularUser.password
+//       })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         done();
+//       });
+//     });
 
-  //   it('should Allow an Admin User with valid token fetch another User',
-  //   (done) => {
-  //     client.get(`/api/users/${regularUserId}`)
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.be.instanceOf(Object);
-  //       done();
-  //     });
-  //   });
+//     it('Should disallow login for invalid regular user password', (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: regularUser.email,
+//         password: 'invalidpassword'
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Authentication failed! Wrong password.');
+//         done();
+//       });
+//     });
 
-  //   it(`should return a 400 status code when an authenticated user 
-  //   passes an invalid user id when trying to fetch a user`,
-  //   (done) => {
-  //     client.get('/api/users/xxx')
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       expect(response.body.message).to.equal('Bad Request');
-  //       done();
-  //     });
-  //   });
+//     it(`Should fail with message 'Authentication failed. User not found'.
+// if regular user does not exist`, (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         username: '00p',
+//         password: 'invalidpassword'
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Authentication failed! User not found.');
+//         done();
+//       });
+//     });
 
-  //   it('should Not Allow Un-Authorized fetch of a User', (done) => {
-  //     client.get('/api/users/1')
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       expect(response.body.message).to.equal('Authentication Token Required');
-  //       done();
-  //     });
-  //   });
+//     it('Should allow username or passowrd login, not both for regular users',
+//     (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         username: regularUser.username,
+//         email: regularUser.email,
+//         password: regularUser.password
+//       })
+//       .end((error, response) => {
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Please supply either user name or email, plus your password');
+//         done();
+//       });
+//     });
 
-  //   it(`should NOT return a User if User with specified id doesn't
-  //   exist`, (done) => {
-  //     client.get('/api/users/10000')
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(404);
-  //       expect(response.body.message).to.equal('Resource(s) Not Found');
-  //       done();
-  //     });
-  //   });
+//     it('Should return a token if the regular user login is successful',
+//     (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: regularUser.email,
+//         password: regularUser.password
+//       })
+//       .end((error, response) => {
+//         regularUserToken = response.body.token;
+//         response.status.should.equal(200);
+//         response.body.message.should.equal('Enjoy your token!');
+//         response.body.should.have.property('token').which.is.a.String();
+//         response.body.token.length.should.be.above(1);
+//         done();
+//       });
+//     });
 
-  //   it('should allow specifying offset when fetching Users', (done) => {
-  //     const searchOffset = 3;
-  //     client.get(`/api/users/?offset=${searchOffset}`)
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       expect(response.body).to.be.instanceof(Object);
-  //       done();
-  //     });
-  //   });
+//     it('Should not return a token if regular user login fails', (done) => {
+//       app.post('/api/v1/users/login')
+//       .send({
+//         email: regularUser.email,
+//         password: 'invaidpassword'
+//       })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         response.body.should.not.have.property('token');
+//         done();
+//       });
+//     });
+//   });
 
-  //   it(`should handle invalid offsets specified when fetching Users
-  //   and return a 400 status code`,
-  //   (done) => {
-  //     const invalidSearchOffset = -1;
-  //     client.get(`/api/users/?offset=${invalidSearchOffset}`)
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       expect(response.body.message).to.equal('Invalid Offset');
-  //       done();
-  //     });
-  //   });
-  // });
+//   describe('Get User', () => {
+//     it('Should deny access to users data if accessed without a token',
+//     (done) => {
+//       app.get('/api/v1/users/1')
+//       .end((error, response) => {
+//         response.status.should.equal(403);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('No token provided.');
+//         done();
+//       });
+//     });
 
-  // describe('Update User', () => {
-  //   it('should NOT allow a User update another User profile', (done) => {
-  //     client.put(`/api/users/${regularUserId + 1}`)
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .send({ password: 'new password' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow access to users data without a valid token',
+//     (done) => {
+//       app.get('/api/v1/users/1')
+//       .set({ 'x-access-token': 'regularUserToken' })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('Failed to authenticate token.');
+//         done();
+//       });
+//     });
 
-  //   it(`should NOT Allow a User with a Valid token Update his password with a
-  //   password that is less than the minimum password length`,
-  //   (done) => {
-  //     const shortPassword = '123';
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       password: shortPassword
-  //     })
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow a non-admin access other users data', (done) => {
+//       app.get('/api/v1/users/1')
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(403);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('You don\'t have authorization to perform this action');
+//         done();
+//       });
+//     });
 
-  //   it(`should NOT Allow a User with a Valid token Update his password with a
-  //   password that is more than the maximum password length`,
-  //   (done) => {
-  //     const longPassword = `sdfcgvbhnmdzghjbnmdfcghjndghjndmcxfghgggbjknmdcghjn
-  //     gggmdcghvjn dsghvbjndsfghvbjdncsghbjdsghvbjdghvbjdc`;
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       password: longPassword
-  //     })
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow an admin user access to fetch any user data', (done) => {
+//       app.get('/api/v1/users/1')
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         response.body.user.should.have.property('id');
+//         response.body.user.should.have.property('username');
+//         response.body.user.should.have.property('roleId');
+//         response.body.user.should.have.property('firstname');
+//         response.body.user.should.have.property('lastname');
+//         response.body.user.should.have.property('email');
+//         response.body.user.should.have.property('createdAt');
+//         response.body.user.should.have.property('updatedAt');
+//         done();
+//       });
+//     });
 
-  //   it('should Allow a User Update his password if a valid Token is provided',
-  //   (done) => {
-  //     // add the new password to the regular userObject
-  //     regularUser.newPassword = 'new password';
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       password: regularUser.newPassword
-  //     })
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow a regular user access to fetch their user data',
+//     (done) => {
+//       app.get(`/api/v1/users/${regularUserId}`)
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         response.body.user.should.have.property('id');
+//         response.body.user.should.have.property('username');
+//         response.body.user.should.have.property('roleId');
+//         response.body.user.should.have.property('firstname');
+//         response.body.user.should.have.property('lastname');
+//         response.body.user.should.have.property('email');
+//         response.body.user.should.have.property('createdAt');
+//         response.body.user.should.have.property('updatedAt');
+//         done();
+//       });
+//     });
 
-  //   it(`should return a 403 status code indication it does NOT
-  //   allow a regular User Update to an Admin User`,
-  //   (done) => {
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       roleId: 1
-  //     })
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+//     it('Should not return a user if user with userId doesn\'t exist',
+//     (done) => {
+//       app.get('/api/v1/users/1000')
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(404);
+//         response.body.success.should.equal(false);
+//         response.body.message.should.equal('user not found');
+//         done();
+//       });
+//     });
 
-  //   it(`should return a 403 status code indication it does NOT
-  //   allow update of a User ID`,
-  //   (done) => {
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       id: 4
-  //     })
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+//     it('Should only allow valid numeric userid to be queried', (done) => {
+//       app.get('/api/v1/users/ab')
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(406);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('parameter supplied should be a number');
+//         done();
+//       });
+//     });
+//   });
 
-  //   it('should Allow a User Login with the updated password',
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: regularUser.email,
-  //       password: regularUser.newPassword
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//   // get all users
+//   describe('Get All Users: ', () => {
+//     it('Should not allow a non-admin access all users data', (done) => {
+//       app.get('/api/v1/users/')
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(403);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('You don\'t have authorization to perform this action');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT Allow a User Login with the old password',
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: regularUser.email,
-  //       password: regularUser.password
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow an admin user access to fetch all users data', (done) => {
+//       app.get('/api/v1/users/')
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         response.body.users.should.be.an.instanceOf(Array);
+//         response.body.users[0].should.have.property('id');
+//         response.body.users[0].should.have.property('username');
+//         response.body.users[0].should.have.property('roleId');
+//         response.body.users[0].should.have.property('firstname');
+//         response.body.users[0].should.have.property('lastname');
+//         response.body.users[0].should.have.property('email');
+//         response.body.users[0].should.have.property('createdAt');
+//         response.body.users[0].should.have.property('updatedAt');
+//         done();
+//       });
+//     });
+//   });
 
-  //   it(`should Allow an Admin with a valid token update a regular
-  //   User password`,
-  //   (done) => {
-  //     // add the admin set password to the regular user Object
-  //     regularUser.adminSetPassword = 'admin set password';
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .send({
-  //       password: regularUser.adminSetPassword
-  //     })
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//   describe('Update User', () => {
+//     it('Should not allow user update if an invalid id is supplied',
+//   (done) => {
+//     app.patch('/api/v1/users/fffa')
+//     .set({ 'x-access-token': adminUserToken })
+//     .send(testData.validUser1Update)
+//     .end((error, response) => {
+//       response.status.should.equal(406);
+//       response.body.success.should.equal(false);
+//       response.body.message.should
+//       .equal('parameter supplied should be a number');
+//       done();
+//     });
+//   });
 
-  //   it(`should return a 404 response when an Admin tries to update
-  //   a user that does NOT exist`,
-  //   (done) => {
-  //     // add the admin set password to the regular user Object
-  //     regularUser.adminSetPassword = 'admin set password';
-  //     client.put(`/api/users/${1000}`)
-  //     .send({
-  //       password: regularUser.adminSetPassword
-  //     })
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(404);
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow user update if an invalid token is supplied',
+//   (done) => {
+//     app.patch(`/api/v1/users/${regularUserId}`)
+//     .set({ 'x-access-token': 'regularUserToken' })
+//     .send(testData.validUser1Update)
+//     .end((error, response) => {
+//       response.status.should.equal(401);
+//       response.body.success.should.equal(false);
+//       response.body.message.should
+//       .equal('Failed to authenticate token.');
+//       done();
+//     });
+//   });
 
-  //   it(`should NOT allow a User Login with the old password already
-  //   updated by an Admin`,
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: regularUser.email,
-  //       password: regularUser.newPassword
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow user update if no token is supplied',
+//   (done) => {
+//     app.patch(`/api/v1/users/${regularUserId}`)
+//     .send(testData.validUser1Update)
+//     .end((error, response) => {
+//       response.status.should.equal(403);
+//       response.body.success.should.equal(false);
+//       response.body.message.should
+//       .equal('No token provided.');
+//       done();
+//     });
+//   });
 
-  //   it('should Allow a User Login with the new password updated by an Admin',
-  //   (done) => {
-  //     client.post('/api/users/login')
-  //     .send({
-  //       email: regularUser.email,
-  //       password: regularUser.adminSetPassword
-  //     })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       // update the user token as a new token is always
-  //       // generated on every login
-  //       regularUserToken = response.body.token;
-  //       done();
-  //     });
-  //   });
+//     it('Should not allow regular users update another users profile',
+//     (done) => {
+//       app.patch(`/api/v1/users/${+regularUserId + 1}`)
+//       .set({ 'x-access-token': regularUserToken })
+//       .send(testData.validUser1Update)
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('You don\'t have authorization for this action');
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow a User update his profile without a valid Token',
-  //   (done) => {
-  //     client.put(`/api/users/${regularUserId}`)
-  //     .set({ 'x-access-token': 'invalidToken' })
-  //     .send({ firstName: 'newMan' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
-  // });
+//     it(`Should not allow user to update profile if invalid update 
+// fields are supplied`,
+//     (done) => {
+//       app.patch(`/api/v1/users/${regularUserId}`)
+//       .set({ 'x-access-token': regularUserToken })
+//       .send(testData.inValidUser1Update)
+//       .end((error, response) => {
+//         response.status.should.equal(409);
+//         response.body.success.should.equal(false);
+//         response.body.message.should
+//         .equal('badly formatted request body including ( menu )');
+//         done();
+//       });
+//     });
 
-  // describe('Logout', () => {
-  //   const newRegularUser = SpecHelper.generateRandomUser(2);
-  //   before((done) => {
-  //     client.post('/api/users')
-  //     .send(newRegularUser)
-  //     .end((error, response) => {
-  //       newRegularUser.token = response.body.token;
-  //       newRegularUser.id = response.body.id;
-  //       done();
-  //     });
-  //   });
+//     it('Should Allow a User Update his profile if he has a valid Token',
+//     (done) => {
+//       const newFirstName = 'newName';
+//       app.put(`/api/users/${regularUserId}`)
+//       .send({
+//         firstName: newFirstName
+//       })
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.firstname.should.equal('newFirstName');
+//         done();
+//       });
+//     });
 
-  //   it('should Fail to Logout an Admin User with an invalid token',
-  //   (done) => {
-  //     client.post('/api/users/logout')
-  //     .set({ 'x-access-token': 'invalidtoken' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('Should NOT allow a User update his profile without a Valid Token',
+//     (done) => {
+//       app.put(`/api/users/${regularUserId}`)
+//       .set({ 'x-access-token': 'invalidToken' })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         done();
+//       });
+//     });
+//   });
 
-  //   it('should Successfully Logout an Admin User with a valid token',
-  //   (done) => {
-  //     client.post('/api/users/logout')
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//   describe('Logout', () => {
+//     it('should successfully logout an admin User with a valid token',
+//     (done) => {
+//       app.post('/api/v1/users/logout')
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         response.body.message.should.equal('you are now logged out');
+//         done();
+//       });
+//     });
 
-  //   it('should Fail to Logout an Admin User with an Expired token',
-  //   (done) => {
-  //     client.post('/api/users/logout')
-  //     .set({ 'x-access-token': adminUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('should successfully logout a regular User with a valid token',
+//     (done) => {
+//       app.post('/api/v1/users/logout')
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(200);
+//         response.body.success.should.equal(true);
+//         response.body.message.should.equal('you are now logged out');
+//         done();
+//       });
+//     });
 
-  //   it('should Fail to Logout a Regular User with an invalid token',
-  //   (done) => {
-  //     client.post('/api/users/logout')
-  //     .set({ 'x-access-token': 'invalidtoken' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('should fail to logout a user with an invalid token',
+//     (done) => {
+//       app.post('/api/v1/users/logout')
+//       .set({ 'x-access-token': 'invalidtoken' })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         done();
+//       });
+//     });
 
-  //   it('should Successfully Logout a Regular User with a valid token',
-  //   (done) => {
-  //     client.post('/api/users/logout')
-  //     .set({ 'x-access-token': newRegularUser.token })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
-  // });
+//     it('should deny access to a user with a logged out token',
+//     (done) => {
+//       app.get(`/api/v1/users/${regularUserId}`)
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         response.status.should.equal(401);
+//         response.body.success.should.equal(false);
+//         response.body.message.should.equal('you need to login.');
+//         done();
+//       });
+//     });
+//   });
 
-  // describe('Delete User', () => {
-  //   const currentAdminUser = Object.assign({}, SpecHelper.validAdminUser);
-  //   before((done) => {
-  //     client.post('/api/users/login')
-  //     .send(currentAdminUser)
-  //     .end((error, response) => {
-  //       currentAdminUser.token = response.body.token;
-  //       currentAdminUser.id = response.body.id;
-  //       done();
-  //     });
-  //   });
+//   describe('Delete User', () => {
+//     it('Should NOT allow a Non-Admin User delete a User',
+//     (done) => {
+//       server.delete(`/api/users/${regularUserId}`)
+//       .set({ 'x-access-token': regularUserToken })
+//       .end((error, response) => {
+//         expect(response.status).to.equal(403);
+//         expect(response.body.success).to.equal(false);
+//         done();
+//       });
+//     });
 
-  //   it(`should NOT allow a Non-Admin User with a valid token delete
-  //   another User`,
-  //   (done) => {
-  //     client.delete(`/api/users/${regularUserId + 1}`)
-  //     .set({ 'x-access-token': regularUserToken })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+//     it('Should NOT allow a User with In-Valid Token delete another User',
+//     (done) => {
+//       server.delete(`/api/users/${regularUserId}`)
+//       .set({ 'x-access-token': 'invalidToken' })
+//       .end((error, response) => {
+//         expect(response.status).to.equal(401);
+//         expect(response.body.success).to.equal(false);
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow a User with an invalid Token delete another User',
-  //   (done) => {
-  //     client.delete(`/api/users/${regularUserId + 1}`)
-  //     .set({ 'x-access-token': 'invalidToken' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
+//     it('Should allow an Admin user with Valid Token delete another User',
+//     (done) => {
+//       server.delete(`/api/users/${regularUserId}`)
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         expect(response.status).to.equal(200);
+//         expect(response.body.success).to.equal(true);
+//         done();
+//       });
+//     });
 
-  //   it('should allow an Admin user with Valid Token delete another User',
-  //   (done) => {
-  //     client.delete(`/api/users/${regularUserId}`)
-  //     .set({ 'x-access-token': currentAdminUser.token })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(200);
-  //       done();
-  //     });
-  //   });
+//     it('Should NOT allow an Admin user with InValid
+//   Token delete another User',
+//     (done) => {
+//       server.delete(`/api/users/${regularUserId}`)
+//       .set({ 'x-access-token': 'invalid token' })
+//       .end((error, response) => {
+//         expect(response.status).to.equal(401);
+//         expect(response.body.success).to.equal(false);
+//         done();
+//       });
+//     });
 
-  //   it('should NOT allow an Admin user with invalid Token delete another User',
-  //   (done) => {
-  //     client.delete(`/api/users/${regularUserId}`)
-  //     .set({ 'x-access-token': 'invalid token' })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(401);
-  //       done();
-  //     });
-  //   });
-
-  //   it(`should NOT allow an Admin user with valid Token delete a User that does
-  //   not exist`, (done) => {
-  //     client.delete(`/api/users/${regularUserId + 10000}`)
-  //     .set({ 'x-access-token': currentAdminUser.token })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(404);
-  //       done();
-  //     });
-  //   });
-
-  //   it('should not allow deletion of admin User', (done) => {
-  //     client.delete(`/api/users/${1}`)
-  //     .set({ 'x-access-token': currentAdminUser.token })
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+//     it(`Should NOT allow an Admin user with Valid
+//   Token delete a User that does
+//     not exist`, (done) => {
+//       server.delete(`/api/users/${regularUserId + 10000}`)
+//       .set({ 'x-access-token': adminUserToken })
+//       .end((error, response) => {
+//         expect(response.status).to.equal(404);
+//         expect(response.body.success).to.equal(false);
+//         done();
+//       });
+//     });
   });
 });
