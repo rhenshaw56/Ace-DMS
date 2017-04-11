@@ -13,7 +13,7 @@
     "test": "NODE_ENV=test npm run mocha server/tests/**/*.spec.js",
     "lint": "node_modules/.bin/eslint . || true",
     "lint:watch": "npm run lint -- --watch",
-    "cover": "rm -rf coverage/ && NODE_ENV=test babel-node ./node_modules/babel-istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec server/test",
+    "cover": "rm -rf coverage/ && NODE_ENV=test babel-node ./node_modules/babel-istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec server/tests/**/*.spec.js",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
