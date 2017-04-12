@@ -6,7 +6,6 @@ import FakeData from '../helpers/SpecFakers';
 const documentDB = db.Document;
 
 describe('Document Model: ', () => {
-  // clear our DB and insert our default roles and user constraints
   before((done) => {
     db.sequelize.sync({ force: true })
     .then(() => SpecSeeders.populateRoleTable())

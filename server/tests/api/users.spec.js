@@ -139,7 +139,7 @@ describe('Users:', () => {
       });
     });
 
-    it(`should return a 400 status code if the User specify a an invalid
+    it(`should return a 400 status code if the User specify an invalid
     Role type`, (done) => {
       client.post('/api/users')
       .send(FakeData.generateRandomUser(10))
@@ -152,11 +152,11 @@ describe('Users:', () => {
 
   // describe('Login', () => {
   //   it('should allow login for only CORRECT details of an Admin', (done) => {
+  //     const loginUser = { email: FakeData.AdminUser.email,
+  //       password: FakeData.AdminUser.password
+  //     };
   //     client.post('/api/users/login')
-  //     .send({
-  //       email: 'me@me.com',
-  //       password: 'me@me.com'
-  //     })
+  //     .send(loginUser)
   //     .end((error, response) => {
   //       console.log(response);
   //       expect(response.status).to.equal(200);
@@ -164,20 +164,19 @@ describe('Users:', () => {
   //     });
   //   });
 
-  //   it('should return a TOKEN if Admin Login is successful', (done) => {
-  //     client.post('/api/users/login')
+  // it('should return a TOKEN if Admin Login is successful', (done) => {
+  //   client.post('/api/users/login')
   //     .send({
-  //       email: SpecHelper.validAdminUser.email,
-  //       password: SpecHelper.validAdminUser.password
+  //       email: FakeData.AdminUser.email,
+  //       password: FakeData.AdminUser.password
   //     })
   //     .end((error, response) => {
   //       expect(response.status).to.equal(200);
   //       expect(response.body).to.have.property('token');
-  //       // set the admin user token for other tests
   //       adminUserToken = response.body.token;
   //       done();
   //     });
-  //   });
+  // });
 
   //   it('should NOT return a TOKEN if Admin Login FAILS', (done) => {
   //     client.post('/api/users/login')
