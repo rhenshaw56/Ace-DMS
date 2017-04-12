@@ -13,22 +13,21 @@ let regularUser = FakeData.generateRandomUser(2);
 let regularUserToken;
 let regularUserId;
 
-before((done) => {
-  db.sequelize.sync({ force: true })
+describe('Users:', () => {
+  before((done) => {
+    db.sequelize.sync({ force: true })
     .then(() => {
       SpecSeeders.populateRoleTable();
       done();
     });
-});
-after((done) => {
-  db.sequelize.sync({ force: true })
+  });
+  after((done) => {
+    db.sequelize.sync({ force: true })
     .then(() => {
       done();
     });
-});
-
-describe('Users:', () => {
-  beforeEach((done) => {
+  });
+  before((done) => {
     client.post('/api/users')
         .send(regularUser)
         .end((error, response) => {
@@ -49,28 +48,28 @@ describe('Users:', () => {
       });
     });
 
-  //   it(`should return a 401 status code if User ID is specified
-  //   in new User to be created`,
-  //   (done) => {
-  //     const invalidNewUser = SpecHelper.generateRandomUser();
-  //     invalidNewUser.id = 1;
-  //     client.post('/api/users')
-  //     .send(invalidNewUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+    it(`should return a 401 status code if User ID is specified
+    in new User to be created`,
+    (done) => {
+      const invalidNewUser = FakeData.generateRandomUser();
+      invalidNewUser.id = 1;
+      client.post('/api/users')
+      .send(invalidNewUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+    });
 
-  //   it('should NOT allow Users with Duplicate Email address to be created',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(newRegularUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+    it('should NOT allow Users with Duplicate Email address to be created',
+    (done) => {
+      client.post('/api/users')
+      .send(newRegularUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(409);
+        done();
+      });
+    });
 
   //   it('should NOT allow an Admin User to be created',
   //   (done) => {
