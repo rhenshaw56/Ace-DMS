@@ -8,6 +8,7 @@ const UserRoutes = (router) => {
 
   router.route('/api/users/login')
     .post(UserController.logIn);
+
   router.route('/api/users/logout')
     .post(UserController.logOut);
 };

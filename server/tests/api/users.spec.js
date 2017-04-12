@@ -71,93 +71,94 @@ describe('Users:', () => {
       });
     });
 
-  //   it('should NOT allow an Admin User to be created',
-  //   (done) => {
-  //     const newAdminUser = SpecHelper.generateRandomUser(1);
-  //     client.post('/api/users')
-  //     .send(newAdminUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(403);
-  //       done();
-  //     });
-  //   });
+    it('should NOT allow an Admin User to be created',
+    (done) => {
+      const newAdminUser = FakeData.generateRandomUser(1);
+      client.post('/api/users')
+      .send(newAdminUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(403);
+        done();
+      });
+    });
 
-  //   it('should NOT allow Users with invalid Role type to be created',
-  //   (done) => {
-  //     const invalidRoleUser = SpecHelper.generateRandomUser('super-admin');
-  //     client.post('/api/users')
-  //     .send(invalidRoleUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+    it('should NOT allow Users with invalid Role type to be created',
+    (done) => {
+      const invalidRoleUser = FakeData.generateRandomUser('super-admin');
+      client.post('/api/users')
+      .send(invalidRoleUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+    });
 
-  //   it('should return a TOKEN if a Regular User is successfully created',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('token');
-  //       done();
-  //     });
-  //   });
+    it('should return a TOKEN if a Regular User is successfully created',
+    (done) => {
+      client.post('/api/users')
+      .send(FakeData.generateRandomUser(2))
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body).to.have.property('token');
+        done();
+      });
+    });
 
-  //   it('should return public details of the created Regular User',
-  //   (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(2))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       expect(response.body).to.have.property('firstName');
-  //       expect(response.body).to.have.property('lastName');
-  //       expect(response.body).to.have.property('email');
-  //       expect(response.body).to.have.property('id');
-  //       done();
-  //     });
-  //   });
+    it('should return public details of the created Regular User',
+    (done) => {
+      client.post('/api/users')
+      .send(FakeData.generateRandomUser(2))
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body).to.have.property('firstName');
+        expect(response.body).to.have.property('lastName');
+        expect(response.body).to.have.property('email');
+        expect(response.body).to.have.property('id');
+        done();
+      });
+    });
 
-  //   it('should NOT create a User if Required fields/attributes are missing',
-  //   (done) => {
-  //     const invalidUser = {};
-  //     client.post('/api/users')
-  //     .send(invalidUser)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
+    it('should NOT create a User if Required fields/attributes are missing',
+    (done) => {
+      const invalidUser = {};
+      client.post('/api/users')
+      .send(invalidUser)
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+    });
 
-  //   it(`should make a User role be regular by default if no roleId
-  //     is supplied`, (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser())
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(201);
-  //       done();
-  //     });
-  //   });
+    it(`should make a User role be regular by default if no roleId
+      is supplied`, (done) => {
+      client.post('/api/users')
+      .send(FakeData.generateRandomUser())
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        done();
+      });
+    });
 
-  //   it(`should retrun a 400 status code if the User specify a an invalid
-  //   Role type`, (done) => {
-  //     client.post('/api/users')
-  //     .send(SpecHelper.generateRandomUser(10))
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(400);
-  //       done();
-  //     });
-  //   });
-  // });
+    it(`should return a 400 status code if the User specify a an invalid
+    Role type`, (done) => {
+      client.post('/api/users')
+      .send(FakeData.generateRandomUser(10))
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+    });
+  });
 
   // describe('Login', () => {
   //   it('should allow login for only CORRECT details of an Admin', (done) => {
   //     client.post('/api/users/login')
   //     .send({
-  //       email: SpecHelper.validAdminUser.email,
-  //       password: SpecHelper.validAdminUser.password
+  //       email: 'me@me.com',
+  //       password: 'me@me.com'
   //     })
   //     .end((error, response) => {
+  //       console.log(response);
   //       expect(response.status).to.equal(200);
   //       done();
   //     });
