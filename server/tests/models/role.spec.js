@@ -5,7 +5,6 @@ import FakeData from '../helpers/SpecFakers';
 const roleDB = db.Role;
 
 describe('Role Model', () => {
-  // clean our database before running the tests
   before((done) => {
     db.sequelize.sync({ force: true })
     .then(() => {
