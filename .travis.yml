@@ -7,6 +7,5 @@ services:
 before_script:
   - psql -c 'drop database if exists acedms_test;' -U postgres
   - psql -c 'create database acedms_test;' -U postgres
-  - NODE_ENV=test npm run migrations && npm run seeds
 addons:
   postgresql: "9.3"
