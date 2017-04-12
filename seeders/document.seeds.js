@@ -87,7 +87,7 @@ module.exports = {
       },
       {
         title: 'Test Document 9',
-        content: 'How i wander how fairer you could be',
+        content: 'How i wonder how fairer you could be',
         ownerId: 2,
         ownerRoleId: 2,
         access: 'public',

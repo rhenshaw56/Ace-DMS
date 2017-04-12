@@ -1,4 +1,4 @@
-import bcrypt from bycrypt-nodejs;
+import bcrypt from 'bcrypt-nodejs';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -28,6 +28,7 @@ export default (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: {
         msg: 'This email is already taken.'
       },
@@ -53,7 +54,7 @@ export default (sequelize, DataTypes) => {
       default: 2
     },
     currentToken: {
-      type:DataTypes.TEXT,
+      type: DataTypes.TEXT,
       allowNull: true
     },
   }, {
@@ -66,10 +67,10 @@ export default (sequelize, DataTypes) => {
     },
     instanceMethods: {
       verifyPassword(password) {
-        return bcrypt.compareSync(password, this.passWord);
+        return bcrypt.compareSync(password, this.password);
       },
       hashPassword() {
-        this.password = bcrypt.hashSync(this.password, genSaltSync(8));
+        this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
       }
     },
     hooks: {
@@ -77,7 +78,7 @@ export default (sequelize, DataTypes) => {
         user.hashPassword();
       },
       beforeUpdate(user) {
-        if(user._changed.password){
+        if (user._changed.password) {
           user.hashPassword();
         }
       }

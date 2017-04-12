@@ -1,16 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
-import cors from 'cors';
-import path from 'path';
 import dotenv from 'dotenv';
-// import routes from './routes/index';
+import routes from './routes/index';
 
 dotenv.config();
 
 const app = express();
+
 const router = express.Router();
-const port = process.env.port || 5600;
+const port = process.env.PORT || 7600;
 
 // Load middlewares
 
@@ -19,12 +18,16 @@ app.use(logger('tiny'));
 
 // parse incoming request bodies as json with body-parser
 app.use(bodyParser.json());
-//parse incoming request as querystrings also
-app.use(bodyParser.urlencoded({ extended: false}));
+// parse incoming request as querystrings also
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', router);
-app.listen(port,  () => {
+routes(router);
+
+// app.use('/', router);
+app.listen(port, () => {
     console.log('Server started on port ' + port);
 });
+app.use(router);
+// app.use(cors());
 
 export default app;
