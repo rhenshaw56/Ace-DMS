@@ -17,21 +17,21 @@ module.exports = {
     */
 
     return queryInterface.bulkInsert('Users', [
-      {
-        email: process.env.ADMIN_EMAIL,
-        firstName: process.env.ADMIN_FIRST_NAME,
-        lastName: process.env.ADMIN_LAST_NAME,
-        password: bcrypt.hashSync(process.env.ADMIN_PASSWORD, bcrypt.genSaltSync(8)),
-        roleId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+      // {
+      //   email: process.env.ADMIN_EMAIL,
+      //   firstName: process.env.ADMIN_FIRST_NAME,
+      //   lastName: process.env.ADMIN_LAST_NAME,
+      //   password: bcrypt.hashSync(process.env.ADMIN_PASSWORD, bcrypt.genSaltSync(8)),
+      //   roleId: 1,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // },
       {
         email: 'user1@userMail.com',
         firstName: 'user1',
         lastName: 'users',
         password: bcrypt.hashSync('user1 password', bcrypt.genSaltSync(8)),
-        roleId: 2,
+        roleId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
