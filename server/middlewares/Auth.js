@@ -3,7 +3,7 @@ import responseHandler from '../helpers/ResponseHandler';
 import db from '../models';
 
 const secret = process.env.SECRET;
-const userDb = db.user;
+const userDb = db.User;
 
 export default class Auth {
 
@@ -32,16 +32,16 @@ export default class Auth {
         userDb.findById(decoded.userId, {
           attributes: ['currentToken', 'roleId']
         })
-                .then((user) => {
-                  if (user && user.activeToken) {
-                    request.decoded = decoded;
-                    request.decoded.roleId = user.roleId;
-                    next();
-                  } else {
-                    const body = { message: 'Invalid Token' };
-                    responseHandler.send401(response, body);
-                  }
-                });
+        .then((user) => {
+          if (user && user.currentToken) {
+            request.decoded = decoded;
+            request.decoded.roleId = user.roleId;
+            next();
+          } else {
+            const body = { message: 'Invalid Token' };
+            responseHandler.send401(response, body);
+          }
+        });
       } else {
         const body = { message: 'Invalid Token' };
         responseHandler.send401(response, body);
