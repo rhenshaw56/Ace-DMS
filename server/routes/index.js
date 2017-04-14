@@ -1,10 +1,11 @@
-import UserRoutes from './User.Routes';
-import auth from '../middlewares/Auth';
-import UsersMiddleware from '../middlewares/Users';
-import UserController from '../controllers/User.Controller';
+import userRoutes from './user.routes';
+import documentRoutes from './document.routes';
+import roleRoutes from './role.routes';
 
 const Routes = (router) => {
-    UserRoutes(router);
+  userRoutes(router);
+  documentRoutes(router);
+  roleRoutes(router);
 };
 
 export default Routes;
