@@ -6,7 +6,7 @@ Ace-DMS is a full stack document management system, complete with roles and priv
 Users are categorized by roles. Users with access to specific documents can edit and update their documents but will not be granted access to read or write to a document with unathourized access role, only a view access.
 
 ###### Document Management
-*   Visit the [hosted app](acedms.herokuapp.com)
+*   Visit the [hosted app](ace-dms.herokuapp.com)
 *   Create an account
 *   Login with your credentials
 *   Create new document with specifying document title, content and document access
