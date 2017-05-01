@@ -28,5 +28,7 @@ const userRoutes = (router) => {
   router.route('/api/users/:id/documents')
       .get(Auth.authenticateUser,
       UserController.retrieveUserDocuments);
+  router.route('/api/search/users')
+        .get(UserController.retrieveUserByIdentifier);
 };
 export default userRoutes;

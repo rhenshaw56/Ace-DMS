@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import 'react-hot-loader';
 import React from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
@@ -11,12 +10,9 @@ import configureStore from './store/configureStore';
 import routes from './routes';
 import { setAuthorizationToken } from './auth/';
 import { setCurrentUser } from './actions/userActions';
-import appInit from './utils/appInit';
 
 
 const store = configureStore();
-// console.log(store);
-// appInit(store);
 
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);

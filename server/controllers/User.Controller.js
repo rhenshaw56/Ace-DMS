@@ -87,8 +87,7 @@ class UserController {
     }
   }
   static logOut(request, response) {
-    const id = request.decoded.userId;
-    model.User.findById(id)
+    model.User.findOne({ where: { id: request.decoded.id } })
     .then((user) => {
       user.update({ currentToken: null })
       .then(() => {
@@ -208,18 +207,18 @@ class UserController {
   static retrieveUserDocuments(request, response) {
     const userId = Number(request.params.id);
     const userRoleId = request.decoded.roleId;
-    const retrieverId = request.decoded.userId;
-    model.User.findById(id, {
+    const retrieverId = request.decoded.id;
+    model.User.findById(userId, {
       attributes: [
         'id', 'firstName', 'lastName', 'email', 'roleId'],
       include: {
         model: model.Document,
-        attributes: ['id', 'access', 'title', 'content', 'ownerid', 'createdAt']
+        attributes: ['id', 'access', 'title', 'content', 'ownerId', 'createdAt']
       }
     })
     .then((user) => {
       if (user) {
-        const foundDocuments = user.Documents.filter((document) => {
+        const documents = user.Documents.filter((document) => {
           if (Auth.verifyAdmin(userRoleId)) {
             return true;
           } else if ((document.access === 'public' ||
@@ -245,6 +244,24 @@ class UserController {
         ResponseHandler.send404(response);
       }
     });
+  }
+  static retrieveUserByIdentifier(request, response) {
+    if (request.query.q) {
+      model.User.find({ where: { email: request.query.q } })
+       .then((foundUser) => {
+         if (foundUser) {
+           return ResponseHandler.sendResponse(
+             response,
+             302,
+             UserController.formatUserDetails(foundUser)
+            );
+         }
+       }).catch(err => ResponseHandler.sendResponse(
+           response,
+           404,
+           { status: false, message: err }
+         ));
+    }
   }
 }
 export default UserController;

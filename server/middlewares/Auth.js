@@ -8,12 +8,21 @@ const userDb = db.User;
 export default class Auth {
 
   static generateToken(user) {
-    return jwt.sign({ userId: user.id }, secret, { expiresIn: 1440 });
+    return jwt.sign(
+      {
+        id: user.id,
+        roleId: user.roleId,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName
+      }, secret, { expiresIn: 1440 });
   }
 
   static retrieveToken(req) {
     const token = req.body.token
-     || req.query.token || req.headers['x-access-token'];
+     || req.query.token
+     || req.headers['x-access-token']
+     || req.headers.authorization;
     return token;
   }
 
@@ -29,7 +38,7 @@ export default class Auth {
     if (token) {
       const decoded = Auth.verifyToken(token);
       if (decoded) {
-        userDb.findById(decoded.userId, {
+        userDb.findById(decoded.id, {
           attributes: ['currentToken', 'roleId']
         })
         .then((user) => {

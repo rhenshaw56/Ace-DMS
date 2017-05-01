@@ -14,9 +14,8 @@ const documentRoutes = (router) => {
                 DocumentController.findDocument)
         .put(Auth.authenticateUser, DocumentController.updateDocument)
         .delete(Auth.authenticateUser, DocumentController.removeDocument);
-
-  router.route('/api/name')
-        .post(DocumentController.shareName)
-        .get(DocumentController.sayName);
+  router.route('/api/search/documents')
+        .get(DocumentController.retrieveDocByIdentifier);
 };
+
 export default documentRoutes;

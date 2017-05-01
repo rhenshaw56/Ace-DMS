@@ -16,7 +16,7 @@ export default class Document {
       db.Document.findAll({
         where: {
           $and: [
-            { ownerId: request.decoded.userId },
+            { ownerId: request.decoded.id },
             { title: request.body.title },
             { content: request.body.content }
           ]

@@ -3,7 +3,7 @@ import Auth from './Auth';
 
 export default class Role {
   static validateOnGet(request, response, next) {
-    if (!Authenticator.verifyAdmin(request.decoded.roleId)) {
+    if (!Auth.verifyAdmin(request.decoded.roleId)) {
       ResponseHandler.send403(
         response,
         { message: 'Admin Privilege Required' }

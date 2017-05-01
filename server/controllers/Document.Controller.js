@@ -5,13 +5,18 @@ import ResponseHandler from '../helpers/ResponseHandler';
 
 const docDb = model.Document;
 
+/**
+ * @class DocumentController
+ */
 class DocumentController {
+  
   static formatDocument(document) {
     return {
       id: document.id,
       title: document.title,
       content: document.content,
       ownerId: document.ownerId,
+      ownerRoleId: document.ownerRoleId,
       access: document.access,
       createdAt: document.createdAt
     };
@@ -20,7 +25,7 @@ class DocumentController {
     const document = {
       title: request.body.title,
       content: request.body.content,
-      ownerId: request.decoded.userId,
+      ownerId: request.decoded.id,
       ownerRoleId: request.decoded.roleId,
       access: request.body.access || 'public'
     };
@@ -41,9 +46,9 @@ class DocumentController {
     const offset = request.query.offset;
     const page = request.query.page;
     const userRole = request.decoded.roleId;
-    const userId = request.decoded.userId;
+    const userId = request.decoded.id;
     const queryBuilder = {
-      attributes: ['id', 'ownerId', 'access', 'title', 'content', 'createdAt'],
+      attributes: ['id', 'ownerId', 'access', 'ownerRoleId', 'title', 'content', 'createdAt'],
       order: request.query.order || '"createdAt" DESC'
     };
     if (limit) {
@@ -118,7 +123,7 @@ class DocumentController {
   static findDocument(request, response) {
     const documentId = request.params.id;
     const userRole = request.decoded.roleId;
-    const userId = request.decoded.userId;
+    const userId = request.decoded.id;
     docDb.findOne({
       where: {
         id: documentId
@@ -133,7 +138,7 @@ class DocumentController {
           ResponseHandler.sendResponse(
             response,
             200,
-            DocumentController.formatDocument(document)
+            DocumentController.formatDocument(foundDocument)
           );
         } else if (
           foundDocument.ownerId === userId ||
@@ -142,7 +147,7 @@ class DocumentController {
           ResponseHandler.sendResponse(
             response,
             200,
-            DocumentController.formatDocument(document)
+            DocumentController.formatDocument(foundDocument)
           );
         } else {
           ResponseHandler.send403(
@@ -165,7 +170,7 @@ class DocumentController {
   }
 
   static updateDocument(request, response) {
-    const userId = request.decoded.userId;
+    const userId = request.decoded.id;
     const userRole = request.decoded.roleId;
     const documentId = Number(request.params.id);
     docDb.findById(documentId)
@@ -193,7 +198,7 @@ class DocumentController {
   }
 
   static removeDocument(request, response) {
-    const userId = request.decoded.userId;
+    const userId = request.decoded.id;
     const userRole = request.decoded.roleId;
     const documentId = Number(request.params.id);
     docDb.findById(documentId)
@@ -220,19 +225,22 @@ class DocumentController {
       }
     });
   }
-  static sayName(request, response) {
-    const res = {
-      message: 'My name is rowland'
-    };
-    response.status(200).send(res);
-  }
-  static shareName(request, response) {
-    if (request.body.name) {
-      const name = request.body.name;
-      const res = {
-        message: `Your Name is ${name}`
-      };
-      response.status(200).send(res);
+  static retrieveDocByIdentifier(request, response) {
+    if (request.query.q) {
+      docDb.find({ where: { title: request.query.q } })
+       .then((foundDoc) => {
+         if (foundDoc) {
+           return ResponseHandler.sendResponse(
+             response,
+             302,
+             DocumentController.formatDocument(foundDoc)
+            );
+         }
+       }).catch(err => ResponseHandler.sendResponse(
+           response,
+           404,
+           { status: false, message: err }
+         ));
     }
   }
 }

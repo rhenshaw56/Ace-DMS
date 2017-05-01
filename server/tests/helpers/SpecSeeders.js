@@ -3,7 +3,7 @@ import SpecFakers from './SpecFakers';
 
 export default class SpecSeeders {
   static init() {
-        return db.sequelize.sync({ force: true })
+    return db.sequelize.authenticate()
         .then(() => SpecSeeders.populateRoleTable())
         .then(() => SpecSeeders.populateUserTable())
         .then(() => SpecSeeders.populateDocumentTable());

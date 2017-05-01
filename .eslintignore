@@ -2,4 +2,5 @@
 ./coverage
 ./server/test/test.js
 ./client/src/store/configureStore.js
+./client/src/components/admin/Table
 
