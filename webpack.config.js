@@ -29,22 +29,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {
-        test: /\.js?$/,
-        exclude: ['node_modules', 'server', 'migrations', 'coverage', 'seeders'],
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: ['node_modules'],
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
         test: /\.json?$/,
         loader: 'json'
