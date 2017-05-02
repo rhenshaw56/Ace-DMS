@@ -77,6 +77,8 @@ Users are categorized by roles. Users with access to specific documents can edit
 | **POST** | api/roles/ | Create a new role (`admin` privilege required) |
 | **GET** | api/roles/ | Fetches all available roles (`admin privilege required`) |
 | **GET** | api/roles/:id | Find a role by id (`admin privilege required`) |
+| **GET** | api//search/users?q={username} | Search for a user. (`authorization not required`) |
+| **GET** | api//search/documents?q={doctitle} | Search for a document. (`authorization not required`) |
 | **PUT** | api/roles/:id | Update role attributes (`admin privilege required`) |
 | **DELETE** | api/delete/:id | Delete role (`admin privilege required`) |
 
