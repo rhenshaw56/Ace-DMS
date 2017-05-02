@@ -61,6 +61,7 @@
     "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
     "express": "^4.14.1",
+    "extract-text-webpack-plugin": "1.0.1",
     "faker": "^3.1.0",
     "file-loader": "^0.9.0",
     "fixed-data-table": "^0.6.4",

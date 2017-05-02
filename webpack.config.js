@@ -23,6 +23,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('style.css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
@@ -33,6 +34,10 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader?root=.'
+      },
+      {
+        test: /(\.css)$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap')
       },
       {
         test: /\.scss$/,
