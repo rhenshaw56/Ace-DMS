@@ -4,8 +4,17 @@ import ErrorHandler from '../helpers/ErrorHandler';
 import ResponseHandler from '../helpers/ResponseHandler';
 
 
+/**
+ * @class UserController
+ */
 class UserController {
-
+  /**
+   * Function used to format output data from this class
+   * @static
+   * @param {Object} user
+   * @returns {Object} user
+   * @memberOf UserController
+   */
   static formatUserDetails(user, token) {
     return {
       id: user.id,
@@ -17,6 +26,15 @@ class UserController {
     };
   }
 
+
+  /**
+   * Request handler that handles request for new users
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static createUser(request, response) {
     const user = request.body;
     user.roleId = user.roleId || 2;
@@ -46,6 +64,13 @@ class UserController {
         });
      });
   }
+  /**
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static logIn(request, response) {
     if (request.body.email && request.body.password) {
       const newUser = request.body;
@@ -86,6 +111,13 @@ class UserController {
       );
     }
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static logOut(request, response) {
     model.User.findOne({ where: { id: request.decoded.id } })
     .then((user) => {
@@ -99,6 +131,13 @@ class UserController {
       });
     });
   }
+   /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static searchUsers(request, response) {
     const search = request.query.search;
     const limit = request.query.limit;
@@ -114,7 +153,6 @@ class UserController {
       queryBuilder.offset = offset;
     }
     if (page) {
-      // override offset if a page is specified, and default limit is 10
       const pageLimit = limit || 10;
       queryBuilder.offset = (page * pageLimit) - pageLimit;
       queryBuilder.limit = pageLimit;
@@ -144,6 +182,13 @@ class UserController {
       }
     });
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static findUser(request, response) {
     const userId = Number(request.params.id);
     model.User.findById(userId)
@@ -160,6 +205,13 @@ class UserController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static updateUserDetails(request, response) {
     model.User.findById(request.params.id)
     .then((user) => {
@@ -180,7 +232,13 @@ class UserController {
       }
     });
   }
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static removeUser(request, response) {
     const userId = Number(request.params.id);
     model.User.destroy({
@@ -203,7 +261,13 @@ class UserController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
-
+ /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static retrieveUserDocuments(request, response) {
     const userId = Number(request.params.id);
     const userRoleId = request.decoded.roleId;
@@ -245,6 +309,13 @@ class UserController {
       }
     });
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf UserController
+   */
   static retrieveUserByIdentifier(request, response) {
     if (request.query.q) {
       model.User.find({ where: { email: request.query.q } })

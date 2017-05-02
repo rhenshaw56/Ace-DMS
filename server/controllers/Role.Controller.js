@@ -3,8 +3,17 @@ import Auth from '../middlewares/Auth';
 import ErrorHandler from '../helpers/ErrorHandler';
 import ResponseHandler from '../helpers/ResponseHandler';
 
+/**
+ * @class RoleController
+ */
 class RoleController {
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf RoleController
+   */
   static createRole(request, response) {
     model.Role.create(request.body)
     .then((role) => {
@@ -24,7 +33,13 @@ class RoleController {
       );
     });
   }
-
+ /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf RoleController
+   */
   static retrieveRole(request, response) {
     model.Role.findById(request.params.id, {
       attributes: ['id', 'title', 'createdAt']
@@ -48,6 +63,13 @@ class RoleController {
     });
   }
 
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf RoleController
+   */
   static retrieveRoles(request, response) {
     const search = request.query.search;
     const limit = request.query.limit;
@@ -90,6 +112,13 @@ class RoleController {
       }
     });
   }
+ /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf RoleController
+   */
   static updateRole(request, response) {
     model.Role.update(request.body, {
       where: {
@@ -108,7 +137,13 @@ class RoleController {
       }
     });
   }
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberOf RoleController
+   */
   static removeRole(request, response) {
     const id = request.params.id;
     model.Role.destroy({

@@ -9,7 +9,13 @@ const docDb = model.Document;
  * @class DocumentController
  */
 class DocumentController {
-  
+  /**
+   * Function used to format output data from this class
+   * @static
+   * @param {Object} document
+   * @returns {Object} document
+   * @memberOf DocumentController
+   */
   static formatDocument(document) {
     return {
       id: document.id,
@@ -21,6 +27,15 @@ class DocumentController {
       createdAt: document.createdAt
     };
   }
+  
+  /**
+   * Request handler that handles request for new documents
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static createDocument(request, response) {
     const document = {
       title: request.body.title,
@@ -40,6 +55,13 @@ class DocumentController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+  * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static searchDocuments(request, response) {
     const search = request.query.search;
     const limit = request.query.limit;
@@ -119,7 +141,13 @@ class DocumentController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+  * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static findDocument(request, response) {
     const documentId = request.params.id;
     const userRole = request.decoded.roleId;
@@ -168,7 +196,13 @@ class DocumentController {
       );
     });
   }
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+  * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static updateDocument(request, response) {
     const userId = request.decoded.id;
     const userRole = request.decoded.roleId;
@@ -196,7 +230,13 @@ class DocumentController {
       }
     });
   }
-
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+  * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static removeDocument(request, response) {
     const userId = request.decoded.id;
     const userRole = request.decoded.roleId;
@@ -225,6 +265,13 @@ class DocumentController {
       }
     });
   }
+  /**
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+  * @returns {Object} response
+   * @memberOf DocumentController
+   */
   static retrieveDocByIdentifier(request, response) {
     if (request.query.q) {
       docDb.find({ where: { title: request.query.q } })

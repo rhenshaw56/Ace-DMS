@@ -1,7 +1,19 @@
 import ResponseHandler from '../helpers/ResponseHandler';
 import Auth from './Auth';
 
+/**
+ * @export
+ * @class Role
+ */
 export default class Role {
+  /**
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Role
+   */
   static validateOnGet(request, response, next) {
     if (!Auth.verifyAdmin(request.decoded.roleId)) {
       ResponseHandler.send403(
@@ -22,6 +34,14 @@ export default class Role {
       next();
     }
   }
+    /**
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Role
+   */
   static validateOnPost(request, response, next) {
     if (!Auth.verifyAdmin(request.decoded.roleId)) {
       ResponseHandler.send403(
@@ -37,7 +57,14 @@ export default class Role {
       next();
     }
   }
-
+  /**
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Role
+   */
   static validateOnDelete(request, response, next) {
     const userRoleId = request.decoded.roleId;
     const userId = Number(request.params.id);
@@ -55,7 +82,14 @@ export default class Role {
       next();
     }
   }
-
+  /**
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Role
+   */
   static validateOnPut(request, response, next) {
     const userId = Number(request.params.id);
     if (Auth.verifyAdmin(request.decoded.roleId)) {
