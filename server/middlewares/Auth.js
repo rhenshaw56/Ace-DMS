@@ -15,7 +15,7 @@ export default class Auth {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName
-      }, secret, { expiresIn: 1440 });
+      }, secret, { expiresIn: 57600 });
   }
 
   static retrieveToken(req) {
