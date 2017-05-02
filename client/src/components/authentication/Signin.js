@@ -32,15 +32,7 @@ class Signin extends React.Component {
    */
   onSubmit(e) {
     e.preventDefault();
-    this.props.login(this.state)
-    .then(() => {
-      this.context.router.push('/');
-    })
-    .catch(() => {
-      toastr.error(
-        'INVALID LOGIN DETAILS'
-      );
-    });
+    this.props.login(this.state);
   }
   /**
    * @param {e} e: browser event

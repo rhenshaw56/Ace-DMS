@@ -40,7 +40,7 @@ class Nav extends React.Component {
               id="nav-mobile"
               className="right hide-on-med-and-down"
             >{isLoggedIn ?
-              <li id="searchClick" activeClassName="active">
+              <li id="searchClick">
                 <a
                   onClick={this.handleSearchModal} className="tooltipped"
                   data-position="left" data-delay="50"

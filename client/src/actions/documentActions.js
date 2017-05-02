@@ -70,6 +70,6 @@ export function updateDocument(document) {
 
 export function deleteDocumentById(id) {
   return dispatch => axios.delete(`/api/documents/${id}`).then(() => {
-    dispatch(loadUserDocument());
+    dispatch(loadAllDocument());
   });
 }

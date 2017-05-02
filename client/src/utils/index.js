@@ -17,11 +17,11 @@ export function sortFunc(a, b, key) {
 
 export function processTableData(data) {
   if (data.constructor === Array) {
-    return data.map(obj => {
+    return data.map((obj) => {
       const newObj = {};
-      Object.keys(obj).forEach(key => {
+      Object.keys(obj).forEach((key) => {
         if (typeof obj[key] === 'object') {
-          Object.keys(obj[key]).forEach(subKey => {
+          Object.keys(obj[key]).forEach((subKey) => {
             newObj[subKey] = obj[key][subKey];
           });
         } else {

@@ -34,12 +34,7 @@ class DocCard extends React.Component {
     e.preventDefault();
 
     if (this.props.ownerId === this.props.auth.user.id || this.props.auth.user.roleId === 1) {
-      this.props.actions.deleteDocumentById(this.props.id)
-       .then(() => {
-         this.context.router.replace('/');
-       }).catch(() => {
-         toastr.error('Oops! an error occurred!');
-       });
+      this.props.actions.deleteDocumentById(this.props.id);
     } else {
       toastr.error(
                `You dont have the access rights
@@ -83,7 +78,7 @@ class DocCard extends React.Component {
               <Modal
                 header={this.props.title}
                 body={this.props.content}
-                actions={[<Button style={{ marginLeft: `${2}em` }} className="btn-cancel" waves="light" modal="close" flat>Close</Button>, <Button id="sav" waves="light" flat className="btn-save" onClick={this.handleSubmit} modal="close">Save</Button>]}
+                actions={[<Button style={{ marginLeft: `${2}em` }} className="btn-cancel" waves="light" modal="close" flat>Close</Button>]}
                 trigger={
                   <span
                     className="fa fa-eye card-actions tooltipped"

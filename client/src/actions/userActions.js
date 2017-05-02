@@ -1,7 +1,10 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import toastr from 'toastr';
+import { browserHistory } from 'react-router';
 import types from './actionTypes';
 import { setAuthorizationToken } from '../auth';
+
 
 
 export function loadUser(users) {
@@ -169,12 +172,19 @@ export function isUser(identifier) {
 }
 
 export function login(user) {
-  return dispatch => axios.post('/api/users/login', user).then((res) => {
-    const token = res.data.token;
-    localStorage.setItem('jwtToken', token);
-    setAuthorizationToken(token);
-    axios.defaults.headers.common.Authorization = token;
-    dispatch(setCurrentUser(res.data));
+  return dispatch => axios.post('/api/users/login', user)
+  .then((response) => {
+    if (response.status === 200) {
+      const token = response.data.token;
+      localStorage.setItem('jwtToken', token);
+      axios.defaults.headers.common.Authorization = token;
+      dispatch(setCurrentUser(response.data));
+      browserHistory.push('/');
+    } else if (response.status === 401) {
+      return toastr.error('User does not exist!');
+    } else {
+      return toastr.error('Invalid Login details!');
+    }  
   });
 }
 
