@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "",
-    "start:server": "./node_modules/.bin/webpack && nodemon server/server.js --exec babel-node",
+    "start:server": "nodemon server/server.js --exec babel-node",
     "start:client": "webpack-dev-server --progress --inline --open --watch",
     "build": "rimraf dist && webpack --config ./webpack.production.config.js --progress --profile --colors",
     "migrations": "sequelize db:migrate",

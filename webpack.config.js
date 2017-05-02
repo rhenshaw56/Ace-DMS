@@ -33,16 +33,12 @@ module.exports = {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader?root=.'
-      },
-      {
         test: /(\.css)$/,
         loader: ExtractTextPlugin.extract('css?sourceMap')
       },
       {
-        test: /\.scss$/,
-        loader: 'style!css!sass?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+        test: /(\.scss)$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap')
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
