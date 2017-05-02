@@ -57,6 +57,7 @@
     "body-parser": "^1.16.0",
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
+    "css-loader": "^0.28.0",
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
@@ -86,6 +87,7 @@
     "react-notify-toast": "^0.1.5",
     "react-paginate": "^4.3.1",
     "react-redux": "4.4.5",
+    "jsx-loader": "^0.13.2",
     "react-router": "^3.0.2",
     "react-router-redux": "4.0.4",
     "react-swipeable-views": "^0.12.1",
@@ -98,6 +100,7 @@
     "sequelize-cli": "^2.4.0",
     "shortid": "^2.2.8",
     "superagent": "^3.5.2",
+    "url-loader": "^0.5.8",
     "supertest": "^3.0.0",
     "thunk": "0.0.1",
     "toastr": "^2.1.2",
@@ -110,7 +113,6 @@
     "autoprefixer": "^6.3.6",
     "babel-loader": "^6.2.4",
     "coveralls": "^2.11.15",
-    "css-loader": "^0.28.0",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-loader": "^1.5.0",
@@ -126,7 +128,6 @@
     "istanbul": "^0.4.5",
     "jsdom": "^9.12.0",
     "json-loader": "^0.5.4",
-    "jsx-loader": "^0.13.2",
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "node-sass": "^3.7.0",
@@ -140,7 +141,6 @@
     "sass-loader": "^6.0.3",
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "0.16.1",
-    "url-loader": "^0.5.8",
     "webpack-hot-middleware": "^2.18.0"
   }
 }
