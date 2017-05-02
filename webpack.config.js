@@ -31,8 +31,8 @@ module.exports = {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
-        test: /\.json?$/,
-        loader: 'json'
+        test: /\.css$/,
+        loader: 'style-loader!css-loader?root=.'
       },
       {
         test: /\.scss$/,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './containers/App';
-import About from './views/about';
 import Signup from './components/authentication/Signup/Signup';
 import Login from './components/authentication/Signin';
 import DashBoard from './components/Dashboard';
