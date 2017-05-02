@@ -22,7 +22,6 @@ export default (
     <Route path="/documents" component={DocManager} />
     <Route path="/roles" component={RoleManager} />
     <Route path="/users" component={UserManagement} />
-    <Route path="/about" component={About} />
     <Route path="*" component={ErrorPage} />
   </Route>
 );
