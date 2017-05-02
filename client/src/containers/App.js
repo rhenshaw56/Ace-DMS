@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import '../style/main.scss';
 
 
 class App extends React.Component {

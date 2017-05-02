@@ -4,7 +4,7 @@ import SortIcon from 'material-ui/svg-icons/action/swap-vert';
 import IconButton from 'material-ui/IconButton';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
-import styles from './UserTable.scss';
+// import styles from './UserTable.scss';
 import { sortFunc, processTableData } from '../../../utils';
 
 
@@ -79,17 +79,17 @@ class UserTable extends Component {
     const processedData = processTableData(page);
 
     return (
-      <Table className={ styles.table } selectable={ false }>
+      <Table className="table" selectable={ false }>
         <TableHeader displaySelectAll={ false } adjustForCheckbox={ false }>
           <TableRow>
             { tableHeaders && tableHeaders.map((header, index) => (
               <TableHeaderColumn key={ index }>
-                <div className={ styles.rowAlign }>
+                <div className="rowAlign">
                   { header.alias }
                   { header.sortable &&
                     <SortIcon
                       id={ header.dataAlias }
-                      className={ styles.sortIcon }
+                      className="sortIcon"
                       onMouseUp={ this.sortByColumn }
                     />
                   }
@@ -112,7 +112,7 @@ class UserTable extends Component {
         <TableFooter>
           <TableRow>
             <TableRowColumn>
-              <div className={ styles.footerControls }>
+              <div className="footerControls">
                 { `${Math.min((offset + 1), total)} - ${Math.min((offset + limit), total)} of ${total}` }
                 <IconButton
                   disabled={ offset === 0 }
