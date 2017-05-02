@@ -4,7 +4,8 @@
   "description": "a document management system",
   "main": "server.js",
   "scripts": {
-    "start:server": "./node_modules/.bin/webpack nodemon server/server.js --exec babel-node",
+    "start": "",
+    "start:server": "./node_modules/.bin/webpack && nodemon server/server.js --exec babel-node",
     "start:client": "webpack-dev-server --progress --inline --open --watch",
     "build": "rimraf dist && webpack --config ./webpack.production.config.js --progress --profile --colors",
     "migrations": "sequelize db:migrate",
@@ -18,7 +19,8 @@
     "lint": "node_modules/.bin/eslint . || true",
     "lint:watch": "npm run lint -- --watch",
     "cover": "rm -rf coverage/ && NODE_ENV=test babel-node ./node_modules/babel-istanbul/lib/cli.js cover _mocha -- -R spec server/tests/**/*.spec.js",
-    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
+    "postinstall": "npm run migrations && npm run undo:seeds && npm run seeds"
   },
   "repository": {
     "type": "git",
