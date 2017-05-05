@@ -16,6 +16,10 @@ const config = {
   production: {
     url: process.env.DATABASE_URL,
     dialect: 'postgres',
+  },
+  travis: {
+    url: process.env.DATABASE_URL,
+    dialect: 'postgres',
   }
 };
 module.exports = config[process.env.NODE_ENV || 'production'];
