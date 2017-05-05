@@ -2,16 +2,16 @@ import swaggerJSDoc from 'swagger-jsdoc';
 
 const swaggerDefinition = {
   info: {
-    title: 'Node Swagger API',
+    title: 'Ace-DMS API',
     version: '1.0.0',
-    description: 'Demonstrating how to describe a RESTful API with Swagger',
+    description: 'Description of the Ace-DMS APIs',
   },
   host: 'localhost:5600',
   basePath: '/',
 };
 const options = {
   swaggerDefinition,
-  validationUrl: null,
+  validatorUrl: null,
   apis: [
     './server/routes/documentRoutes.js',
     './server/routes/userRoutes.js',

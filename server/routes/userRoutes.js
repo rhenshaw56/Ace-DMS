@@ -107,7 +107,7 @@ const userRoutes = (router) => {
      *   post:
      *     description: Signs in a user
      *     tags:
-     *      - signin
+     *      - Signs in a user
      *     produces:
      *      - application/json
      *     parameters:
@@ -137,7 +137,7 @@ const userRoutes = (router) => {
      *   post:
      *     description: Return a single user by id
      *     tags:
-     *      - find
+     *      - Return a single user by id
      *     produces:
      *      - application/json
      *     parameters:
@@ -163,7 +163,7 @@ const userRoutes = (router) => {
      *   put:
      *     description: Updates details of a single user by id
      *     tags:
-     *      - edit
+     *      - Updates user details
      *     produces:
      *      - application/json
      *     parameters:
@@ -189,7 +189,7 @@ const userRoutes = (router) => {
      *   delete:
      *     description: Deletes a user by id
      *     tags:
-     *      - delete
+     *      - Deletes a user by id
      *     produces:
      *      - application/json
      *     parameters:
@@ -217,7 +217,7 @@ const userRoutes = (router) => {
    *    get:
    *      description: Returns the documents belonging to the user of id
    *      tags:
-   *        - Get Documents of A User
+   *        - Returns Documents of A User
    *      produces:
    *        - application/json
    *      parameters:
@@ -239,9 +239,9 @@ const userRoutes = (router) => {
    * @swagger
    * /api/users/search/users?q={johndoe@gmail.com}:
    *    get:
-   *      description: Returns the documents belonging to the user of id 1
+   *      description: Returns the user
    *      tags:
-   *        - Get Documents of A User
+   *        - Finds a user by email
    *      produces:
    *        - application/json
    *      parameters:
@@ -261,7 +261,6 @@ const userRoutes = (router) => {
    *          schema:
    *            type: object
    */
-    .get(UserController.retrieveUserByIdentifier);
-
+    .get(Auth.authenticateUser, UserController.retrieveUserByIdentifier);
 };
 export default userRoutes;

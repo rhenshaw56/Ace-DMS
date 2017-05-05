@@ -4,28 +4,11 @@ language: node_js
 node_js:
   - stable
 
-script:
-  - npm test
-after_script:
-  - npm run coveralls
-
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-before_script:
-  - psql -c 'create database acedms_test;' -U postgres
 
-services:
-  - postgresql
 
-addons:
-  postgresql: "9.3"
-
-after_success:
-  - npm run coveralls
-
-addons:
-  postgresql: "9.3"
   
 
