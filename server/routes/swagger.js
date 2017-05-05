@@ -6,7 +6,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Description of the Ace-DMS APIs',
   },
-  host: 'localhost:5600',
+  host: 'https://ace-dms.herokuapp.com',
   basePath: '/',
 };
 const options = {
