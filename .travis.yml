@@ -12,7 +12,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 before_script:
-  - psql -c 'create database acedms-test;' -U postgres
+  - psql -c 'create database acedms_test;' -U postgres
 
 services:
   - postgresql
