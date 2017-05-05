@@ -13,7 +13,11 @@ let adminUserToken;
 
 describe('Users:', () => {
   before((done) => {
-    SpecSeeders.init()
+    SpecSeeders.populateRoleTable()
+    .then(() => {
+      db.User.create(FakeData.AdminUser);
+    })
+
     .then(() => {
       client.post('/api/users')
       .send(regularUser)
@@ -187,8 +191,9 @@ describe('Users:', () => {
     it('should return a token if a User Login is successful', (done) => {
       client.post('/api/users/login')
       .send({
-        email: FakeData.RegularUser.email,
-        password: FakeData.RegularUser.password
+        email: regularUser.email,
+        password: regularUser.password
+
       })
       .end((error, response) => {
         expect(response.status).to.equal(200);
@@ -201,8 +206,10 @@ describe('Users:', () => {
     (done) => {
       client.post('/api/users/login')
       .send({
-        email: FakeData.RegularUser.email,
-        password: FakeData.RegularUser.password
+
+        email: regularUser.email,
+        password: regularUser.password
+
       })
       .end((error, response) => {
         expect(response.status).to.equal(200);
@@ -210,8 +217,9 @@ describe('Users:', () => {
         const decodedToken = JSON.parse(
           new Buffer(tokenizedData, 'base64').toString()
         );
-        expect(decodedToken).to.have.property('userId');
-        expect(decodedToken).to.not.have.property('roleId');
+        expect(decodedToken).to.have.property('id');
+        expect(decodedToken).to.not.have.property('password');
+
         done();
       });
     });
@@ -219,7 +227,9 @@ describe('Users:', () => {
     it('should not return a token if Regular User Login is not successful', (done) => {
       client.post('/api/users/login')
       .send({
-        email: FakeData.RegularUser.email,
+
+        email: regularUser.email,
+
         password: 'rituals'
       })
       .end((error, response) => {
@@ -247,7 +257,9 @@ describe('Users:', () => {
     (done) => {
       client.post('/api/users/login')
       .send({
-        password: FakeData.RegularUser.password
+
+        password: regularUser.password
+
       })
       .end((error, response) => {
         expect(response.status).to.equal(400);
@@ -259,7 +271,9 @@ describe('Users:', () => {
     (done) => {
       client.post('/api/users/login')
       .send({
-        email: FakeData.RegularUser.email
+
+        email: regularUser.email
+
       })
       .end((error, response) => {
         expect(response.status).to.equal(400);
@@ -269,12 +283,16 @@ describe('Users:', () => {
   });
 
   describe('Search Users', () => {
-    it('should allow a registered User access to list of users',
+
+    it('should not allow a registered User access to list of users',
+
     (done) => {
       client.get('/api/users')
       .set({ 'x-access-token': regularUserToken })
       .end((error, response) => {
-        expect(response.status).to.equal(200);
+
+        expect(response.status).to.equal(403);
+
         expect(response.body).to.be.instanceof(Object);
         done();
       });
@@ -311,7 +329,9 @@ describe('Users:', () => {
       });
     });
 
-    it('should allow an admin User with fetch another ser',
+
+    it('should allow an admin User fetch another user',
+
     (done) => {
       client.get(`/api/users/${regularUserId}`)
       .set({ 'x-access-token': adminUserToken })
@@ -378,49 +398,23 @@ describe('Users:', () => {
       });
     });
 
-    it(`should validate user password on update before
-    saving to ensure it meets minimum length requirement`, (done) => {
-      const shortPassword = '123';
+
+    it('should allow a user Update his password if Token is provided',
+    (done) => {
+      regularUser.newPassword = 'new password';
+
       client.put(`/api/users/${regularUserId}`)
       .send({
-        password: shortPassword
+        password: regularUser.newPassword
       })
       .set({ 'x-access-token': regularUserToken })
       .end((error, response) => {
-        expect(response.status).to.equal(403);
+        expect(response.status).to.equal(200);
+
         done();
       });
     });
 
-    // it(`should validate user password on update before
-    // saving to ensure it meets maximum length requirement`,
-    // (done) => {
-    //   const longPassword = `sdfh////dfasashashjbnmdfcghjndghjndmcxfghgggbjknmdcghjn
-    //   gggmdcghvjn dsghvbjndsfghvbjdncsghbjdsghvbjdghvbjdc`;
-    //   client.put(`/api/users/${regularUserId}`)
-    //   .send({
-    //     password: longPassword
-    //   })
-    //   .set({ 'x-access-token': regularUserToken })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(400);
-    //     done();
-    //   });
-    // });
-
-    // it('should allow a user Update his password if Token is provided',
-    // (done) => {
-    //   regularUser.newPassword = 'new password';
-    //   client.put(`/api/users/${regularUserId}`)
-    //   .send({
-    //     password: regularUser.newPassword
-    //   })
-    //   .set({ 'x-access-token': regularUserToken })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(200);
-    //     done();
-    //   });
-    // });
 
     it(`should return a 403 status code indication it does NOT
     allow a regular User Update to an Admin User`,
@@ -450,36 +444,37 @@ describe('Users:', () => {
       });
     });
 
-    // it('should Allow a User Login with the updated password',
-    // (done) => {
-    //   client.post('/api/users/login')
-    //   .send({
-    //     email: regularUser.email,
-    //     password: regularUser.newPassword
-    //   })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(200);
-    //     done();
-    //   });
-    // });
+    it('should Allow a User Login with the updated password',
+    (done) => {
+      client.post('/api/users/login')
+      .send({
+        email: regularUser.email,
+        password: regularUser.newPassword
+      })
+      .end((error, response) => {
+        expect(response.status).to.equal(200);
+        done();
+      });
+    });
 
-    // it('should NOT Allow a User Login with the old password',
-    // (done) => {
-    //   client.post('/api/users/login')
-    //   .send({
-    //     email: regularUser.email,
-    //     password: regularUser.password
-    //   })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(401);
-    //     done();
-    //   });
-    // });
+    it('should NOT Allow a User Login with the old password',
+    (done) => {
+      client.post('/api/users/login')
+      .send({
+        email: regularUser.email,
+        password: regularUser.password
+      })
+      .end((error, response) => {
+        expect(response.status).to.equal(401);
+        done();
+      });
+    });
+
 
     it(`should Allow an Admin with a valid token update a regular
     User password`,
     (done) => {
-      // add the admin set password to the regular user Object
+
       regularUser.adminSetPassword = 'admin set password';
       client.put(`/api/users/${regularUserId}`)
       .send({
@@ -495,7 +490,8 @@ describe('Users:', () => {
     it(`should return a 404 response when an Admin tries to update
     a user that does NOT exist`,
     (done) => {
-      // add the admin set password to the regular user Object
+
+
       regularUser.adminSetPassword = 'admin set password';
       client.put(`/api/users/${1000}`)
       .send({
@@ -508,19 +504,20 @@ describe('Users:', () => {
       });
     });
 
-    // it(`should NOT allow a User Login with the old password already
-    // updated by an Admin`,
-    // (done) => {
-    //   client.post('/api/users/login')
-    //   .send({
-    //     email: regularUser.email,
-    //     password: regularUser.newPassword
-    //   })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(401);
-    //     done();
-    //   });
-    // });
+    it(`should NOT allow a User Login with the old password already
+    updated by an Admin`,
+    (done) => {
+      client.post('/api/users/login')
+      .send({
+        email: regularUser.email,
+        password: regularUser.newPassword
+      })
+      .end((error, response) => {
+        expect(response.status).to.equal(401);
+        done();
+      });
+    });
+
 
     it('should Allow a User Login with the new password updated by an Admin',
     (done) => {
@@ -531,8 +528,8 @@ describe('Users:', () => {
       })
       .end((error, response) => {
         expect(response.status).to.equal(200);
-        // update the user token as a new token is always
-        // generated on every login
+
+
         regularUserToken = response.body.token;
         done();
       });
@@ -676,13 +673,13 @@ describe('Users:', () => {
       });
     });
 
-    // it('should not allow deletion of admin User', (done) => {
-    //   client.delete(`/api/users/${1}`)
-    //   .set({ 'x-access-token': currentAdminUser.token })
-    //   .end((error, response) => {
-    //     expect(response.status).to.equal(403);
-    //     done();
-    //   });
-    // });
+    it('should not allow deletion of admin User', (done) => {
+      client.delete(`/api/users/${1}`)
+      .set({ 'x-access-token': currentAdminUser.token })
+      .end((error, response) => {
+        expect(response.status).to.equal(403);
+        done();
+      });
+    });
   });
 });

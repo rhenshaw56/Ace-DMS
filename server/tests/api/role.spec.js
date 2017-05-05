@@ -11,19 +11,18 @@ describe('Roles:', () => {
   const adminUser = SpecHelper.AdminUser;
   const regularUser = SpecHelper.generateRandomUser(2);
   before((done) => {
-    // lets get our regular and admin user data after clearing the db
-    SeedHelper.init()
+    SeedHelper.populateRoleTable()
     .then(() => {
-      // login admin user
+      database.User.create(adminUser);
+    })
+    .then(() => {
       client.post('/api/users/login')
       .send({
         email: adminUser.email,
         password: adminUser.password
       })
       .end((error, response) => {
-        // set admin user token
         adminUser.token = response.body.token;
-        // fetch regular user details
         client.post('/api/users')
         .send(regularUser)
         .end((error1, response1) => {
@@ -57,7 +56,8 @@ describe('Roles:', () => {
     });
 
     it(`should return a 400 (bad request) status code if an Admin tries
-    to create a new Role with the Role ID is specified`,
+    to create a new Role with the Role ID specified`,
+
     (done) => {
       const invalidNewRole = SpecHelper.generateRandomRole('master');
       invalidNewRole.id = 1;

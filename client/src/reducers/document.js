@@ -14,7 +14,8 @@ export default function documentReducer(
       ...state.documents,
       Object.assign({}, action.document)
     ];
-
+  case 'DELETE_DOCUMENT':
+    return state.filter(document => document.id !== action.id);
   case types.DISPLAY_DOCUMENT:
     return Object.assign({}, state, { documentDetails: !isEmpty(action.id) });
 

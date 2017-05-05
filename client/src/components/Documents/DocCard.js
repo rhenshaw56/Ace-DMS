@@ -32,7 +32,6 @@ class DocCard extends React.Component {
   }
   deleteDocument(e) {
     e.preventDefault();
-
     if (this.props.ownerId === this.props.auth.user.id || this.props.auth.user.roleId === 1) {
       this.props.actions.deleteDocumentById(this.props.id);
     } else {

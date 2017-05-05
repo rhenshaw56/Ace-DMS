@@ -7,6 +7,7 @@ import db from '../models';
  */
 export default class Document {
   /**
+   * Function to validate Post Request for documents
    * @static
    * @param {any} request
    * @param {any} response
@@ -52,6 +53,7 @@ export default class Document {
     }
   }
   /**
+   * Function to validate Get Request for documents
    * @static
    * @param {any} request
    * @param {any} response

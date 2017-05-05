@@ -1,5 +1,5 @@
 import RoleMiddleware from '../middlewares/Role';
-import RoleController from '../controllers/Role.Controller';
+import RoleController from '../controllers/RoleController';
 import Auth from '../middlewares/Auth';
 
 const roleRoutes = (router) => {

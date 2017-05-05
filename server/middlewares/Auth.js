@@ -12,6 +12,7 @@ const userDb = db.User;
 export default class Auth {
 
   /**
+   * Function to generate Tokens for users
    * @static
    * @param {Object} user
    * @returns {Object} tokenBody
@@ -28,6 +29,7 @@ export default class Auth {
       }, secret, { expiresIn: 57600 });
   }
    /**
+   * Function to retrieve Tokens for users
    * @static
    * @param {Object}req
    * @returns {String} token
@@ -40,7 +42,8 @@ export default class Auth {
      || req.headers.authorization;
     return token;
   }
-   /**
+  /**
+   * Function to verify Tokens for users
    * @static
    * @param {String}token
    * @returns {Object} message
@@ -55,6 +58,7 @@ export default class Auth {
   }
 
   /**
+   * Function to authenticate users
    * @static
    * @param {Object} request
    * @param {Objective} response
@@ -91,6 +95,7 @@ export default class Auth {
   }
 
   /**
+   * Function to activate Tokens for users
    * @static
    * @param {Object} user
    * @param {String} currentToken
@@ -102,6 +107,7 @@ export default class Auth {
   }
 
    /**
+    * Function to verify admin user
    * @static
    * @param {Number} roleId
    * @returns {Boolean} value

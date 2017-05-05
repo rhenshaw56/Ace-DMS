@@ -7,6 +7,7 @@ import Auth from './Auth';
  */
 export default class Role {
   /**
+   * Function to validate Get Request for roles
    * @static
    * @param {any} request
    * @param {any} response
@@ -35,6 +36,7 @@ export default class Role {
     }
   }
     /**
+   * Function to validate Post Request for roles
    * @static
    * @param {any} request
    * @param {any} response
@@ -49,7 +51,7 @@ export default class Role {
                 { message: 'Invalid Operation! You cannot create Roles.' }
             );
     } else if (request.body.id) {
-      ResponseHandler.send404(
+      ResponseHandler.send400(
                 response,
                 { message: 'You dont have access yet' }
             );
@@ -58,6 +60,7 @@ export default class Role {
     }
   }
   /**
+   * Function to validate Delete Request for roles
    * @static
    * @param {any} request
    * @param {any} response
@@ -83,6 +86,7 @@ export default class Role {
     }
   }
   /**
+   * Function to validate Put Request for roles
    * @static
    * @param {any} request
    * @param {any} response
@@ -92,7 +96,7 @@ export default class Role {
    */
   static validateOnPut(request, response, next) {
     const userId = Number(request.params.id);
-    if (Auth.verifyAdmin(request.decoded.roleId)) {
+    if (!Auth.verifyAdmin(request.decoded.roleId)) {
       ResponseHandler.send403(
                 response,
                 { message: 'Contact an Admin to perform this operation' }
@@ -102,6 +106,11 @@ export default class Role {
                 response,
                 { message: 'This Role cannot be Edited' }
             );
+    } else if (request.body.id) {
+      ResponseHandler.send400(
+        response,
+        { message: 'Role Id not to be specified on update' }
+      );
     } else {
       next();
     }

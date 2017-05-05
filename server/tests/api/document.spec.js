@@ -13,7 +13,11 @@ describe('Documents:', () => {
   const regularUser2 = SpecHelper.generateRandomUser(2);
   const regularUser3 = SpecHelper.generateRandomUser(2);
   before((done) => {
-    SeedHelper.init()
+
+    SeedHelper.populateRoleTable()
+    .then(() => {
+      database.User.create(adminUser);
+    })
     .then(() => {
       client.post('/api/users/login')
       .send({
@@ -225,7 +229,8 @@ describe('Documents:', () => {
       });
     });
 
-    it(`should allow a authenticated Admin user fetch all documents of another 
+
+    it(`should allow an Admin user fetch all documents of another 
     user regardless of the document access type(public, private, role)`,
     (done) => {
       client.get(`/api/users/${3}/documents`)
