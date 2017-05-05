@@ -15,7 +15,6 @@ before_install:
 before_script:
   - psql -c 'drop database if exists acedms-test;' -U postgres
   - psql -c 'create database acedms-test;' -U postgres
-  - NODE_ENV=test npm run migrate
 
 services:
   - postgresql

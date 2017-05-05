@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start:server": "nodemon server/server.js --exec babel-node",
-    "migrate": "sequelize db:migrate",
-    "undo:migrate": "sequelize db:migrate:undo:all",
+    "undo:migrations": "sequelize db:migrate:undo:all",
     "mocha": "mocha --compilers js:babel-core/register",
     "test": "NODE_ENV=test npm run mocha server/test",
     "start:client": "webpack-dev-server --progress --inline --open --watch",
@@ -14,7 +13,6 @@
     "migrations": "sequelize db:migrate",
     "seeds": "sequelize db:seed:all",
     "undo:seeds": "sequelize db:seed:undo:all",
-    "undo:migrations": "NODE_ENV=test sequelize db:migrate:undo:all",
     "test:server": "NODE_ENV=test npm run mocha server/tests/**/*.spec.js",
     "test:client": "mocha -w client/tests/helpers/browser.js client/tests/**/*.spec.js --compilers js:babel-register",
     "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./",
