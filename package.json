@@ -7,7 +7,7 @@
     "start:server": "nodemon server/server.js --exec babel-node",
     "undo:migrations": "sequelize db:migrate:undo:all",
     "mocha": "mocha --compilers js:babel-core/register",
-    "test": "NODE_ENV=test npm run mocha server/test",
+    "test": "NODE_ENV=test npm run mocha server/tests/**/*.spec.js",
     "start:client": "webpack-dev-server --progress --inline --open --watch",
     "build": "rimraf dist && webpack --config ./webpack.production.config.js --progress --profile --colors",
     "migrations": "sequelize db:migrate",
