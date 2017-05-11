@@ -8,7 +8,7 @@ module.exports = {
   watch: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    path.join(__dirname, 'client/src/index.js')
+    path.join(__dirname, 'client/src/index')
   ],
   output: {
     path: path.join(__dirname, 'client/dist/'),
@@ -31,6 +31,14 @@ module.exports = {
   ],
   module: {
     loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: [
+          'babel?presets[]=react,presets[]=es2015,presets[]=stage-0'
+        ]
+
+      },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
         test: /(\.css)$/,
@@ -49,8 +57,9 @@ module.exports = {
         loader: 'file-loader'
       },
       { test: /\.(woff|png|jpg|gif)$/, loader: 'url-loader?limit=250000' }
-
-
     ]
-  }
+  },
+  resolve: {
+    extensions: ['', '.css', '.js', '.jsx']
+  },
 };

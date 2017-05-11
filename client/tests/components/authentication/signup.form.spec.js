@@ -12,7 +12,7 @@ describe('<Form/>', () => {
 
   it('should have props a prop called signup', () => {
     const wrapper = shallow(<Form />);
-    expect(wrapper.props().signup).to.be.defined; // eslint-disable-line
+    expect(wrapper.props.signup).to.be.defined; // eslint-disable-line
   });
   it('should render four text input fields', () => {
     const wrapper = shallow(<Form />);

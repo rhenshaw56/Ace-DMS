@@ -14,7 +14,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert('Documents', [
       {
-        title: 'Test Document 1',
+        title: 'Alice',
         content: 'Alice in wonderland with her boyfriend',
         ownerId: 1,
         ownerRoleId: 1,
@@ -23,7 +23,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 2',
+        title: 'The Rings',
         content: 'The fellowship of the ring starring jack bauer',
         ownerId: 2,
         ownerRoleId: 2,
@@ -32,7 +32,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 3',
+        title: 'Our chance',
         content: 'This is the child of my brain, the product of my endeavour',
         ownerId: 2,
         ownerRoleId: 2,
@@ -41,7 +41,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 4',
+        title: 'Ice & magic',
         content: 'In the mist, there was ice and fire and magic!',
         ownerId: 2,
         ownerRoleId: 2,
@@ -50,7 +50,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 5',
+        title: 'YOLO',
         content: 'You only live once',
         ownerId: 2,
         ownerRoleId: 2,
@@ -59,7 +59,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 6',
+        title: 'Born To Lead',
         content: 'My destiny is to lead and yours is to follow',
         ownerId: 2,
         access: 'public',
@@ -68,7 +68,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 7',
+        title: 'Fire & Snow',
         content: 'The land was filled with fire and snow',
         ownerId: 2,
         ownerRoleId: 2,
@@ -77,7 +77,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 8',
+        title: 'Kung-fu kenny',
         content: 'To pimp a butterfly',
         ownerId: 2,
         ownerRoleId: 2,
@@ -86,7 +86,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 9',
+        title: 'Fair beauty',
         content: 'How i wonder how fairer you could be',
         ownerId: 2,
         ownerRoleId: 2,
@@ -95,7 +95,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 10',
+        title: 'The Goat',
         content: 'I am the GOAT',
         ownerId: 2,
         ownerRoleId: 2,
@@ -104,7 +104,52 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Test Document 11',
+        title: 'Epic',
+        content: 'excellence passion integrity commitment',
+        ownerId: 2,
+        ownerRoleId: 2,
+        access: 'public',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+            {
+        title: 'Nadine',
+        content: 'The land was filled with fire and snow',
+        ownerId: 2,
+        ownerRoleId: 2,
+        access: 'public',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'How to kill nemo',
+        content: 'To pimp a butterfly',
+        ownerId: 2,
+        ownerRoleId: 2,
+        access: 'role',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Dark beauty',
+        content: 'How i wonder how fairer you could be',
+        ownerId: 2,
+        ownerRoleId: 2,
+        access: 'public',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'The Life',
+        content: 'I am the GOAT',
+        ownerId: 2,
+        ownerRoleId: 2,
+        access: 'public',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Iota',
         content: 'excellence passion integrity commitment',
         ownerId: 2,
         ownerRoleId: 2,

@@ -1,10 +1,11 @@
 export default {
   manageUsers: {
     allUsers: [],
+    selectedUser: {},
     userDetails: false,
-    authUser: []
+    isLoggedIn: false,
+    viewMode: false
   },
-  isLoggedIn: false,
   user: {},
   manageDocuments: {
     documents: [],
@@ -15,8 +16,7 @@ export default {
     roles: []
   },
   manageSearch: {
-    searchedUsers: [],
-    searchedDocuments: []
+    searchList: []
   },
   currentlySelected: {},
   selectedDocument: ''

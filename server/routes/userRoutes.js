@@ -262,5 +262,7 @@ const userRoutes = (router) => {
    *            type: object
    */
     .get(Auth.authenticateUser, UserController.retrieveUserByIdentifier);
+  router.route('/api/initUsers')
+    .get(UserController.initUsers);
 };
 export default userRoutes;

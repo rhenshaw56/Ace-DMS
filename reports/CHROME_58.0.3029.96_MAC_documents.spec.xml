@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="3">
+
+  <testsuite name="documents.spec"
+    errors="0" failures="1" hostname="" id="" package="documents.spec" skipped="0"
+    tests="3" time="64.25" timestamp="Tue, 09 May 2017 20:40:21 GMT">
+  
+    <testcase name="Create Document" classname="documents.spec" time="28.26" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Edit Documents" classname="documents.spec" time="23.55" assertions="7">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.spec/Edit-Documents_ERROR_May-09-2017-214055-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Delete Documents" classname="documents.spec" time="12.44" assertions="6">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.spec/Delete-Documents_ERROR_May-09-2017-214117-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+
+      <failure message="Testing if the URL equals &quot;http://localhost:5600/&quot;.">    at Object.Delete Documents (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/client/tests/e2e/documents.spec.js:82:15)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

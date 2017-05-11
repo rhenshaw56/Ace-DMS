@@ -3,6 +3,7 @@ import manageUsers from './user';
 import auth from './auth';
 import manageDocuments from './document';
 import manageRoles from './role';
+import manageSearch from './search';
 
 
 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   auth,
   manageUsers,
   manageDocuments,
-  manageRoles,
+  manageSearch,
+  manageRoles
 });
 
 export default rootReducer;

@@ -326,7 +326,7 @@ class UserController {
    */
   static retrieveUserByIdentifier(request, response) {
     if (request.query.q) {
-      model.User.find({ where: { email: request.query.q } })
+      model.User.find({ where: { email: { $like: request.query.q } } })
        .then((foundUser) => {
          if (foundUser) {
            return ResponseHandler.sendResponse(
@@ -342,5 +342,34 @@ class UserController {
          ));
     }
   }
+
+  /**
+   * Function to initialise users in app
+   * @static
+   * @param {Object} request
+   * @param {Object} response
+   * @returns {Object} response
+   * @memberof UserController
+   */
+  static initUsers(request, response) {
+    model.User.findAndCount({ where: { roleId: 2 } })
+       .then((foundUsers) => {
+         if (foundUsers) {
+           return ResponseHandler.sendResponse(
+                  response,
+                      200,
+             {
+               users: foundUsers.rows
+                .map(user => UserController.formatUserDetails(user)),
+             }
+                  );
+         }
+       }).catch(err => ResponseHandler.sendResponse(
+           response,
+           404,
+           { status: false, message: err }
+         ));
+  }
 }
+
 export default UserController;

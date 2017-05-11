@@ -178,7 +178,8 @@ const documentRoutes = (router) => {
    *          schema:
    *            type: object
    */
-     .get(Auth.authenticateUser, DocumentController.retrieveDocByIdentifier);
+     .get(Auth.authenticateUser, DocumentMiddleware.validateOnGet,
+     DocumentController.retrieveDocByIdentifier);
 };
 
 export default documentRoutes;

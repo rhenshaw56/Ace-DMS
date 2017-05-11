@@ -39,17 +39,18 @@ export function setSelectedUser(id) {
 }
 
 
-export function displaySelectedUser(id) {
+export function displayUser(user) {
   return {
     type: types.DISPLAY_USER,
-    id
+    user
   };
 }
 
 
-export function deleteSelectedUser() {
+export function deleteSelectedUser(id) {
   return {
     type: types.DELETE_USER,
+    id
   };
 }
 
@@ -83,10 +84,10 @@ export function loginUser(token) {
 }
 
 
-export function getUserAuth(user) {
+export function populateSearchList(users) {
   return {
-    type: types.GET_USER_AUTH,
-    user
+    type: types.GET_USERS,
+    users
   };
 }
 
@@ -125,9 +126,9 @@ export function initUsers() {
 }
 
 
-export function getAuthUser(id) {
-  return dispatch => axios.get(`/api/users/${id}`).then((res) => {
-    dispatch(getUserAuth(res.data.user));
+export function getUsers() {
+  return dispatch => axios.get('/api/initUsers').then((res) => {
+    dispatch(populateSearchList(res.data.users));
   });
 }
 
@@ -140,8 +141,8 @@ export function updateUserAdmin(user, id) {
 
 
 export function editUser(user, id) {
-  return dispatch => axios.put(`/api/users/${id}`, user).then(() => {
-    dispatch(getUserAuth(id));
+  return dispatch => axios.put(`/api/users/${id}`, user).then((response) => {
+    dispatch(updateUser(response.data));
   });
 }
 
@@ -163,7 +164,7 @@ export function findUser(id) {
 export function deleteUser(id) {
   return dispatch => axios.delete(`/api/users/${id}`)
     .then(() => {
-      dispatch(loadUsers());
+      dispatch(deleteSelectedUser(id));
     });
 }
 
@@ -184,7 +185,9 @@ export function login(user) {
       return toastr.error('User does not exist!');
     } else {
       return toastr.error('Invalid Login details!');
-    }  
+    }
+  }).catch(() => {
+    return toastr.error('Invalid Login details!');
   });
 }
 
@@ -195,6 +198,5 @@ export function logout() {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
-    return axios.post('/api/users/logout', token);
   };
 }

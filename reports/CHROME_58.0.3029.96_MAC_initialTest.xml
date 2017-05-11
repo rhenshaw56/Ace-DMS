@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="initialTest"
+    errors="0" failures="0" hostname="" id="" package="initialTest" skipped="0"
+    tests="1" time="16.30" timestamp="Mon, 08 May 2017 14:05:35 GMT">
+  
+    <testcase name="Document Management System" classname="initialTest" time="16.30" assertions="3">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/initialTest/Document-Management-System_ERROR_May-08-2017-150551-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

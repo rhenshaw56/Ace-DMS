@@ -20,9 +20,10 @@ export function setDocument(id) {
   };
 }
 
-export function deleteDocument() {
+export function deleteDocument(id) {
   return {
     type: types.DELETE_DOCUMENT,
+    id
   };
 }
 export function editDocument(document) {
@@ -47,7 +48,6 @@ export function loadUserDocument() {
       });
 }
 
-
 export function loadAllDocument() {
   return dispatch => axios.get('/api/documents').then((res) => {
     dispatch(loadDocuments(res.data.documents));
@@ -55,8 +55,8 @@ export function loadAllDocument() {
 }
 
 export function saveDocument(document) {
-  return dispatch => axios.post('/api/documents/', document).then(() => {
-    dispatch(deleteDocument());
+  return dispatch => axios.post('/api/documents/', document).then((response) => {
+    dispatch(createDocument(response.data));
   });
 }
 
@@ -70,9 +70,6 @@ export function updateDocument(document) {
 
 export function deleteDocumentById(id) {
   return dispatch => axios.delete(`/api/documents/${id}`).then(() => {
-    dispatch({
-      type: 'DELETE_DOCUMENT',
-      id
-    });
+    dispatch(deleteDocument(id));
   });
 }

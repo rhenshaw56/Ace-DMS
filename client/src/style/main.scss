@@ -179,12 +179,16 @@ div#test1{
       color: dodgerblue;
   }
   button.btn#save{
-      margin: 0 auto;
-      background: dodgerblue;
+      background: #26a69a;
+      color: whitesmoke;
+      margin-left: 35px;
+      margin-top: 5%;
   }
     button.btn#cancel{
-      margin-left: 10%;
-      background: orangered;
+      background: #26a69a;
+      color: whitesmoke;
+      margin-left: 35%;
+      margin-top: 5%;
   }
   .ace-h3{
       text-align: none;
@@ -192,6 +196,10 @@ div#test1{
   .table {
   width: auto;
   padding-top: 30px;
+}
+td, th {
+  padding: 20px;
+  font-size: 15px;
 }
 
 .rowAlign {
@@ -211,4 +219,51 @@ div#test1{
     fill: rgb(255, 255, 255) !important;
     pointer-events: none;
   }
+}
+.ace-card {
+  cursor: hand;
+}
+.doc-title {
+  color: #222;
+  font: 10px bold;
+}
+.profile{
+  font-size: 20rem;
+  margin: 2rem;
+  color: ghostwhite;
+}
+.profile-card {
+  width: 18rem;
+  background: #222;
+  text-align: center;
+}
+.user-info {
+  color: whitesmoke;
+  font-size: 1.5rem;
+  font: "Lucida Grande";
+}
+.user-header{
+  text-align: center;
+}
+.clear {
+  clear: both;
+}
+.user-table {
+  color: #345;
+  font-size: 12px;
+}
+.edit-button {
+  text-decoration: none;
+}
+.search-form{
+  display: inline;
+  // float: left;
+}
+div {
+  color: gray;
+  text-decoration-style: none;
+}
+a {
+  color: gray;
+  text-decoration-style: none;
 }

@@ -2,7 +2,15 @@ import isEmpty from 'lodash/isEmpty';
 import types from '../actions/actionTypes';
 import initialState from './initialState';
 
+let newState;
 
+/**
+ * Reducer function for documents to handle document actions
+ * @export
+ * @param {Object} [state=initialState.manageDocuments]
+ * @param {Object} action
+ * @returns {Object} state - updated
+ */
 export default function documentReducer(
   state = initialState.manageDocuments, action) {
   switch (action.type) {
@@ -10,12 +18,14 @@ export default function documentReducer(
     return Object.assign({}, ...state, { documents: action.documents });
 
   case types.CREATE_DOCUMENT:
-    return [
-      ...state.documents,
-      Object.assign({}, action.document)
-    ];
-  case 'DELETE_DOCUMENT':
-    return state.filter(document => document.id !== action.id);
+    newState = { ...state };
+    newState.documents.push(action.document);
+    return newState;
+
+  case types.DELETE_DOCUMENT:
+    newState = { ...state };
+    newState.documents = [...state.documents].filter(document => document.id !== action.id);
+    return newState;
   case types.DISPLAY_DOCUMENT:
     return Object.assign({}, state, { documentDetails: !isEmpty(action.id) });
 

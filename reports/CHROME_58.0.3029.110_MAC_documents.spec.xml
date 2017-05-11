@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="3">
+
+  <testsuite name="documents.spec"
+    errors="0" failures="0" hostname="" id="" package="documents.spec" skipped="0"
+    tests="3" time="65.17" timestamp="Tue, 09 May 2017 20:44:33 GMT">
+  
+    <testcase name="Create Document" classname="documents.spec" time="21.17" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Edit Documents" classname="documents.spec" time="24.00" assertions="7">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.spec/Edit-Documents_ERROR_May-09-2017-214501-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Delete Documents" classname="documents.spec" time="20.00" assertions="6">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.spec/Delete-Documents_ERROR_May-09-2017-214524-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

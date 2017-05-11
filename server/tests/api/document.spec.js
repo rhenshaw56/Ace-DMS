@@ -13,7 +13,6 @@ describe('Documents:', () => {
   const regularUser2 = SpecHelper.generateRandomUser(2);
   const regularUser3 = SpecHelper.generateRandomUser(2);
   before((done) => {
-
     SeedHelper.populateRoleTable()
     .then(() => {
       database.User.create(adminUser);
@@ -320,7 +319,6 @@ describe('Documents:', () => {
 
     it(`should NOT allow a document with access set to 'private'
     be accessible by other authenticated Non-Admin users`, (done) => {
-      // private document is owned by regularUser1
       client.get(`/api/documents/${privateDocument.id}`)
       .set({ 'x-access-token': regularUser3.token })
       .end((error, response) => {
