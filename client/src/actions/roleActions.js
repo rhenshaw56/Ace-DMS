@@ -3,7 +3,6 @@ import types from './actionTypes';
 
 
 export function loadRole(roles) {
-  console.log(roles);
   return {
     type: types.LOAD_ROLE,
     roles

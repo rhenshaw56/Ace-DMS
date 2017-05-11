@@ -5,27 +5,6 @@
 Ace-DMS is a full stack document management system, complete with roles and privileges . Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published.
 Users are categorized by roles. Users with access to specific documents can edit and update their documents but will not be granted access to read or write to a document with unathourized access role, only a view access.
 
-###### Document Management
-*   Visit the [hosted app](ace-dms.herokuapp.com)
-*   Create an account
-*   Login with your credentials
-*   Create new document with specifying document title, content and document access
-*   Edit Documents
-*   Delete documents
-*   View public documents created by other users.
-*   View documents created by his access group with access level set as `role`.
-*   Search a users public documents.
-*   View `public` and `role` access level documents of other regular users.
-*   Logout
-
--   In addition to the general user functions, an admin user can:
-    -   View all users.
-    -   View all created documents except documents with access set to private.
-    -   Delete any user.
-    -   Update any user's record.
-    -   Create a new role.
-    -   View all created roles.
-    -   Search for any user.
 
 ## Postman Collection
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/79158ea63ffdea6731dd)

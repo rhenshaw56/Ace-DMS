@@ -47,8 +47,7 @@ class Form extends React.Component {
     .then(() => {
       toastr.success(`Welcome, ${this.state.user.firstName}!`);
       this.context.router.push('/');
-    }).catch((err) => {
-      console.log(err);
+    }).catch(() => {
       toastr.error(
         '* INVALID USER DETAILS!'
       );

@@ -46,7 +46,6 @@ export class DocumentSearch extends Component {
    */
   openEditor() {
     const selectedDoc = this.state.inputValue;
-    console.log(selectedDoc);
     const mappedDoc = this.mapDocument(selectedDoc);
     const formattedDoc = this.formatDocument(mappedDoc);
     this.props.actions.editDocument(formattedDoc);
@@ -71,7 +70,6 @@ export class DocumentSearch extends Component {
    * @memberof Search
    */
   formatDocument(document) {
-    console.log(document);
     return {
       title: document.title,
       content: document.content,

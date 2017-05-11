@@ -19,7 +19,6 @@ export class Nav extends React.Component {
   }
   render() {
     const { isLoggedIn } = this.props.auth;
-    console.log(isLoggedIn);
     let firstName = '';
     if (isLoggedIn) {
       firstName = this.props.auth.user.firstName;

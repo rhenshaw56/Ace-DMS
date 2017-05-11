@@ -40,7 +40,6 @@ class Dashboard extends React.Component {
    * @memberOf Dashboard
    */
   render() {
-    console.log(this.props.roleDocuments);
     return (
       <div>
         <Sidebar
