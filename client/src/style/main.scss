@@ -267,3 +267,8 @@ a {
   color: gray;
   text-decoration-style: none;
 }
+.input-field label:not(.label-icon).active {
+    font-size: 0.8rem;
+    -webkit-transform: translateY(-140%);
+    transform: translateY(-140%);
+}

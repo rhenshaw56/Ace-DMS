@@ -5,7 +5,7 @@ import ResponseHandler from './ResponseHandler';
  * @class ErrorHandler
  */
 class ErrorHandler {
-  /**
+  /** Function to parse errors
    * @static
    * @param {Object} errors
    * @returns {Object} ErrorMessage
@@ -15,7 +15,7 @@ class ErrorHandler {
     return errors.map(error => ({ message: error.message }));
   }
 
-  /**
+  /** Function to handle request errors
    * @static
    * @param {any} response
    * @param {any} error

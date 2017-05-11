@@ -9,7 +9,7 @@ import filter from '../helpers/queryFilter';
  */
 class UserController {
   /**
-   * Function used to format output data from this class
+   * Function used to format output data for user details
    * @static
    * @param {Object} user
    * @param {String} token
@@ -65,7 +65,7 @@ class UserController {
         });
      });
   }
-  /**
+  /** Function to handle login action for users
    * @static
    * @param {any} request
    * @param {any} response
@@ -112,7 +112,7 @@ class UserController {
       );
     }
   }
-  /**
+  /** Function to handle logout actions for users
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -180,7 +180,7 @@ class UserController {
       ResponseHandler.send403(response);
     }
   }
-  /**
+  /** Function to find a user by id
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -203,7 +203,7 @@ class UserController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
-  /**
+  /** Function to update user details
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -236,7 +236,7 @@ class UserController {
       ResponseHandler.send403(response);
     }
   }
-  /**
+  /** Function to delete a user
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -269,7 +269,7 @@ class UserController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
- /**
+ /** Function to retrieve a user's documents
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -317,7 +317,7 @@ class UserController {
       }
     });
   }
-  /**
+  /** Function to retrieve a user by email
    * @static
    * @param {Object} request
    * @param {Object} response

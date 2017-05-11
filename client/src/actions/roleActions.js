@@ -3,6 +3,7 @@ import types from './actionTypes';
 
 
 export function loadRole(roles) {
+  console.log(roles);
   return {
     type: types.LOAD_ROLE,
     roles
@@ -23,13 +24,13 @@ export function deleteCurrentRole() {
 }
 
 export function loadRoles() {
-  return (dispatch) => axios.get('/roles').then((res) => {
-    dispatch(loadRole(res.data.role));
+  return dispatch => axios.get('/api/roles').then((res) => {
+    dispatch(loadRole(res.data.roles));
   });
 }
 
 export function saveRole(role) {
-  return (dispatch) => axios.post('/roles', role).then(() => {
+  return dispatch => axios.post('/roles', role).then(() => {
     dispatch(loadRoles());
   });
 }
@@ -44,7 +45,7 @@ export function updateRole(role) {
 }
 
 export function deleteRole(id) {
-  return (dispatch) => axios.delete(`/roles/${id}`).then(() => {
+  return dispatch => axios.delete(`/roles/${id}`).then(() => {
     dispatch(loadRoles());
   });
 }

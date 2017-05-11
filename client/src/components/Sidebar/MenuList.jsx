@@ -52,6 +52,9 @@ class MenuList extends React.Component {
             <ListItem leftIcon={<ContentInbox />}><Link to="/documents">Manage Documents </Link></ListItem>
             <ListItem leftIcon={<ActionGrade />}><Link to="/users">Manage Users </Link></ListItem>
             <ListItem leftIcon={<ContentSend />}><Link to="/roles">Manage Roles </Link></ListItem>
+            <ListItem leftIcon={<ContentSend />}><Link to="/privateDocs">My Docs</Link></ListItem>
+            <ListItem leftIcon={<ContentSend />}><Link to="/">Public Docs</Link></ListItem>
+            <ListItem leftIcon={<ContentSend />}><Link to="/roleDocs">Role Docs</Link></ListItem>
           </List>
           :
           <List>

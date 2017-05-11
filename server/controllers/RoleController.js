@@ -7,7 +7,7 @@ import ResponseHandler from '../helpers/ResponseHandler';
  * @class RoleController
  */
 class RoleController {
-  /**
+  /** Function to create a new role
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -33,7 +33,7 @@ class RoleController {
       );
     });
   }
- /**
+ /** Function to retrieve a role by id
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -63,7 +63,7 @@ class RoleController {
     });
   }
 
-  /**
+  /** Function to get all roles
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -112,7 +112,7 @@ class RoleController {
       }
     });
   }
- /**
+ /** Function to edit roles
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -137,7 +137,7 @@ class RoleController {
       }
     });
   }
-  /**
+  /** Function to delete roles
    * @static
    * @param {Object} request
    * @param {Object} response

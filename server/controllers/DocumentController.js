@@ -56,7 +56,7 @@ class DocumentController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
-  /**
+  /** Function to handle searching of users
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -143,7 +143,7 @@ class DocumentController {
       ErrorHandler.handleRequestError(response, error);
     });
   }
-  /**
+  /** Function to find and return a document by id
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -198,7 +198,7 @@ class DocumentController {
       );
     });
   }
-  /**
+  /** Function to edit documents
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -232,7 +232,7 @@ class DocumentController {
       }
     });
   }
-  /**
+  /** Function to delete documents
    * @static
    * @param {Object} request
    * @param {Object} response
@@ -267,7 +267,7 @@ class DocumentController {
       }
     });
   }
-  /**
+  /** Function to retrieve a document by title
    * @static
    * @param {Object} request
    * @param {Object} response

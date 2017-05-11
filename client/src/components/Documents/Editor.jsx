@@ -33,7 +33,11 @@ export class Editor extends Component {
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-
+  componentWillMount() {
+    $(() => {
+      Materialize.updateTextFields();
+    });
+  }
   handleClose(e) {
     e.preventDefault();
     browserHistory.push('/');
@@ -116,7 +120,6 @@ export class Editor extends Component {
               s={4}
               id="edt-title"
               name="title"
-              label="Document Title"
               validate icon="subtitles"
               value={this.props.title}
               onChange={this.handleTextChange}
