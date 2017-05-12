@@ -96,6 +96,8 @@ export class Editor extends Component {
 
   render() {
     const { editMode } = this.props;
+    const hasAccess = this.props.ownerId === this.props.auth.user.id ||
+          this.props.auth.user.roleId === 1;
     let authorFullName;
     if (editMode) {
       const { users } = this.props;
@@ -116,7 +118,6 @@ export class Editor extends Component {
               s={4}
               id="edt-title"
               name="title"
-              label="Document Title"
               validate icon="subtitles"
               value={this.props.title}
               onChange={this.handleTextChange}
@@ -148,19 +149,19 @@ export class Editor extends Component {
                 </option>
                   <option
                     value="private"
-                    disabled
+                    
                   >
                   Private
                 </option>
                   <option
                     value="public"
-                    disabled
+                   
                   >
                   Public
                 </option>
                   <option
                     value="role"
-                    disabled
+                    
                   >
                   Role
                 </option>
@@ -228,18 +229,30 @@ export class Editor extends Component {
               toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
             }}
           />
-        }
-        <Button
-          id="cancel"
-          className="btn-cancel"
-          waves="light"
-          modal="close"
-          flat
-          onClick={this.handleClose}
-        >
+        }{editMode && hasAccess ?
+          <Button
+            id="cancel"
+            className="btn-cancel"
+            waves="light"
+            modal="close"
+            flat
+            onClick={this.handleClose}
+          >
             Close
-         </Button>
-        {editMode ?
+         </Button> : ''
+        }{!editMode ?
+          <Button
+            id="cancel"
+            className="btn-cancel"
+            waves="light"
+            modal="close"
+            flat
+            onClick={this.handleClose}
+          >
+            Close
+         </Button> : ''
+        }
+        {editMode && hasAccess ?
           <Button
             id="save"
             waves="light"
@@ -248,7 +261,8 @@ export class Editor extends Component {
             onClick={this.handleUpdate}
           >
             Save
-          </Button> :
+          </Button> : ''
+        }{!editMode ?
           <Button
             id="save"
             waves="light"
@@ -257,7 +271,7 @@ export class Editor extends Component {
             onClick={this.handleSubmit}
           >
             Save
-          </Button>
+          </Button> : ''
          }
       </div>
     );
