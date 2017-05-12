@@ -1,0 +1,495 @@
+22:08:05.112 INFO - Selenium build info: version: '3.4.0', revision: 'unknown'
+22:08:05.113 INFO - Launching a standalone Selenium Server
+2017-05-11 22:08:05.135:INFO::main: Logging initialized @261ms to org.seleniumhq.jetty9.util.log.StdErrLog
+22:08:05.183 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+ registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+22:08:05.184 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+22:08:05.184 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+22:08:05.184 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+22:08:05.184 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+22:08:05.184 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-05-11 22:08:05.229:INFO:osjs.Server:main: jetty-9.4.3.v20170317
+2017-05-11 22:08:05.267:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@d8355a8{/,null,AVAILABLE}
+2017-05-11 22:08:05.302:INFO:osjs.AbstractConnector:main: Started ServerConnector@146ba0ac{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-05-11 22:08:05.303:INFO:osjs.Server:main: Started @429ms
+22:08:05.303 INFO - Selenium Server is up and running
+22:08:06.139 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+22:08:06.167 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:08:06.186 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 1930
+Only local connections are allowed.
+22:08:07.380 INFO - Detected dialect: OSS
+22:08:07.405 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:08:07.430 INFO - Executing: [get: http://localhost:5600])
+22:08:08.583 INFO - Done: [get: http://localhost:5600]
+22:08:08.596 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:08.636 INFO - Done: [find elements: By.cssSelector: body]
+22:08:08.644 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]])
+22:08:08.665 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]]
+22:08:08.673 INFO - Executing: [get title])
+22:08:08.683 INFO - Done: [get title]
+22:08:08.689 INFO - Executing: [get current url])
+22:08:08.695 INFO - Done: [get current url]
+22:08:08.706 INFO - Executing: [find element: By.cssSelector: #signup-nav])
+22:08:08.730 INFO - Done: [find element: By.cssSelector: #signup-nav]
+22:08:08.734 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: #signup-nav]])
+22:08:08.836 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: #signup-nav]]
+22:08:10.844 INFO - Executing: [get current url])
+22:08:10.850 INFO - Done: [get current url]
+22:08:10.855 INFO - Executing: [get title])
+22:08:10.860 INFO - Done: [get title]
+22:08:10.865 INFO - Executing: [find element: By.cssSelector: input#firstname])
+22:08:10.891 INFO - Done: [find element: By.cssSelector: input#firstname]
+22:08:10.898 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#firstname], [T, o, m, m, y]])
+22:08:11.042 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#firstname], [T, o, m, m, y]]
+22:08:11.046 INFO - Executing: [find element: By.cssSelector: input#lastname])
+22:08:11.068 INFO - Done: [find element: By.cssSelector: input#lastname]
+22:08:11.073 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#lastname], [D, u, y, i, l, e]])
+22:08:11.199 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#lastname], [D, u, y, i, l, e]]
+22:08:11.202 INFO - Executing: [find element: By.cssSelector: input#email])
+22:08:11.227 INFO - Done: [find element: By.cssSelector: input#email]
+22:08:11.231 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#email], [c, o, d, i, n, g, P, o, e, t, @, g, m, a, i, l, ., c, o, m]])
+22:08:11.488 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#email], [c, o, d, i, n, g, P, o, e, t, @, g, m, a, i, l, ., c, o, m]]
+22:08:11.494 INFO - Executing: [find element: By.cssSelector: input#password])
+22:08:11.514 INFO - Done: [find element: By.cssSelector: input#password]
+22:08:11.518 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#password], [c, o, d, i, n, g, p, o, e, t, !, @, g, m, a, i, l, ., c, o, m]])
+22:08:11.729 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#password], [c, o, d, i, n, g, p, o, e, t, !, @, g, m, a, i, l, ., c, o, m]]
+22:08:11.732 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+22:08:11.753 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+22:08:11.757 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: button[type="submit"]]])
+22:08:11.821 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: button[type="submit"]]]
+22:08:14.333 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:14.346 INFO - Done: [find elements: By.cssSelector: body]
+22:08:14.349 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]])
+22:08:14.358 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]]
+22:08:14.361 INFO - Executing: [get current url])
+22:08:14.367 INFO - Done: [get current url]
+22:08:14.372 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:14.382 INFO - Done: [find elements: By.cssSelector: body]
+22:08:14.386 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]])
+22:08:14.399 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: body]]
+22:08:17.405 INFO - Executing: [find element: By.cssSelector: #create-doc])
+22:08:17.427 INFO - Done: [find element: By.cssSelector: #create-doc]
+22:08:17.430 INFO - Executing: [click: 7 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: #create-doc]])
+22:08:17.525 INFO - Done: [click: 7 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: #create-doc]]
+22:08:20.029 INFO - Executing: [get current url])
+22:08:20.035 INFO - Done: [get current url]
+22:08:20.039 INFO - Executing: [find element: By.cssSelector: input#doc-title])
+22:08:20.059 INFO - Done: [find element: By.cssSelector: input#doc-title]
+22:08:20.063 INFO - Executing: [send keys: 8 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#doc-title], [T, h, e,  , L, i, f, e,  , o, f,  , P, a, b, l, o]])
+22:08:20.361 INFO - Done: [send keys: 8 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: input#doc-title], [T, h, e,  , L, i, f, e,  , o, f,  , P, a, b, l, o]]
+22:08:20.365 INFO - Executing: [find element: By.cssSelector: select#access])
+22:08:20.387 INFO - Done: [find element: By.cssSelector: select#access]
+22:08:20.390 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: select#access], [p, u, b, l, i, c]])
+22:08:20.463 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: select#access], [p, u, b, l, i, c]]
+22:08:20.469 INFO - Executing: [execute script: tinyMCE.activeEditor.setContent('corporis nulla explicabo'), []])
+22:08:26.197 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: tinyMCE is not defined
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 9 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.fC0770}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 05830bf99388d9014510d9bb071b4f82
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:573)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:104)
+	at com.sun.proxy.$Proxy4.executeScript(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.executeScript(EventFiringWebDriver.java:217)
+	at org.openqa.selenium.remote.server.handler.ExecuteScript.call(ExecuteScript.java:56)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:26.200 WARN - Exception: unknown error: tinyMCE is not defined
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 9 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.fC0770}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 05830bf99388d9014510d9bb071b4f82
+22:08:29.287 INFO - Executing: [find element: By.cssSelector: button[id="save"]])
+22:08:29.305 INFO - Done: [find element: By.cssSelector: button[id="save"]]
+22:08:29.308 INFO - Executing: [click: 10 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: button[id="save"]]])
+22:08:29.359 INFO - Done: [click: 10 [[ChromeDriver: chrome on MAC (05830bf99388d9014510d9bb071b4f82)] -> css selector: button[id="save"]]]
+22:08:29.363 INFO - Executing: [delete session: eec0a636-48d3-46c2-a1c5-9636a3eb0667])
+22:08:29.438 INFO - Done: [delete session: eec0a636-48d3-46c2-a1c5-9636a3eb0667]
+22:08:29.448 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:08:29.449 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 46292
+Only local connections are allowed.
+22:08:30.351 INFO - Detected dialect: OSS
+22:08:30.354 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Documents E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:08:30.359 INFO - Executing: [get: http://localhost:5600])
+22:08:31.516 INFO - Done: [get: http://localhost:5600]
+22:08:31.539 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:31.568 INFO - Done: [find elements: By.cssSelector: body]
+22:08:31.574 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: body]])
+22:08:31.589 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: body]]
+22:08:31.594 INFO - Executing: [find element: By.cssSelector: #email-login])
+22:08:31.614 INFO - Done: [find element: By.cssSelector: #email-login]
+22:08:31.618 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: #email-login]])
+22:08:31.981 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 49 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.Wn3jAR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 98689bf55cd6cd33cf0087f771748668
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.click(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:345)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.click(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:22)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:31.982 WARN - Exception: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 49 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.Wn3jAR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 98689bf55cd6cd33cf0087f771748668
+22:08:32.015 INFO - Executing: [get current url])
+22:08:32.022 INFO - Done: [get current url]
+22:08:32.028 INFO - Executing: [find element: By.cssSelector: #signup-nav])
+22:08:32.055 INFO - Done: [find element: By.cssSelector: #signup-nav]
+22:08:32.061 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: #signup-nav]])
+22:08:32.140 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: #signup-nav]]
+22:08:34.145 INFO - Executing: [get current url])
+22:08:34.153 INFO - Done: [get current url]
+22:08:34.158 INFO - Executing: [get title])
+22:08:34.173 INFO - Done: [get title]
+22:08:34.179 INFO - Executing: [find element: By.cssSelector: input#firstname])
+22:08:34.205 INFO - Done: [find element: By.cssSelector: input#firstname]
+22:08:34.209 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#firstname], [B, o, l, a, j, i]])
+22:08:34.384 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#firstname], [B, o, l, a, j, i]]
+22:08:34.388 INFO - Executing: [find element: By.cssSelector: input#lastname])
+22:08:34.413 INFO - Done: [find element: By.cssSelector: input#lastname]
+22:08:34.417 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#lastname], [a, n, d, e, l, a]])
+22:08:34.533 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#lastname], [a, n, d, e, l, a]]
+22:08:34.537 INFO - Executing: [find element: By.cssSelector: input#email])
+22:08:34.562 INFO - Done: [find element: By.cssSelector: input#email]
+22:08:34.566 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#email], [b, o, l, a, j, i, @, a, n, d, e, l, a, ., c, o, m]])
+22:08:34.909 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#email], [b, o, l, a, j, i, @, a, n, d, e, l, a, ., c, o, m]]
+22:08:34.928 INFO - Executing: [find element: By.cssSelector: input#password])
+22:08:35.037 INFO - Done: [find element: By.cssSelector: input#password]
+22:08:35.052 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#password], [d, a, m, i, l, o, l, a]])
+22:08:35.606 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: input#password], [d, a, m, i, l, o, l, a]]
+22:08:35.612 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+22:08:35.687 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+22:08:35.692 INFO - Executing: [click: 7 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: button[type="submit"]]])
+22:08:35.843 INFO - Done: [click: 7 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: button[type="submit"]]]
+22:08:38.365 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:38.377 INFO - Done: [find elements: By.cssSelector: body]
+22:08:38.380 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: body]])
+22:08:38.388 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: body]]
+22:08:40.899 INFO - Executing: [get current url])
+22:08:40.904 INFO - Done: [get current url]
+22:08:43.912 INFO - Executing: [find element: By.cssSelector: #edit-doc])
+22:08:43.933 INFO - Done: [find element: By.cssSelector: #edit-doc]
+22:08:43.937 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (98689bf55cd6cd33cf0087f771748668)] -> css selector: #edit-doc]])
+22:08:44.229 WARN - Exception thrown
+org.openqa.selenium.ElementNotVisibleException: element not visible
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.Wn3jAR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 98689bf55cd6cd33cf0087f771748668
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.click(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:345)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.click(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:22)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:44.230 WARN - Exception: element not visible
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.Wn3jAR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 98689bf55cd6cd33cf0087f771748668
+22:08:47.256 INFO - Executing: [get current url])
+22:08:47.261 INFO - Done: [get current url]
+22:08:47.266 INFO - Executing: [delete session: 77609063-f5a8-47a6-b283-e50bd3971fd7])
+22:08:47.341 INFO - Done: [delete session: 77609063-f5a8-47a6-b283-e50bd3971fd7]
+22:08:47.357 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:08:47.358 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 25017
+Only local connections are allowed.
+22:08:48.185 INFO - Detected dialect: OSS
+22:08:48.188 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:08:48.195 INFO - Executing: [get: http://localhost:5600])
+22:08:49.360 INFO - Done: [get: http://localhost:5600]
+22:08:49.380 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:49.403 INFO - Done: [find elements: By.cssSelector: body]
+22:08:49.408 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (a30eca2e66d04c011e8a4e44b2c6d6d7)] -> css selector: body]])
+22:08:49.429 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (a30eca2e66d04c011e8a4e44b2c6d6d7)] -> css selector: body]]
+22:08:49.434 INFO - Executing: [find element: By.cssSelector: #email-login])
+22:08:49.457 INFO - Done: [find element: By.cssSelector: #email-login]
+22:08:49.461 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (a30eca2e66d04c011e8a4e44b2c6d6d7)] -> css selector: #email-login]])
+22:08:49.855 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 52 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.3GW9sb}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: a30eca2e66d04c011e8a4e44b2c6d6d7
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)
+	at sun.reflect.GeneratedMethodAccessor18.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.click(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:345)
+	at sun.reflect.GeneratedMethodAccessor18.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.click(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:22)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:49.855 WARN - Exception: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 52 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.3GW9sb}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: a30eca2e66d04c011e8a4e44b2c6d6d7
+22:08:49.881 INFO - Executing: [get current url])
+22:08:49.886 INFO - Done: [get current url]
+22:08:49.891 INFO - Executing: [get title])
+22:08:49.897 INFO - Done: [get title]
+22:08:49.900 INFO - Executing: [take screenshot])
+22:08:50.246 INFO - Done: [take screenshot]
+22:08:50.267 INFO - Executing: [delete session: bf558873-2a39-4791-a422-033c062c1da4])
+22:08:50.417 INFO - Done: [delete session: bf558873-2a39-4791-a422-033c062c1da4]
+22:08:50.423 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:08:50.424 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 6333
+Only local connections are allowed.
+22:08:51.569 INFO - Detected dialect: OSS
+22:08:51.570 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signin E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:08:51.574 INFO - Executing: [get: http://localhost:5600])
+22:08:53.614 INFO - Done: [get: http://localhost:5600]
+22:08:53.623 INFO - Executing: [find elements: By.cssSelector: body])
+22:08:53.680 INFO - Done: [find elements: By.cssSelector: body]
+22:08:53.684 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: body]])
+22:08:53.707 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: body]]
+22:08:53.711 INFO - Executing: [find element: By.cssSelector: #email-login])
+22:08:53.735 INFO - Done: [find element: By.cssSelector: #email-login]
+22:08:53.738 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: #email-login]])
+22:08:54.113 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 54 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.PsBqQa}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 7c0c8f5aa7ad09c5e8bf10dc545b1dfb
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)
+	at sun.reflect.GeneratedMethodAccessor18.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.click(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:345)
+	at sun.reflect.GeneratedMethodAccessor18.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.click(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:22)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:54.114 WARN - Exception: unknown error: Element <input type="email" id="email-login" name="email" icon="email" value="" class=""> is not clickable at point (546, 235). Other element would receive the click: <label class="" for="email-login">...</label>
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 54 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'Andelas-MacBook-Pro-10.local', ip: 'fe80:0:0:0:204f:5bff:febd:c9fb%9', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/zq/_mdzrmw121xgdcsj8_41yr4w0000gn/T/.org.chromium.Chromium.PsBqQa}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 7c0c8f5aa7ad09c5e8bf10dc545b1dfb
+22:08:54.155 INFO - Executing: [get current url])
+22:08:54.161 INFO - Done: [get current url]
+22:08:54.165 INFO - Executing: [find element: By.cssSelector: input[type=email]])
+22:08:54.186 INFO - Done: [find element: By.cssSelector: input[type=email]]
+22:08:54.189 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: #email-login], [u, s, e, r, 2, @, t, e, s, t, M, a, i, l, ., c, o, m]])
+22:08:54.436 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: #email-login], [u, s, e, r, 2, @, t, e, s, t, M, a, i, l, ., c, o, m]]
+22:08:54.440 INFO - Executing: [find element: By.cssSelector: input[type=password]])
+22:08:54.467 INFO - Done: [find element: By.cssSelector: input[type=password]]
+22:08:54.471 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: input[type=password]], [u, s, e, r, 2,  , p, a, s, s, w, o, r, d]])
+22:08:54.907 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: input[type=password]], [u, s, e, r, 2,  , p, a, s, s, w, o, r, d]]
+22:08:54.910 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+22:08:54.956 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+22:08:54.959 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: button[type="submit"]]])
+22:08:55.080 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: button[type="submit"]]]
+22:09:00.087 INFO - Executing: [find elements: By.cssSelector: i])
+22:09:00.106 INFO - Done: [find elements: By.cssSelector: i]
+22:09:00.109 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: i]])
+22:09:00.131 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (7c0c8f5aa7ad09c5e8bf10dc545b1dfb)] -> css selector: i]]
+22:09:00.135 INFO - Executing: [get current url])
+22:09:00.142 INFO - Done: [get current url]
+22:09:00.149 INFO - Executing: [delete session: 04636916-228b-4ad6-9035-2268bf536f9d])
+22:09:00.279 INFO - Done: [delete session: 04636916-228b-4ad6-9035-2268bf536f9d]
+22:09:00.291 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signup E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:09:00.291 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Signup E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 30407
+Only local connections are allowed.
+22:09:01.195 INFO - Detected dialect: OSS
+22:09:01.197 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Signup E2espec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:09:01.202 INFO - Executing: [get: http://localhost:5600])
+22:09:02.408 INFO - Done: [get: http://localhost:5600]
+22:09:02.419 INFO - Executing: [find elements: By.cssSelector: body])
+22:09:02.448 INFO - Done: [find elements: By.cssSelector: body]
+22:09:02.451 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]])
+22:09:02.473 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]]
+22:09:02.477 INFO - Executing: [get title])
+22:09:02.483 INFO - Done: [get title]
+22:09:02.487 INFO - Executing: [get current url])
+22:09:02.493 INFO - Done: [get current url]
+22:09:02.496 INFO - Executing: [find element: By.cssSelector: #signup-nav])
+22:09:02.521 INFO - Done: [find element: By.cssSelector: #signup-nav]
+22:09:02.524 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: #signup-nav]])
+22:09:02.620 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: #signup-nav]]
+22:09:04.625 INFO - Executing: [get current url])
+22:09:04.631 INFO - Done: [get current url]
+22:09:04.634 INFO - Executing: [get title])
+22:09:04.639 INFO - Done: [get title]
+22:09:04.643 INFO - Executing: [find element: By.cssSelector: input#firstname])
+22:09:04.665 INFO - Done: [find element: By.cssSelector: input#firstname]
+22:09:04.674 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#firstname], [E, f, h, y]])
+22:09:04.791 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#firstname], [E, f, h, y]]
+22:09:04.794 INFO - Executing: [find element: By.cssSelector: input#lastname])
+22:09:04.813 INFO - Done: [find element: By.cssSelector: input#lastname]
+22:09:04.817 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#lastname], [M, m, a, E, f, a, n, g, a]])
+22:09:04.974 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#lastname], [M, m, a, E, f, a, n, g, a]]
+22:09:04.978 INFO - Executing: [find element: By.cssSelector: input#email])
+22:09:04.997 INFO - Done: [find element: By.cssSelector: input#email]
+22:09:05.001 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#email], [b, i, b, i, W, o, n, d, e, r, @, g, m, a, i, l, ., c, o, m]])
+22:09:05.222 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#email], [b, i, b, i, W, o, n, d, e, r, @, g, m, a, i, l, ., c, o, m]]
+22:09:05.225 INFO - Executing: [find element: By.cssSelector: input#password])
+22:09:05.243 INFO - Done: [find element: By.cssSelector: input#password]
+22:09:05.249 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#password], [w, o, n, d, e, r, !, @, #]])
+22:09:05.363 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: input#password], [w, o, n, d, e, r, !, @, #]]
+22:09:05.367 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+22:09:05.384 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+22:09:05.387 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: button[type="submit"]]])
+22:09:05.448 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: button[type="submit"]]]
+22:09:07.969 INFO - Executing: [find elements: By.cssSelector: body])
+22:09:07.980 INFO - Done: [find elements: By.cssSelector: body]
+22:09:07.997 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]])
+22:09:08.005 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]]
+22:09:08.010 INFO - Executing: [get current url])
+22:09:08.017 INFO - Done: [get current url]
+22:09:08.023 INFO - Executing: [find elements: By.cssSelector: body])
+22:09:08.033 INFO - Done: [find elements: By.cssSelector: body]
+22:09:08.038 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]])
+22:09:08.052 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (0824903e6217a13546d424cad78e9b84)] -> css selector: body]]
+22:09:08.056 INFO - Executing: [delete session: e721c2c9-c8dd-47be-9eaa-d9e2dd73e85a])
+22:09:08.146 INFO - Done: [delete session: e721c2c9-c8dd-47be-9eaa-d9e2dd73e85a]

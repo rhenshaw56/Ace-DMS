@@ -1,0 +1,274 @@
+$font-stack:    Helvetica, sans-serif;
+$font-ace: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+// $primary-color: #333;
+
+
+// overrides
+.row .col{
+  padding: 0px;
+}
+
+h3{
+    font-weight: 400px;
+    text-align: center;
+    font-size: 30px;
+    font-family: $font-ace;
+    color: darkcyan;
+}
+h4{
+    font-weight: 600px !important;
+    font-size: 15px;
+    font-family: $font-ace;
+    color: darkcyan;
+}
+button.btn {
+    margin-left: 165px;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 0;
+    font-family: $font-ace;
+
+}
+
+
+.content {
+  height: 87.5%;
+  clear: both;
+}
+
+footer {
+	margin-bottom: 0;
+    color: #26a69a;
+
+}
+
+#left-pad {
+	padding-left: 20px;
+}
+
+#none {
+	padding: 0px;
+	margin: 0px;
+}
+div#slide-out.col.s3.side-nav.fixed {
+  margin-top: 0;
+  background: #222;
+}
+div#left-pad.nav-wrapper {
+  background: rgba(51, 51, 51, 0.08);
+  color: rgb(19, 219, 180);
+}
+div-footer-copyright {
+  color: #9e9e9e !important
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+  background: whitesmoke;
+  color: #222;
+  font-weight: 600;
+}
+nav{
+    background: rgba(51, 51, 51, 0.08);
+}
+a.brand-logo{
+    color: #26a69a;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+}
+nav ul a{
+  color: #26a69a;
+}
+.side-nav li>a{
+  color: whitesmoke;
+}
+footer.page-footer{
+    background-color: whitesmoke;
+    color: #26a69a !important;
+}
+.profile-box{
+    padding: 32px;
+    color: whitesmoke;
+}
+.tabs .tab a{
+    color: #26a69a;
+    border-bottom-color: #26a69a;
+}
+.greytext.text-lighten-4 {
+    color: #26a69a !important;
+}
+
+div#test1{
+    margin-left: -100px;
+    margin-bottom: 54px;
+}
+
+.docs {
+  width: 95%;
+  padding:5px;
+  display: block;
+  .doc-icon-action-wrapper {
+    position: relative;
+  }
+  .docs-icon i {
+    width: 70%;
+    z-index: -1;
+  }
+  .doc-card-action-container {
+    font-size: 15px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    .doc-card-action-helper {
+      height: 60%;
+      opacity: 0.2;
+      background-color: whitesmoke;
+    }
+    .doc-card-actions {
+      height: 40%;
+      text-align: center;
+      background-color: whitesmoke;
+    }
+    .card-actions {
+      font-size: 10px;
+      margin: 15px;
+      cursor: pointer;
+      }
+      .card-actions:hover {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .doc-card-info {
+    text-align: center;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+  .doc-icon-action-wrapper:hover .doc-card-action-container {
+    visibility: visible;
+    opacity: 1;
+  }
+  .chips{
+    font-size: 12px;
+    display: inline-block;
+    height: 32px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    padding: 0 12px;
+    border-bottom: none;
+  }
+  i.large{
+      font-size: 4rem;
+      color: dodgerblue;
+  }
+  #user-pane{
+      display: none;
+  }
+  #doc-pane{
+      display: block;
+  }
+  .doc-ops{
+      color: dodgerblue;
+  }
+  button.btn#save{
+      background: #26a69a;
+      color: whitesmoke;
+      margin-left: 35px;
+      margin-top: 5%;
+  }
+    button.btn#cancel{
+      background: #26a69a;
+      color: whitesmoke;
+      margin-left: 35%;
+      margin-top: 5%;
+  }
+  .ace-h3{
+      text-align: none;
+  }
+  .table {
+  width: auto;
+  padding-top: 30px;
+}
+td, th {
+  padding: 20px;
+  font-size: 15px;
+}
+
+.rowAlign {
+  display: flex;
+  align-items: center;
+}
+
+.footerControls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sortIcon {
+  cursor: pointer;
+  path {
+    fill: rgb(255, 255, 255) !important;
+    pointer-events: none;
+  }
+}
+.ace-card {
+  cursor: hand;
+}
+.doc-title {
+  color: #222;
+  font: 10px bold;
+}
+.profile{
+  font-size: 20rem;
+  margin: 2rem;
+  color: ghostwhite;
+}
+.profile-card {
+  width: 18rem;
+  background: #222;
+  text-align: center;
+}
+.user-info {
+  color: whitesmoke;
+  font-size: 1.5rem;
+  font: "Lucida Grande";
+}
+.user-header{
+  text-align: center;
+}
+.clear {
+  clear: both;
+}
+.user-table {
+  color: #345;
+  font-size: 12px;
+}
+.edit-button {
+  text-decoration: none;
+}
+.search-form{
+  display: inline;
+  // float: left;
+}
+div {
+  color: gray;
+  text-decoration-style: none;
+}
+a {
+  color: gray;
+  text-decoration-style: none;
+}
+.input-field label:not(.label-icon).active {
+    font-size: 0.8rem;
+    -webkit-transform: translateY(-140%);
+    transform: translateY(-140%);
+}

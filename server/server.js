@@ -2,11 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
+// import routes from './routes/index';
+import path from 'path';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
-
 
 import routes from './routes/index';
 
@@ -38,11 +39,11 @@ app.use(bodyParser.json());
 // parse incoming request as querystrings also
 app.use(bodyParser.urlencoded({ extended: false }));
 
-routes(router);
 
-// app.use('/', router);
+routes(router);
+app.use('/api-docs', express.static(path.join(__dirname, './public/api-docs')));
 app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
 app.use(router);
 // app.use(cors());

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="signin.spec"
+    errors="0" failures="0" hostname="" id="" package="signin.spec" skipped="0"
+    tests="2" time="18.77" timestamp="Tue, 09 May 2017 20:45:38 GMT">
+  
+    <testcase name="Ace-DMS" classname="signin.spec" time="6.886" assertions="3">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/signin.spec/Ace-DMS_ERROR_May-09-2017-214545-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Login Users" classname="signin.spec" time="11.89" assertions="4">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/signin.spec/Login-Users_ERROR_May-09-2017-214551-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

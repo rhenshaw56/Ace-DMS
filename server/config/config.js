@@ -14,9 +14,12 @@ const config = {
     logging: false
   },
   production: {
-    url: process.env.PROD_URL,
+    url: process.env.DATABASE_URL,
     dialect: 'postgres',
-    logging: false
+  },
+  travis: {
+    url: process.env.DATABASE_URL,
+    dialect: 'postgres',
   }
 };
-module.exports = config[process.env.NODE_ENV || 'development'];
+module.exports = config[process.env.NODE_ENV || 'production'];

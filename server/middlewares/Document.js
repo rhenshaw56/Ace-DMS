@@ -1,7 +1,20 @@
 import ResponseHandler from '../helpers/ResponseHandler';
 import db from '../models';
 
+/**
+ * @export
+ * @class Document
+ */
 export default class Document {
+  /**
+   * Function to validate Post Request for documents
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Document
+   */
   static validateOnPost(request, response, next) {
     if (request.body.id) {
       ResponseHandler.send400(
@@ -39,7 +52,15 @@ export default class Document {
       );
     }
   }
-
+  /**
+   * Function to validate Get Request for documents
+   * @static
+   * @param {any} request
+   * @param {any} response
+   * @param {any} next
+   * @returns {Object} validation message
+   * @memberOf Document
+   */
   static validateOnGet(request, response, next) {
     if (request.query && Number(request.query.limit) < 1) {
       ResponseHandler.send400(

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="3">
+
+  <testsuite name="documents.e2espec"
+    errors="0" failures="1" hostname="" id="" package="documents.e2espec" skipped="1"
+    tests="3" time="41.37" timestamp="Thu, 11 May 2017 21:08:05 GMT">
+  
+    <testcase name="Create Document" classname="documents.e2espec" time="23.47" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.e2espec/Create-Document_ERROR_May-11-2017-220826-GMT+0100.png]]</system-out>
+    
+    </testcase>
+  
+    <testcase name="Edit Documents" classname="documents.e2espec" time="17.90" assertions="7">
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.e2espec/Edit-Documents_ERROR_May-11-2017-220832-GMT+0100.png]]</system-out>
+    
+
+    
+
+    
+
+    
+
+    
+<system-out>[[ATTACHMENT|/Users/andela/Documents/sims/cp3-dms/Ace-DMS/screenshots/documents.e2espec/Edit-Documents_ERROR_May-11-2017-220844-GMT+0100.png]]</system-out>
+      <failure message="Testing if the URL equals &quot;http://localhost:5600/editor&quot;.">    at Object.Edit Documents (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/client/tests/e2e/documents.e2espec.js:60:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+
+    
+    </testcase>
+  
+  
+    
+    <testcase
+      name="Delete Documents" classname="documents.e2espec">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

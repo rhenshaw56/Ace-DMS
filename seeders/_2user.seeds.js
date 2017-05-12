@@ -1,10 +1,11 @@
-'use strict';
+
+
 const bcrypt = require('bcrypt-nodejs');
 const dotenv = require('dotenv');
 
 dotenv.config();
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up (queryInterface, Sequelize) {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -27,19 +28,46 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        email: 'user1@userMail.com',
-        firstName: 'user1',
-        lastName: 'users',
-        password: bcrypt.hashSync('user1 password', bcrypt.genSaltSync(8)),
-        roleId: 1,
+        email: 'grace@gmail.com ',
+        firstName: 'grace',
+        lastName: 'ekpo',
+        password: bcrypt.hashSync('awesome', bcrypt.genSaltSync(8)),
+        roleId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'user2@testMail.com',
+        email: 'joy@testMail.com',
         firstName: 'user2',
         lastName: 'users',
-        password: bcrypt.hashSync('user2 password', bcrypt.genSaltSync(8)),
+        password: bcrypt.hashSync('password', bcrypt.genSaltSync(8)),
+        roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'chux@gmail.com',
+        firstName: 'chux',
+        lastName: 'ike',
+        password: bcrypt.hashSync('password', bcrypt.genSaltSync(8)),
+        roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'frank@gmail.com ',
+        firstName: 'franck',
+        lastName: 'eyo',
+        password: bcrypt.hashSync('password', bcrypt.genSaltSync(8)),
+        roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'japhet@testMail.com',
+        firstName: 'japhet',
+        lastName: 'henry',
+        password: bcrypt.hashSync('password', bcrypt.genSaltSync(8)),
         roleId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -49,7 +77,7 @@ module.exports = {
     });
   },
 
-  down: function (queryInterface, Sequelize) {
+  down (queryInterface, Sequelize) {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="signup.e2espec"
+    errors="0" failures="0" hostname="" id="" package="signup.e2espec" skipped="0"
+    tests="1" time="7.862" timestamp="Thu, 11 May 2017 21:09:00 GMT">
+  
+    <testcase name="SignUp Page" classname="signup.e2espec" time="7.862" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

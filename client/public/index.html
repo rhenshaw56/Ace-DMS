@@ -1,7 +1,7 @@
 <!DOCTYPE html5>
 <html> 
     <head>
-        <title>AceDMS</title> 
+        <title>Ace-DMS</title> 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet">
@@ -16,6 +16,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    <script>
+        $(function() {
+    Materialize.updateTextFields();
+});
+    </script>
     <script>
         tinyMCE.init({
     mode: 'textareas',

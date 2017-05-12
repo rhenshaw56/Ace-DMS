@@ -1,8 +1,10 @@
-import userRoutes from './user.routes';
-import documentRoutes from './document.routes';
-import roleRoutes from './role.routes';
+import userRoutes from './userRoutes';
+import swagger from './swagger';
+import documentRoutes from './documentRoutes';
+import roleRoutes from './roleRoutes';
 
 const Routes = (router) => {
+  swagger(router);
   userRoutes(router);
   documentRoutes(router);
   roleRoutes(router);
