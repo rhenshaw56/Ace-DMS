@@ -1,5 +1,5 @@
 import React from 'react';
-import DocumentTable from './RoleTable';
+import RoleTable from './RoleTable';
 
 /**
  * @class Container
@@ -16,7 +16,7 @@ class RoleContainer extends React.Component {
   { alias: 'Title', sortable: true, dataAlias: 'title' }
     ];
     return (
-      <DocumentTable
+      <RoleTable
         tableHeaders={tableHeaders}
         data={this.props.data}
         limit={8}

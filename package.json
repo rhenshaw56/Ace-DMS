@@ -7,7 +7,7 @@
     "start:server": "nodemon server/server.js --exec babel-node",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test": "npm run test:client && npm run test:server",
-    "test-e2e": "npm run undo migrations && npm run migrations && npm run seeds && node_modules/.bin/nightwatch --config nightwatch.conf.js",
+    "test-e2e": "npm run undo:migrations && npm run migrations && npm run seeds && node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "undo:migrations": "sequelize db:migrate:undo:all",
     "mocha": "mocha --compilers js:babel-core/register",
     "start:client": "webpack-dev-server --progress --inline --open --watch",

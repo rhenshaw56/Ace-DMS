@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'react-materialize';
 import { initUsers } from '../../../actions/userActions';
 import Nav from '../../navbar';
-import Container from './Container';
+import UserContainer from './UserContainer';
 
 
 class UserManagement extends React.Component {
@@ -30,7 +30,7 @@ class UserManagement extends React.Component {
           <Row>
             <Col m={1} />
             <Col m={10}>
-              <Container data={this.props.users} />
+              <UserContainer data={this.props.users} />
             </Col>
             <Col m={1} />
           </Row>

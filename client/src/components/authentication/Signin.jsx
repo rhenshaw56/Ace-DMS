@@ -118,7 +118,6 @@ Signin.propTypes = {
   auth: React.PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
-  user: state.auth.user,
   auth: state.auth,
 });
 export default connect(mapStateToProps, { login })(Signin);

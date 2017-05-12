@@ -1,7 +1,7 @@
 import React from 'react';
 import UserTable from './UserTable';
 
-class Container extends React.Component {
+class UserContainer extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -23,8 +23,8 @@ class Container extends React.Component {
 }
 
 
-Container.propTypes = {
+UserContainer.propTypes = {
   data: React.PropTypes.array.isRequired
 };
 
-export default Container;
+export default UserContainer;

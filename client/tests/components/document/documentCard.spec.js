@@ -1,35 +1,75 @@
-// import React from 'react';
-// import { mount } from 'enzyme';
-// import { expect } from 'chai';
-// import sinon from 'sinon';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import DocumentsCard from
+   '../../../src/components/Documents/DocumentCard';
 
-// import { DocumentCard } from '../../../src/components/Documents/DocumentCard';
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+const store = mockStore({
+  auth: { isLoggedIn: true,
+    user: {
+      id: 1,
+      firstName: 'Rowland',
+      lastName: 'Ekpos',
+      roleId: 1
+    } },
+  manageDocuments: {
+    documents: [{
+      access: 'public'
+    }, {
+      access: 'private'
+    }, {
+      access: 'role'
+    }, {
+      access: 'public'
+    }],
+    documentDetails: false,
+    editMode: false
+  },
+  manageSearch: {
+    searchList: [1, 2, 3]
+  }
+});
 
-// describe('<DocumentCard />', () => {
-//   const props = {
-//     title: 'My awesome doc',
-//     id: 56,
-//     ownerId: 12,
-//     actions: {},
-//     content: 'awesome awesome awesome awesome awesome awesome',
-//     role: 'private',
-//     access: 'private',
-//     auth: { isLoggedIn: true, user: { firstName: 'Rowland' } }
-//   };
-//   const wrapper = mount(<DocumentCard {...props} />);
-//   wrapper.deleteDocument = sinon.spy();
-//   it('should have all the required props', () => {
-//     expect(wrapper.props().title).to.be.defined; // eslint-disable-line
-//     expect(wrapper.props().id).to.be.defined; // eslint-disable-line
-//     expect(wrapper.props().ownerId).to.be.defined; // eslint-disable-line
-//     expect(wrapper.props().actions).to.be.defined; // eslint-disable-line
-//     expect(wrapper.props().content).to.be.defined; // eslint-disable-line
-//     expect(wrapper.props().access).to.be.defined; // eslint-disable-line
-//   });
-//   it('should have an editDocument function', () => {
-//     expect(wrapper.editDocument).to.be.defined; // eslint-disable-line
-//   });
-//   it('should have a deleteDocument function', () => {
-//     expect(wrapper.deleteDocument).to.be.defined; // eslint-disable-line
-//   });
-// });
+const props = {
+  store
+};
+describe('<DocumentsCard />', () => {
+  it('should have props a prop called auth', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.auth).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called title', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.title).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called id', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.id).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called ownerId', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.ownerId).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called actions', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.actions).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called content', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.content).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called access', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.access).to.be.defined; // eslint-disable-line
+  });
+  it('should have props a prop called date', () => {
+    const wrapper = shallow(<DocumentsCard {...props} />);
+    expect(wrapper.props.date).to.be.defined; // eslint-disable-line
+  });
+});
+
+

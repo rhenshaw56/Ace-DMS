@@ -47,3 +47,26 @@ describe('Signup', () => {
     expect(store.getActions()[1].type).to.eql(expectedActions[1].type);
   });
 });
+describe('login', () => {
+  const response = {
+    firstName: user.email,
+    lastName: user.lastName,
+    email: user.email,
+    roleId: 2
+  };
+  after(() => {
+    nock.cleanAll();
+  });
+  it('should login a user', () => {
+    nock('/api')
+    .post('/users/login', user)
+    .reply(201, response);
+
+    const expectedActions = [
+      { type: types.SETUP_USER }
+    ];
+    const store = mockStore({ user: {} });
+    store.dispatch(userActions.setCurrentUser(user));
+    expect(store.getActions()[0].type).to.eql(expectedActions[0].type);
+  });
+});

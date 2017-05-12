@@ -15,7 +15,7 @@ class DocumentList extends React.Component {
             <div className="col s3">
               <DocumentCard
                 title={doc.title}
-                key={doc.title + index}
+                key={doc.title + index} // eslint-disable-line
                 id={doc.id}
                 content={doc.content}
                 auth={this.props.auth}
