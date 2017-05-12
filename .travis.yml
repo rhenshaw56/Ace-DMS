@@ -1,0 +1,8 @@
+dist: trusty
+language: node_js
+node_js:
+  - stable
+script:
+  - npm run test:client
+addons:
+  postgresql: "9.3"
