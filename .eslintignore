@@ -2,5 +2,7 @@
 ./coverage
 ./server/test/test.js
 ./client/src/store/configureStore.js
-./client/src/components/admin/Table
+./client/src/components/admin
+nightwatch.conf.js
+
 
