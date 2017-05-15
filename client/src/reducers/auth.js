@@ -3,6 +3,7 @@ import initialState from './initialState';
 import types from '../actions/actionTypes';
 
 export default (state = initialState.manageUsers, action = {}) => {
+  console.log('sss', state);
   switch (action.type) {
   case types.SETUP_USER:
     return {

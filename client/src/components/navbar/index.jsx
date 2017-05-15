@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 import DocumentSearch from '../search/DocumentSearch';
 import UserSearch from '../search/UserSearch';
 import { logout } from '../../actions/userActions';
 
+const style = {
+  margin: 12,
+};
 
 export class Nav extends React.Component {
   constructor(props) {

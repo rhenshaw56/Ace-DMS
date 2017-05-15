@@ -32,7 +32,7 @@ class MenuList extends React.Component {
   render() {
     const { isAdmin, user } = this.props;
     return (
-      <div>
+      <div className="ace-menu">
         <Divider />
         {isAdmin ?
           <List className="side">
@@ -57,7 +57,7 @@ class MenuList extends React.Component {
             <ListItem leftIcon={<ContentSend />}><Link to="/roleDocs">Role Docs</Link></ListItem>
           </List>
           :
-          <List>
+          <List className="special-icon">
             <ListItem leftIcon={<ContentInbox />}><Link to="/profile">Profile </Link></ListItem>
             <ListItem
               primaryText="Documents"

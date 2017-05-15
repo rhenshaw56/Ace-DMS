@@ -5,6 +5,7 @@ import initialState from './initialState';
 let newState;
 
 export default function userReducer(state = initialState.manageUsers, action) {
+  console.log('uuu', state);
   switch (action.type) {
   case types.SIGNUP_USER:
     return Object.assign({}, ...state, { users: action.user });
@@ -28,7 +29,8 @@ export default function userReducer(state = initialState.manageUsers, action) {
   case types.DISPLAY_USER:
     return Object.assign({},
         state, { viewMode: true }, { selectedUser: action.user });
-
+  case 'INIT_APP':
+    return Object.assign({}, state, { viewMode: false }, { selectedUser: {} });
   case types.DELETE_USER:
     newState = { ...state };
     newState.allUsers = [...state.allUsers].filter(

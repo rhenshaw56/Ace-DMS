@@ -5,7 +5,7 @@ import Nav from '../navbar';
 import Footer from '../footer';
 import Sidebar from '../Sidebar';
 import DocumentPanel from '../Documents/DocumentPanel';
-import { getUsers } from '../../actions/userActions';
+import { getUsers, initApp } from '../../actions/userActions';
 
 
 
@@ -33,6 +33,10 @@ class Dashboard extends React.Component {
   componentWillMount() {
     this.props.getUsers();
     this.props.loadAllDocument();
+    if (this.props.isLoggedIn) {
+      const { user } = this.props.auth;
+      this.props.initApp(user);
+    }
   }
 
   /**
@@ -80,6 +84,7 @@ Dashboard.propTypes = {
   isLoggedIn: React.PropTypes.bool.isRequired,
   user: React.PropTypes.object.isRequired,
   getUsers: React.PropTypes.func.isRequired,
+  initApp: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -111,4 +116,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps,
-    { loadAllDocument, getUsers })(Dashboard);
+    { loadAllDocument, getUsers, initApp })(Dashboard);

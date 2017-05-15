@@ -23,7 +23,6 @@ class DocumentList extends React.Component {
                 access={doc.access}
                 date={doc.createdAt}
               />
-              <div className="farce" />
             </div>
                     ))
                 }

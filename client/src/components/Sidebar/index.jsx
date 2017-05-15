@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
         <h3 className="brand-logo">acedms</h3>
         <Link
           id="create-doc"
-          className="btn-floating btn-large waves-effect waves-light #26a69a"
+          className="btn-floating btn-large waves-effect waves-light #26a69a tooltipped"
           data-position="left" data-delay="50"
           data-tooltip="new document"
           to="/editor"

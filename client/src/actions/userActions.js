@@ -5,11 +5,10 @@ import types from './actionTypes';
 import { setAuthorizationToken } from '../auth';
 
 
-
 /**
  * Function to dispatch action type of INIT_USERS
  * @export
- * @param {Object} users
+ * @param {Array} users
  * @returns {Object} action
  */
 export function loadUser(users) {
@@ -211,6 +210,7 @@ export function getUsers() {
 export function editUser(user, id) {
   return dispatch => axios.put(`/api/users/${id}`, user).then((response) => {
     dispatch(updateUser(response.data));
+    // dispatch(setCurrentUser(response.data));
   });
 }
 
@@ -251,6 +251,7 @@ export function login(user) {
       const token = response.data.token;
       localStorage.setItem('jwtToken', token);
       axios.defaults.headers.common.Authorization = token;
+      console.log('lact', response.data);
       dispatch(setCurrentUser(response.data));
       browserHistory.push('/');
     } else if (response.status === 401) {
@@ -261,6 +262,16 @@ export function login(user) {
   }).catch(() => {
     return toastr.error('Invalid Login details!');
   });
+}
+
+export function initApp(user) {
+  return dispatch => dispatch(init(user));
+}
+export function init(user) {
+  return {
+    type: 'INIT_APP',
+    user
+  };
 }
 
 /**

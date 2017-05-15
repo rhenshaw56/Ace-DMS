@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
 export const retrieveToken = () => localStorage.token;
 

@@ -26,7 +26,7 @@ class DocumentTable extends Component {
   /**
    * Creates an instance of DocTable.
    * @param {any} props
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class DocumentTable extends Component {
    * Hook Method
    * @param {Object} nextProps
    * @returns {none} updates state before component mounts
-   * @memberOf Dashboard
+   * @memberOf DocumentTable
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -63,7 +63,7 @@ class DocumentTable extends Component {
    * Function that responds to click events to return sorted data
    * @param {Object} e: browser event
    * @returns {Object} updated state of sorted data
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   sortByColumn(e) {
     const sortHeader = e.target.id;
@@ -83,12 +83,39 @@ class DocumentTable extends Component {
 
     });
     this.handleSelectedDocument = this.handleSelectedDocument.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
-  handleDelete(id) {
-    this.props.actions.deleteDocumentById(id);
+    /**
+   * Function that handles deletion of documents
+   * @param {Number} id - userId
+   * @param {Function} callback - to delete user after prompt
+   * @returns {Function} callback
+   * @memberOf DocumentTable
+   */
+  handleDelete(id, callback) { //eslint-disable-line
+    swal({  //eslint-disable-line
+      title: 'Are you sure?',
+      text: 'This Document will be totally deleted!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Yes, delete it!',
+      closeOnConfirm: true
+    },
+    () => {
+      callback(id);
+    });
   }
-  handleEdit(id) {
 
+  /**
+   * Function to handle Updates on document
+   * @param {Number} id - userId
+   * @param {Function} callback - to delete user after prompt
+   * @returns {Function} callback
+   * @memberOf DocumentTable
+   */
+  handleEdit(id) {
+    // const self = this;
   }
 
   /**
@@ -96,7 +123,7 @@ class DocumentTable extends Component {
    * @param {Number} offset
    * @param {Number} limit
    *@returns {none} updates state with new paginated data
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   paginate(offset, limit) {
     this.setState({
@@ -109,7 +136,7 @@ class DocumentTable extends Component {
    * Functions to move to a previous page
    * @param {none} none
    * @returns {none} none
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   paginateBack() {
     const { offset, limit } = this.state;
@@ -120,7 +147,7 @@ class DocumentTable extends Component {
    * Functions to move to a new page
    * @param {none} none
    * @returns {none} none
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   paginateForward() {
     const { offset, limit } = this.state;
@@ -129,7 +156,7 @@ class DocumentTable extends Component {
 
   /**
    * @returns {Object} Jsx
-   * @memberOf DocTable
+   * @memberOf DocumentTable
    */
   render() {
     const { total, tableHeaders } = this.props;
@@ -160,7 +187,6 @@ class DocumentTable extends Component {
         </TableHeader>
         <TableBody
           stripedRows
-          preScanRows
         >
           {processedData.map((row, index) => (
             <TableRow
@@ -190,7 +216,7 @@ class DocumentTable extends Component {
                 secondary
                 onTouchTap={
                 () => {
-                  this.handleDelete(row.id);
+                  this.handleDelete(row.id, this.props.actions.deleteDocumentById);
                 }
               }
               /></TableRowColumn>

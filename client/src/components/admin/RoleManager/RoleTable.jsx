@@ -84,8 +84,26 @@ class RoleTable extends Component {
     });
     this.handleSelectedDocument = this.handleSelectedDocument.bind(this);
   }
-  handleDelete(id) {
-    this.props.actions.deleteRole(id);
+  handleDelete(id, callback) {
+      swal({  //eslint-disable-line
+        title: 'Are you sure?',
+        text: 'This Role will be totally deleted!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: true
+      },
+    () => {
+      callback(id);
+    }) .catch(() => {
+        swal({ //eslint-disable-line
+          title: 'Sorry!',
+          text: 'This Role cannot be deleted',
+          type: 'warning',
+          showConfirmButton: true
+        });
+    });
   }
   handleEdit(id) {
   }
@@ -137,11 +155,12 @@ class RoleTable extends Component {
 
     return (
       <Table className="table" displaySelectAll={false}>
-        <TableHeader displaySelectAll={false}>
+        <TableHeader adjustForCheckbox>
           <TableRow>
             { tableHeaders && tableHeaders.map((header, index) => (
               <TableHeaderColumn
                 key={index}  //eslint-disable-line
+
               >
                 <div className="rowAlign">
                   { header.alias }
@@ -159,7 +178,6 @@ class RoleTable extends Component {
         </TableHeader>
         <TableBody
           stripedRows
-          preScanRows
         >
           {processedData.map((row, index) => (
             <TableRow
@@ -177,10 +195,7 @@ class RoleTable extends Component {
                 key={`${row.id} ${row.access}`}
 
               >{row.access}</TableRowColumn>
-              <TableRowColumn
-                key={`${row.id} ${row.ownerRoleId}`}
 
-              >{row.ownerRoleId === 1 ? 'Admin' : 'Regular'}</TableRowColumn>
               <TableRowColumn
                 key={`${row.id} ${row.ownerRoleId}`}
               ><FlatButton
@@ -189,7 +204,7 @@ class RoleTable extends Component {
                 secondary
                 onTouchTap={
                 () => {
-                  this.handleDelete(row.id);
+                  this.handleDelete(row.id, this.props.actions.deleteRole);
                 }
               }
               /></TableRowColumn>

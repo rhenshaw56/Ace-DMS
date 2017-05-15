@@ -259,16 +259,29 @@ td, th {
   display: inline;
   // float: left;
 }
-div {
-  color: gray;
+div.ace-menu span {
+  color: lightgray !important;
   text-decoration-style: none;
 }
-a {
-  color: gray;
+div.ace-menu a {
+  color: lightgray !important;
   text-decoration-style: none;
 }
 .input-field label:not(.label-icon).active {
     font-size: 0.8rem;
     -webkit-transform: translateY(-140%);
     transform: translateY(-140%);
+}
+.special-icon svg{
+  color: ghostwhite !important;
+}
+span.ace-icon:hover{
+ font-size: 25px;
+ color: #26a69a;
+}
+span.ace-icon {
+  position: absolute
+}
+.verified{
+  color: #26a69a;
 }

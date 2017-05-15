@@ -145,7 +145,11 @@ class Profile extends React.Component {
             <Col m={10}>
               <Col className="s7 push-s3" >
                 <div className="card">
-                  <h4 className="user-header">General Account Settings</h4>
+                  {viewMode ?
+                    <h4 className="user-header">User Profile</h4>
+                      : <h4 className="user-header">General Account Settings</h4>
+                   }
+
                   <div className="divider" />
                   <div className="user-header">
                     <table>
@@ -157,7 +161,7 @@ class Profile extends React.Component {
                       <tr>
                         <th>Type</th>
                         <th>{roleId === 1 ? 'ADMIN' : 'REGULAR USER'}</th>
-                        <th><i className="material-icons">verified_user</i></th>
+                        <th><i className="material-icons verified">verified_user</i></th>
                       </tr>
                       <tr>
                         <th>First Name</th>
@@ -178,6 +182,7 @@ class Profile extends React.Component {
                               <Button
                                 id="sav"
                                 waves="light"
+                                modal="close"
                                 flat
                                 className="btn-save"
                                 onClick={this.updateFirstName}

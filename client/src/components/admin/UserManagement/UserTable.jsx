@@ -41,6 +41,7 @@ class UserTable extends Component {
     this.paginateBack = this.paginateBack.bind(this);
     this.paginateForward = this.paginateForward.bind(this);
     this.sortByColumn = this.sortByColumn.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   sortByColumn(e) {
@@ -62,8 +63,19 @@ class UserTable extends Component {
       isAsc
     });
   }
-  handleDelete(id) {
-    this.props.actions.deleteUser(id);
+  handleDelete(id, callback) {
+    swal({ //eslint-disable-line
+      title: 'Are you sure?',
+      text: 'This User will be totally deleted!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Yes, delete it!',
+      closeOnConfirm: true
+    },
+    () => {
+      callback(id);
+    });
   }
   handleEdit(id) {
   }
@@ -92,8 +104,8 @@ class UserTable extends Component {
     const processedData = processTableData(page);
 
     return (
-      <Table className="table" displaySelectAll={false}>
-        <TableHeader>
+      <Table className="table">
+        <TableHeader adjustForCheckbox>
           <TableRow>
             { tableHeaders && tableHeaders.map((header, index) => (
               <TableHeaderColumn
@@ -113,7 +125,9 @@ class UserTable extends Component {
             )) }
           </TableRow>
         </TableHeader>
-        <TableBody showRowHover stripedRows displayRowCheckbox preScanRows>
+        <TableBody
+          stripedRows
+        >
           {processedData.map((row, index) => (
             <TableRow
               key={`${index} ${row.id}`} //eslint-disable-line
@@ -138,7 +152,7 @@ class UserTable extends Component {
                 secondary
                 onTouchTap={
                 () => {
-                  this.handleDelete(row.id);
+                  this.handleDelete(row.id, this.props.actions.deleteUser);
                 }
               }
               /></TableRowColumn>

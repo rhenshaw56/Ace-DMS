@@ -108,7 +108,7 @@ export class UserSearch extends Component {
         dataSource={this.state.dataSource}
         onUpdateInput={this.onUpdateInput}
         onNewRequest={this.openEditor}
-        maxSearchResults={15}
+        maxSearchResults={1}
         filter={AutoComplete.caseInsensitiveFilter}
       />
     );

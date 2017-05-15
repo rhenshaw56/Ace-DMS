@@ -9,7 +9,7 @@ import * as documentActions from '../../actions/documentActions';
 export class DocumentCard extends React.Component {
   constructor(props) {
     super(props);
-    this.deleteDocument = this.deleteDocument.bind(this);
+    // this.deleteDocument = this.deleteDocument.bind(this);
     this.editDocument = this.editDocument.bind(this);
   }
   editDocument(e) {
@@ -25,15 +25,28 @@ export class DocumentCard extends React.Component {
     this.props.actions.editDocument(formattedDocument);
     this.context.router.push('/editor');
   }
-  deleteDocument(e) {
-    e.preventDefault();
+  deleteDocument(id, callback) {
     if (this.props.ownerId === this.props.auth.user.id || this.props.auth.user.roleId === 1) {
-      this.props.actions.deleteDocumentById(this.props.id);
+          swal({  //eslint-disable-line
+            title: 'Are you sure?',
+            text: 'This Document will be totally deleted!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#26a69a',
+            confirmButtonText: 'Yes, delete it!',
+            closeOnConfirm: true
+          },
+      () => {
+        callback(id);
+      });
     } else {
-      toastr.error(
-               `You dont have the access rights
-               required to delete ${this.props.title}`
-        );
+      swal({ //eslint-disable-line
+        title: 'Sorry!',
+        text: `You dont have the access rights
+               required to delete ${this.props.title}`,
+        type: 'warning',
+        showConfirmButton: true
+      });
     }
   }
   render() {
@@ -53,17 +66,16 @@ export class DocumentCard extends React.Component {
           <div className="card-action row">
             <div className="col s4">
               <span
-                id="edit-doc"
-                className="fa fa-pencil-square-o card-actions tooltipped"
+                id="edit-doc ace-icon"
+                className="fa fa-pencil-square-o card-actions"
                 data-position="bottom"
-                data-delay="20"
                 data-tooltip="Edit document"
                 onClick={this.editDocument}
               />
             </div>
             <div className="col s4">
               <span
-                className="fa fa-file-text card-actions tooltipped"
+                className="fa fa-file-text card-actions tooltipped ace-icon"
                 data-position="bottom"
                 data-tooltip="View document"
                 onClick={this.editDocument}
@@ -71,12 +83,19 @@ export class DocumentCard extends React.Component {
             </div>
             <div className="col s4">
               <span
-                className="fa fa-trash card-actions tooltipped"
+                className="fa fa-trash card-actions tooltipped ace-icon"
                 data-position="bottom"
                 id="delete-doc"
                 data-delay="20"
                 data-tooltip="Delete document"
-                onClick={this.deleteDocument}
+                onClick={
+                  () => {
+                    this.deleteDocument(
+                        this.props.id,
+                        this.props.actions.deleteDocumentById
+                    );
+                  }
+              }
               />
             </div>
           </div>
