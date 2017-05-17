@@ -91,14 +91,17 @@ class Profile extends React.Component {
         this.props.actions.editUser(user, id)
       .then(() => {
         toastr.success('Profile updated Succesfully');
+        this.setState({ user: {} });
       }).catch(() => {
         toastr.error('Invalid details provided!');
+        this.setState({ user: {} });
       });
       } else {
         toastr.error('Invalid Operation! passwords not a match');
       }
     } else {
       toastr.error('Invalid Form Data!');
+      this.setState({ user: {} });
     }
   }
   /**
