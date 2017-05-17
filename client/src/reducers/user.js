@@ -4,8 +4,14 @@ import initialState from './initialState';
 
 let newState;
 
+/**
+ * User Reducer Function that handles manageUsers part of the store
+ * @export
+ * @param {Object} [state=initialState.manageUsers]
+ * @param {Object} action
+ * @returns
+ */
 export default function userReducer(state = initialState.manageUsers, action) {
-  console.log('uuu', state);
   switch (action.type) {
   case types.SIGNUP_USER:
     return Object.assign({}, ...state, { users: action.user });
