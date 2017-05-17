@@ -37,6 +37,13 @@ Users are categorized by roles. Users with access to specific documents can edit
   - It ensures document retrieval by their owners, public access typed documents can be retrieved by all users and role access typed documents can be retrieved by ONLY users with the same role level as the document owner.     
   - It ensures only authenticated users can delete, edit and update documents they own and users cannot delete documents they do not own (with the exception of the admin). 
 
+## Limitations
+1. Users can only create plain textual documents and retrieve same when needed.
+2. Users cannot share documents with people, but can make document public or role to make it available to other users.
+3. Admin cannot temporarily block a user.
+4. Users login and obtain a token which is verified on every request, but users cannot logout (nullify the token), however tokens become invalid when it expires.
+
+
 ## Technologies
 Ace-DMS is implemented using a number of technologies, these include:
 * material-ui - Material design components for react
@@ -104,15 +111,5 @@ Ace-DMS is implemented using a number of technologies, these include:
 10. Push to the remote branch
 11. Open a Pull Request
 
-## Task List
-- [x] Setup Version Control System
-- [x] Integrate Hound CI service
-- [x] Integrate Travis CI service
-- [x] Integrate Code Coverage and Code Quality service
-- [x] ORM (Sequelize) setup
-- [x] Create specified API endpoints
-- [x] Implement Feedback from API defense
-- [ ] Set up Webpack to run mundane tasks for development of the Client side
-- [ ] create a frontend/client side interface using React with Redux architecture
 
 
