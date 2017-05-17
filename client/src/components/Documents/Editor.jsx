@@ -6,10 +6,21 @@ import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
 import * as documentActions from '../../actions/documentActions';
-import Nav from '../navbar';
+import Nav from '../Nav'; // eslint-disable-line
 
 
+/**
+ * Class to handle Editor component
+ * @export
+ * @class Editor
+ * @extends {Component}
+ */
 export class Editor extends Component {
+  /**
+   * Creates an instance of Editor.
+   * @param {Object} props
+   * @memberof Editor
+   */
   constructor(props) {
     super(props);
     const currentMode = this.props.editMode || false;
@@ -34,11 +45,23 @@ export class Editor extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleClose(e) {
+  /**
+   * Funtion to handle closing the editor
+   * @param {Object} e - browser click event
+   * @returns {None} none
+   * @memberof Editor
+   */
+  handleClose(e) { // eslint-disable-line
     e.preventDefault();
     browserHistory.push('/');
   }
 
+  /**
+   * Funtion to handle content change on the editor
+   * @param {Object} e - browser keyboard input event
+   * @returns {None} none
+   * @memberof Editor
+   */
   handleEditorChange(e) {
     this.setState(
       {
@@ -47,16 +70,35 @@ export class Editor extends Component {
       }
     );
   }
+
+    /**
+   * Funtion to handle text change on input editors around the editor
+   * @param {Object} e - browser keyboard input event
+   * @returns {None} none
+   * @memberof Editor
+   */
   handleTextChange(e) {
     const value = e.target.value;
     const field = e.target.name;
     this.setState({ [field]: value });
   }
 
+  /**
+   * Funtion to handle change on Select button
+   * @param {Object} event - browser keyboard input event
+   * @returns {None} none
+   * @memberof Editor
+   */
   handleSelect(event) {
     this.setState({ access: event.target.value });
   }
 
+  /**
+   * Funtion to handle submission of created documents
+   * @param {Object} e - browser click event
+   * @returns {None} none
+   * @memberof Editor
+   */
   handleSubmit(e) {
     e.preventDefault();
     const { title, content, access } = this.state;
@@ -66,12 +108,15 @@ export class Editor extends Component {
       access,
     };
     this.props.actions.saveDocument(data)
-    .then(() => {
-      toastr.success('Document saved succesfully');
-    }).catch(() => {
-      toastr.error('Document could not be saved! Try again');
-    });
+    .then(() => toastr.success('Document saved succesfully'));
   }
+
+    /**
+   * Funtion to handle Updating created documents
+   * @param {Object} e - browser click event
+   * @returns {None} none
+   * @memberof Editor
+   */
   handleUpdate(e) {
     e.preventDefault();
     if (this.props.ownerId === this.props.auth.user.id ||
@@ -93,7 +138,11 @@ export class Editor extends Component {
         );
     }
   }
-
+  /**
+   * Render funtion to render the Component
+   * @returns {Object} jsx Object
+   * @memberof Editor
+   */
   render() {
     const { editMode } = this.props;
     const hasAccess = this.props.ownerId === this.props.auth.user.id ||
@@ -105,7 +154,8 @@ export class Editor extends Component {
         authorFullName = 'ADMIN';
       } else {
         const author = users.filter(user => user.id === this.props.ownerId);
-        authorFullName = `  ${author[0].firstName.toUpperCase()} ${author[0].lastName.toUpperCase()}`;
+        authorFullName = `${author[0].firstName.toUpperCase()}
+          ${author[0].lastName.toUpperCase()}`;
       }
     }
     return (
@@ -149,19 +199,19 @@ export class Editor extends Component {
                 </option>
                   <option
                     value="private"
-                    
+
                   >
                   Private
                 </option>
                   <option
                     value="public"
-                   
+
                   >
                   Public
                 </option>
                   <option
                     value="role"
-                    
+
                   >
                   Role
                 </option>
@@ -216,7 +266,9 @@ export class Editor extends Component {
             placeholder="feel free to place new content here"
             config={{
               plugins: 'link image code',
-              toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+              toolbar: `undo
+                        redo | bold italic |
+                        alignleft aligncenter alignright | code`
             }}
           /> :
           <TinyMCE
@@ -226,7 +278,9 @@ export class Editor extends Component {
             placeholder="feel free to place new content here"
             config={{
               plugins: 'link image code',
-              toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+              toolbar: `undo redo
+                       | bold italic |
+                        alignleft aligncenter alignright | code`
             }}
           />
         }{editMode && hasAccess ?

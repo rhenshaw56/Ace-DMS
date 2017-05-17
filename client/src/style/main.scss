@@ -139,6 +139,7 @@ div#test1{
       font-size: 10px;
       margin: 15px;
       cursor: pointer;
+      height: 40%;
       }
       .card-actions:hover {
         font-size: 20px;
@@ -284,4 +285,17 @@ span.ace-icon {
 }
 .verified{
   color: #26a69a;
+}
+select#search-type{
+  display: block !important;
+  height: 2.2rem !important;
+  border: 0 !important;
+  background-color: inherit !important;
+  color: black;
+  font-size: 12px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+div.card-action.row{
+  height: 9%
 }

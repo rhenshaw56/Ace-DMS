@@ -9,9 +9,9 @@ export default class Role {
   /**
    * Function to validate Get Request for roles
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Role
    */
@@ -38,9 +38,9 @@ export default class Role {
     /**
    * Function to validate Post Request for roles
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Role
    */
@@ -62,9 +62,9 @@ export default class Role {
   /**
    * Function to validate Delete Request for roles
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Role
    */
@@ -88,9 +88,9 @@ export default class Role {
   /**
    * Function to validate Put Request for roles
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Role
    */

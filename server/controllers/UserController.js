@@ -40,7 +40,7 @@ class UserController {
     const user = request.body;
     user.roleId = user.roleId || 2;
     model.User.findOne({ where: { email: user.email } })
-     .then((existingUser) => {
+     .then((existingUser) => {  //eslint-disable-line
        if (existingUser) {
          return ResponseHandler.send409(response);
        }
@@ -67,8 +67,8 @@ class UserController {
   }
   /** Function to handle login action for users
    * @static
-   * @param {any} request
-   * @param {any} response
+   * @param {Object} request
+   * @param {Object} response
    * @returns {Object} response
    * @memberOf UserController
    */
@@ -327,7 +327,7 @@ class UserController {
   static retrieveUserByIdentifier(request, response) {
     if (request.query.q) {
       model.User.find({ where: { email: { $like: request.query.q } } })
-       .then((foundUser) => {
+       .then((foundUser) => {  //eslint-disable-line
          if (foundUser) {
            return ResponseHandler.sendResponse(
              response,
@@ -353,7 +353,7 @@ class UserController {
    */
   static initUsers(request, response) {
     model.User.findAndCount({ where: { roleId: 2 } })
-       .then((foundUsers) => {
+       .then((foundUsers) => {  //eslint-disable-line
          if (foundUsers) {
            return ResponseHandler.sendResponse(
                   response,

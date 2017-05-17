@@ -17,8 +17,6 @@ import { setCurrentUser } from './actions/userActions';
 import './style/main.scss';
 import './style/google.css';
 
-
-
 const store = configureStore();
 
 if (localStorage.jwtToken) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Input, Button } from 'react-materialize';
 import { connect } from 'react-redux';
 import { login } from '../../actions/userActions';
-import Nav from '../../components/navbar';
+import Nav from '../../components/Nav'; // eslint-disable-line
 import Footer from '../../components/footer';
 
 /**
@@ -12,7 +12,7 @@ import Footer from '../../components/footer';
 export class Signin extends React.Component {
   /**
    * Creates an instance of Signin.
-   * @param {any} props
+   * @param {Object} props
    * @memberOf Signin
    */
   constructor(props) {

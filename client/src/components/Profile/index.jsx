@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Modal, Button } from 'react-materialize';
 import toastr from 'toastr';
 import { bindActionCreators } from 'redux';
-import Nav from '../navbar';
+import Nav from '../Nav'; //eslint-disable-line
 import * as userActions from '../../actions/userActions';
 
 
@@ -14,7 +14,7 @@ import * as userActions from '../../actions/userActions';
 class Profile extends React.Component {
   /**
    * Creates an instance of Profile.
-   * @param {any} props
+   * @param {Object} props
    * @memberof Profile
    */
   constructor(props) {
@@ -53,7 +53,7 @@ class Profile extends React.Component {
    */
   validatePassword() {
     const { password, confirmPassword } = this.state.user;
-    return password === confirmPassword;
+    return password === confirmPassword && password.trim() !== '';
   }
   /**
    * Function to hnadle password updates
@@ -77,7 +77,7 @@ class Profile extends React.Component {
         toastr.error('Password length should range between 6 - 100 characters');
       });
     } else {
-      toastr.error('Passwords do not a match');
+      toastr.error('Invalid Operation! passwords not a match');
     }
   }
     /**
@@ -88,18 +88,22 @@ class Profile extends React.Component {
    */
   updateFirstName(e) {
     e.preventDefault();
-    const status = this.state.user.firstName !== '';
-    if (status) {
-      const id = this.props.auth.user.id;
-      const user = {
-        firstName: this.state.user.firstName
-      };
-      this.props.actions.editUser(user, id)
+    if (this.state.user.firstName === undefined) {
+      toastr.error('Please Enter a valid name');
+    } else {
+      const status = (this.state.user.firstName).trim() !== '';
+      if (status) {
+        const id = this.props.auth.user.id;
+        const user = {
+          firstName: this.state.user.firstName
+        };
+        this.props.actions.editUser(user, id)
       .then(() => {
         toastr.success('Name updated succesfully');
       });
-    } else {
-      toastr.error('Please Enter a valid name');
+      } else {
+        toastr.error('Please Enter a valid name');
+      }
     }
   }
     /**
@@ -110,18 +114,22 @@ class Profile extends React.Component {
    */
   updateLastName(e) {
     e.preventDefault();
-    const status = this.state.user.lastName !== '';
-    if (status) {
-      const id = this.props.auth.user.id;
-      const user = {
-        lastName: this.state.user.lastName
-      };
-      this.props.actions.editUser(user, id)
-      .then(() => {
-        toastr.success('Name updated succesfully');
-      });
-    } else {
+    if (this.state.user.lastName === undefined) {
       toastr.error('Please Enter a valid name');
+    } else {
+      const status = (this.state.user.lastName).trim() !== '';
+      if (status) {
+        const id = this.props.auth.user.id;
+        const user = {
+          lastName: this.state.user.lastName
+        };
+        this.props.actions.editUser(user, id)
+      .then(() => {
+        toastr.success('Last name updated succesfully');
+      });
+      } else {
+        toastr.error('Please Enter a valid name');
+      }
     }
   }
   /**
@@ -161,7 +169,9 @@ class Profile extends React.Component {
                       <tr>
                         <th>Type</th>
                         <th>{roleId === 1 ? 'ADMIN' : 'REGULAR USER'}</th>
-                        <th><i className="material-icons verified">verified_user</i></th>
+                        <th><i
+                          className="material-icons verified"
+                        >verified_user</i></th>
                       </tr>
                       <tr>
                         <th>First Name</th>
@@ -198,9 +208,13 @@ class Profile extends React.Component {
                           >
                             <Row>
                               <div className="col s8 push-s2">
-                                <h4 className="user-header">UPDATE First Name</h4>
+                                <h4
+                                  className="user-header"
+                                >UPDATE First Name</h4>
                                 <div>
-                                  <label htmlFor="current">Current First Name</label>
+                                  <label
+                                    htmlFor="current"
+                                  >Current First Name</label>
                                   <h4 id="current">{firstName.toUpperCase()}</h4>
                                 </div>
                                 <div>
@@ -258,7 +272,9 @@ class Profile extends React.Component {
                               <div className="col s8 push-s2">
                                 <h4 className="user-header">UPDATE Last Name</h4>
                                 <div>
-                                  <label htmlFor="current">Current First Name</label>
+                                  <label
+                                    htmlFor="current"
+                                  >Current First Name</label>
                                   <h4 id="current">{lastName.toUpperCase()}</h4>
                                 </div>
                                 <div>
@@ -315,7 +331,9 @@ class Profile extends React.Component {
                               <div className="col s8 push-s2">
                                 <h4 className="user-header">UPDATE PASSWORD</h4>
                                 <div>
-                                  <label htmlFor="current">Current Password</label>
+                                  <label
+                                    htmlFor="current"
+                                  >Current Password</label>
                                   <input id="current" type="password" />
                                 </div>
                                 <div>
@@ -330,7 +348,9 @@ class Profile extends React.Component {
                                   />
                                 </div>
                                 <div>
-                                  <label htmlFor="comfirm">Comfirm New Password</label>
+                                  <label
+                                    htmlFor="comfirm"
+                                  >Comfirm New Password</label>
                                   <input
                                     id="comfirm-password"
                                     type="password"

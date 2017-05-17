@@ -171,12 +171,14 @@ export function signup(user) {
  * @returns {Object} action
  */
 export function loadUsers(limit, offset) {
-  return dispatch => axios.get(`/api/users?limit=${limit}&offset=${offset}`).then((res) => {
-    dispatch(loadUser(res.data));
-  });
+  return dispatch => axios.get(
+          `/api/users?limit=${limit}&offset=${offset}`
+          ).then((res) => {
+            dispatch(loadUser(res.data));
+          });
 }
 
-/** 
+/**
  * Async Function to handle loading of all users
  * @export
  * @param {Number} id
@@ -251,27 +253,35 @@ export function login(user) {
       const token = response.data.token;
       localStorage.setItem('jwtToken', token);
       axios.defaults.headers.common.Authorization = token;
-      console.log('lact', response.data);
       dispatch(setCurrentUser(response.data));
-      browserHistory.push('/');
+      return browserHistory.push('/');
     } else if (response.status === 401) {
       return toastr.error('User does not exist!');
-    } else {
-      return toastr.error('Invalid Login details!');
     }
-  }).catch(() => {
     return toastr.error('Invalid Login details!');
-  });
+  }).catch(() => toastr.error('Invalid Login details!'));
 }
-
-export function initApp(user) {
-  return dispatch => dispatch(init(user));
-}
+/**
+ * Function to handle app initialization
+ * @export
+ * @param {Object} user
+ * @returns {Object} dispatch
+ */
 export function init(user) {
   return {
     type: 'INIT_APP',
     user
   };
+}
+
+/**
+ * Function to handle app initialization
+ * @export
+ * @param {Object} user
+ * @returns {Object} dispatch
+ */
+export function initApp(user) {
+  return dispatch => dispatch(init(user));
 }
 
 /**
@@ -282,7 +292,6 @@ export function init(user) {
  */
 export function logout() {
   return (dispatch) => {
-    const token = localStorage.getItem('jwtToken');
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));

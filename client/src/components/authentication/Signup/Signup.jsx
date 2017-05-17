@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../../actions/userActions';
 import Form from './Form';
-import Nav from '../../navbar';
+import Nav from '../../Nav'; // eslint-disable-line
 import Footer from '../../footer';
 
 

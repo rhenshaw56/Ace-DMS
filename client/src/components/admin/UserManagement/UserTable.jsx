@@ -18,7 +18,16 @@ import { sortFunc, processTableData } from '../../../utils';
 import * as userActions from '../../../actions/userActions';
 
 
+/**
+ * @class UserTable
+ * @extends {Component}
+ */
 class UserTable extends Component {
+  /**
+   * Creates an instance of UserTable.
+   * @param {Object} props
+   * @memberof UserTable
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -30,12 +39,20 @@ class UserTable extends Component {
     };
   }
 
+  /**
+   * Hook Method
+   * @param {Object} nextProps
+   * @returns {none} updates state before component mounts
+   * @memberOf UserTable
+   */
   componentWillReceiveProps(nextProps) {
     this.setState({
       offset: 0,
       sortHeader: null,
       data: nextProps.data,
-      page: nextProps.data ? nextProps.data.slice(this.state.offset, nextProps.limit) : [],
+      page: nextProps.data ?
+                  nextProps.data.slice(this.state.offset, nextProps.limit)
+                  : [],
     });
     this.paginate = this.paginate.bind(this);
     this.paginateBack = this.paginateBack.bind(this);
@@ -44,11 +61,18 @@ class UserTable extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  /**
+   * Function that responds to click events to return sorted data
+   * @param {Object} e: browser event
+   * @returns {Object} updated state of sorted data
+   * @memberOf UserTable
+   */
   sortByColumn(e) {
     const sortHeader = e.target.id;
     const { data, limit } = this.state;
 
-    const isAsc = this.state.sortHeader === sortHeader ? !this.state.isAsc : true;
+    const isAsc = this.state.sortHeader === sortHeader ?
+          !this.state.isAsc : true;
     const sortedData = data.sort((a, b) => sortFunc(a, b, sortHeader));
 
     if (!isAsc) {
@@ -63,7 +87,14 @@ class UserTable extends Component {
       isAsc
     });
   }
-  handleDelete(id, callback) {
+      /**
+   * Function that handles deletion of documents
+   * @param {Number} id - userId
+   * @param {Function} callback - to delete user after prompt
+   * @returns {Function} callback
+   * @memberOf UserTable
+   */
+  handleDelete(id, callback) { //eslint-disable-line
     swal({ //eslint-disable-line
       title: 'Are you sure?',
       text: 'This User will be totally deleted!',
@@ -77,26 +108,55 @@ class UserTable extends Component {
       callback(id);
     });
   }
+   /**
+   * Function to handle Updates on document
+   * @param {Number} id - userId
+   * @param {Function} callback - to delete user after prompt
+   * @returns {Function} callback
+   * @memberOf UserTable
+   */
   handleEdit(id) {
+    const self = this; // eslint-disable-line
+    this.id = id;
   }
-
+  /**
+   * Function that paginates data in an array
+   * @param {Number} offset
+   * @param {Number} limit
+   *@returns {none} updates state with new paginated data
+   * @memberOf UserTable
+   */
   paginate(offset, limit) {
     this.setState({
       page: this.state.data.slice(offset, offset + limit),
       offset,
     });
   }
-
+ /**
+   * Functions to move to a previous page
+   * @param {none} none
+   * @returns {none} none
+   * @memberOf UserTable
+   */
   paginateBack() {
     const { offset, limit } = this.state;
     this.paginate(offset - limit, limit);
   }
-
+  /**
+   * Functions to move to a new page
+   * @param {none} none
+   * @returns {none} none
+   * @memberOf UserTable
+   */
   paginateForward() {
     const { offset, limit } = this.state;
     this.paginate(offset + limit, limit);
   }
 
+  /**
+   * @returns {Object} Jsx
+   * @memberOf DocumentTable
+   */
   render() {
     const { total, tableHeaders } = this.props;
     const { offset, limit, page } = this.state;
@@ -147,7 +207,7 @@ class UserTable extends Component {
               <TableRowColumn
                 key={`${row.id} ${row.email}`}
               ><FlatButton
-                key={`${index}flat${row.id}`}
+                key={`${index}flat${row.id}`} // eslint-disable-line
                 label="Delete"
                 secondary
                 onTouchTap={
@@ -164,7 +224,8 @@ class UserTable extends Component {
           <TableRow>
             <TableRowColumn>
               <div className="footerControls">
-                { `${Math.min((offset + 1), total)} - ${Math.min((offset + limit), total)} of ${total}` }
+                { `${Math.min((offset + 1), total)}
+                      - ${Math.min((offset + limit), total)} of ${total}` }
                 <IconButton
                   disabled={offset === 0}
                   onClick={this.paginateBack}
@@ -188,8 +249,8 @@ class UserTable extends Component {
 
 UserTable.propTypes = {
   tableHeaders: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
-  offset: PropTypes.number.isRequired,
+  data: PropTypes.array.isRequired, // eslint-disable-line
+  offset: PropTypes.number.isRequired, // eslint-disable-line
   total: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   actions: PropTypes.func.isRequired

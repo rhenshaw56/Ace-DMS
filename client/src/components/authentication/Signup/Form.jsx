@@ -24,7 +24,8 @@ class Form extends React.Component {
   }
 
   /**
-   * @param {any} e: browser event
+   * Function to handle onchange event on text input
+   * @param {Object} e: browser onchange event
    * @memberOf Form
    * @returns {none} Updates state
    */
@@ -37,7 +38,8 @@ class Form extends React.Component {
 
 
   /**
-   * @param {any} e: browser event
+   * Function to handle signup form onSubmit event
+   * @param {Object} e: browser event
    * @memberOf Form
    * @returns {none} handles form onChange event
    */

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="3">
+
+  <testsuite name="documents.e2espec"
+    errors="1" failures="0" hostname="" id="" package="documents.e2espec" skipped="2"
+    tests="3" time="0.02100" timestamp="Tue, 16 May 2017 13:55:48 GMT">
+  
+    <testcase name="Create Document" classname="documents.e2espec" time="0.02100" assertions="0">
+    </testcase>
+      <system-err>
+          Error while running [Documents E2espec / Create Document]:
+
+  TypeError: browser.url(...).waitForElementVisible(...).assert.title(...).assert.urlEquals(...).click(...).pause(...).assert.urlEquals(...).assert.title(...).setValue(...).setValue(...).setValue(...).setValue(...).click(...).pause(...).waitForElementVisible(...).assert.urlEquals(...).waitForElementVisible(...).pause(...).click(...).pause(...).assert.urlEquals(...).setValue(...).setValue(...).execute(...).pause(...).click(...).expect.element(...).text.to.contain(...).pause is not a function
+    at Object.Create Document (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/client/tests/e2e/documents.e2espec.js:37:8)
+    at Module.call (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/Users/andela/Documents/sims/cp3-dms/Ace-DMS/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+      </system-err>
+  
+  
+    
+    <testcase
+      name="Edit Documents" classname="documents.e2espec">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Delete Documents" classname="documents.e2espec">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

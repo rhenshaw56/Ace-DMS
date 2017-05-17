@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-materialize';
 import { loadAllDocument } from '../../../actions/documentActions';
-import Nav from '../../navbar';
+import Nav from '../../Nav'; //eslint-disable-line
 import MainContainer from './MainContainer';
 
 
@@ -19,7 +19,7 @@ class DocumentManager extends React.Component {
    */
   componentWillMount() {
     if (this.props.user.roleId === 1) {
-      this.props.loadAllDocument().catch((err) => {
+      this.props.loadAllDocument().catch(() => {
         browserHistory.push('/');
       });
     } else {
@@ -54,7 +54,7 @@ DocumentManager.propTypes = {
   docs: React.PropTypes.array.isRequired,
   auth: React.PropTypes.object.isRequired
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   user: state.auth.user,
   docs: state.manageDocuments.documents

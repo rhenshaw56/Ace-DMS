@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadAllDocument } from '../../actions/documentActions';
-import Nav from '../navbar';
+import Nav from '../Nav'; //eslint-disable-line
 import Footer from '../footer';
 import Sidebar from '../Sidebar';
 import DocumentPanel from '../Documents/DocumentPanel';
 import { getUsers, initApp } from '../../actions/userActions';
-
 
 
 /**
@@ -95,7 +94,8 @@ const mapStateToProps = (state) => {
     doc => doc.access === 'public');
   if (state.auth.isLoggedIn && state.auth.user.roleId !== 1) {
     roleDocuments = currentState.documents.filter(
-        doc => doc.access === 'role' && doc.ownerRoleId === state.auth.user.roleId
+        doc => doc.access === 'role'
+                && doc.ownerRoleId === state.auth.user.roleId
       );
     privateDocuments = currentState.documents.filter(
           doc => doc.ownerId === state.auth.user.id);

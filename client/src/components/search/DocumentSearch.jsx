@@ -13,7 +13,7 @@ import * as documentActions from '../../actions/documentActions';
 export class DocumentSearch extends Component {
   /**
    * Creates an instance of DocumentSearch.
-   * @param {any} props
+   * @param {Object} props
    * @memberof DocumentSearch
    */
   constructor(props) {
@@ -28,7 +28,7 @@ export class DocumentSearch extends Component {
   /**
    * Function to watch for Updates on Search Input
    * @returns {none} none
-   * @param {any} inputValue
+   * @param {Object} inputValue
    * @memberof Search
    */
   onUpdateInput(inputValue) {
@@ -69,7 +69,7 @@ export class DocumentSearch extends Component {
    * @returns {Object} formattedDocument
    * @memberof Search
    */
-  formatDocument(document) {
+  formatDocument(document) { // eslint-disable-line
     return {
       title: document.title,
       content: document.content,

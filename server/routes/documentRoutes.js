@@ -12,7 +12,7 @@ const documentRoutes = (router) => {
    *        - title
    *        - content
    *      properties:
-   *        title: 
+   *        title:
    *          type: string
    *        content:
    *          type: string
@@ -154,7 +154,7 @@ const documentRoutes = (router) => {
   router.route('/api/search/documents')
         /**
    * @swagger
-   * /api/users/search/documents?q={DocumentTitle}:
+   * /api/search/documents?q={DocumentTitle}:
    *    get:
    *      description: Returns the documents
    *      tags:

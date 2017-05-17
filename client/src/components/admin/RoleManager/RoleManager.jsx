@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col, Modal, Button } from 'react-materialize';
 import { loadRoles, saveRole } from '../../../actions/roleActions';
-import Nav from '../../navbar';
+import Nav from '../../Nav'; //eslint-disable-line
 import RoleContainer from './RoleContainer';
 
 
@@ -12,6 +12,11 @@ import RoleContainer from './RoleContainer';
  * @extends {React.Component}
  */
 class RoleManager extends React.Component {
+  /**
+   * Creates an instance of RoleManager.
+   * @param {Object} props
+   * @memberof RoleManager
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -33,12 +38,26 @@ class RoleManager extends React.Component {
       browserHistory.push('/login');
     }
   }
+
+ /**
+   * Function to handle onchange event on text input
+   * @param {Object} e: browser onchange event
+   * @memberOf RoleManager
+   * @returns {none} Updates state
+   */
   onChange(e) {
     const title = e.target.name;
     const role = this.state.role;
     role[title] = e.target.value;
     this.setState({ role });
   }
+
+    /**
+   * Function to handle creation of new roles
+   * @param {Object} e: browser event
+   * @memberOf RoleManager
+   * @returns {none} handles form onChange event
+   */
   createRole(e) {
     e.preventDefault();
     const currentRoles = this.props.roles.map(role => role.title);

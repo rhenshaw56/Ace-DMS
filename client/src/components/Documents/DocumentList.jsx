@@ -1,10 +1,16 @@
 import React from 'react';
-import DocumentCard from './DocumentCard';
+import DocumentCard from './DocumentCard';  // eslint-disable-line
 
+/**
+ * @class DocumentList
+ * @extends {React.Component}
+ */
 class DocumentList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  /**
+   * Render function
+   * @returns {Object} Jsx
+   * @memberOf DocumentList
+   */
   render() {
     return (
       <div>
