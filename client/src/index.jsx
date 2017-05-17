@@ -8,15 +8,14 @@ import jwtDecode from 'jwt-decode';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import 'materialize-css/dist/css/materialize.css';
-import 'materialize-css/dist/js/materialize.js';
+import 'materialize-css/dist/js/materialize';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import configureStore from './store/configureStore';
 import routes from './routes';
 import { setAuthorizationToken } from './auth/';
 import { setCurrentUser } from './actions/userActions';
 import './style/main.scss';
-
-
+import './style/google.css';
 
 const store = configureStore();
 

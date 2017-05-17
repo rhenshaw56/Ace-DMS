@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadAllDocument } from '../../actions/documentActions';
-import Nav from '../navbar';
+import Nav from '../Nav'; //eslint-disable-line
 import Footer from '../footer';
 import Sidebar from '../Sidebar';
 import DocumentPanel from '../Documents/DocumentPanel';
-import { getUsers } from '../../actions/userActions';
-
+import { getUsers, initApp } from '../../actions/userActions';
 
 
 /**
@@ -33,6 +32,10 @@ class Dashboard extends React.Component {
   componentWillMount() {
     this.props.getUsers();
     this.props.loadAllDocument();
+    if (this.props.isLoggedIn) {
+      const { user } = this.props.auth;
+      this.props.initApp(user);
+    }
   }
 
   /**
@@ -80,6 +83,7 @@ Dashboard.propTypes = {
   isLoggedIn: React.PropTypes.bool.isRequired,
   user: React.PropTypes.object.isRequired,
   getUsers: React.PropTypes.func.isRequired,
+  initApp: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -90,7 +94,8 @@ const mapStateToProps = (state) => {
     doc => doc.access === 'public');
   if (state.auth.isLoggedIn && state.auth.user.roleId !== 1) {
     roleDocuments = currentState.documents.filter(
-        doc => doc.access === 'role' && doc.ownerRoleId === state.auth.user.roleId
+        doc => doc.access === 'role'
+                && doc.ownerRoleId === state.auth.user.roleId
       );
     privateDocuments = currentState.documents.filter(
           doc => doc.ownerId === state.auth.user.id);
@@ -111,4 +116,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps,
-    { loadAllDocument, getUsers })(Dashboard);
+    { loadAllDocument, getUsers, initApp })(Dashboard);

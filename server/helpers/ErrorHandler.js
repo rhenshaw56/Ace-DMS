@@ -17,8 +17,8 @@ class ErrorHandler {
 
   /** Function to handle request errors
    * @static
-   * @param {any} response
-   * @param {any} error
+   * @param {Object} response
+   * @param {Object} error
    * @returns {Object}; errorBOdy
    * @memberOf ErrorHandler
    */

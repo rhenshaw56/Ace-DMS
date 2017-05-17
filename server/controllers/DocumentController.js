@@ -32,8 +32,8 @@ class DocumentController {
   /**
    * Request handler that handles request for new documents
    * @static
-   * @param {any} request
-   * @param {any} response
+   * @param {Object} request
+   * @param {Object} response
    * @returns {Object} response
    * @memberOf DocumentController
    */
@@ -277,7 +277,7 @@ class DocumentController {
   static retrieveDocByIdentifier(request, response) {
     if (request.query.q) {
       docDb.find({ where: { title: request.query.q } })
-       .then((foundDoc) => {
+       .then((foundDoc) => { //eslint-disable-line
          if (foundDoc) {
            return ResponseHandler.sendResponse(
              response,

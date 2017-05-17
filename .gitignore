@@ -7,5 +7,6 @@ npm-debug.log
 coverage
 .DS_Store
 screenshots
+./client/src/style
 
 

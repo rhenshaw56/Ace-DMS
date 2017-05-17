@@ -5,34 +5,56 @@ import { List, ListItem } from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import Divider from 'material-ui/Divider';
-import Avatar from 'material-ui/Avatar';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
-import { blue500, yellow600 } from 'material-ui/styles/colors';
 
+
+/**
+ * Class that handles the MenuList Component
+ * @class MenuList
+ * @extends {React.Component}
+ */
 class MenuList extends React.Component {
+  /**
+   * Creates an instance of MenuList.
+   * @param {Object} props
+   * @memberof MenuList
+   */
   constructor(props) {
     super(props);
     this.state = {
       open: false,
     };
   }
+  /**
+   * Function to handle toggling of menu list items
+   * @param {None} none
+   * @returns {None} none
+   * @memberof MenuList
+   */
   handleToggle = () => {
     this.setState({
       open: !this.state.open,
     });
   };
+    /**
+   * Function to handle toggling of menu list
+   * @param {item} item - nested menu list items
+   * @returns {None} none
+   * @memberof MenuList
+   */
   handleNestedListToggle = (item) => {
     this.setState({
       open: item.state.open,
     });
   };
+  /**
+   * @returns {Object} Jsx
+   * @memberof MenuList
+   */
   render() {
     const { isAdmin, user } = this.props;
     return (
-      <div>
+      <div className="ace-menu">
         <Divider />
         {isAdmin ?
           <List className="side">
@@ -41,24 +63,44 @@ class MenuList extends React.Component {
           </List>
           :
           <List>
-            <ListItem className="side" leftIcon={<ActionGrade />} >{this.props.role}</ListItem>
-            <ListItem leftIcon={<ActionGrade />}>{user.email}</ListItem>
-            <ListItem leftIcon={<ActionGrade />}>{user.firstName} {user.lastName}</ListItem>
+            <ListItem
+              className="side" leftIcon={<ActionGrade />}
+            >{this.props.role}</ListItem>
+            <ListItem
+              leftIcon={<ActionGrade />}
+            >{user.email}</ListItem>
+            <ListItem
+              leftIcon={<ActionGrade />}
+            >{user.firstName} {user.lastName}</ListItem>
           </List>
         }
         <Divider />
         {isAdmin ?
           <List className="side">
-            <ListItem leftIcon={<ContentInbox />}><Link to="/documents">Manage Documents </Link></ListItem>
-            <ListItem leftIcon={<ActionGrade />}><Link to="/users">Manage Users </Link></ListItem>
-            <ListItem leftIcon={<ContentSend />}><Link to="/roles">Manage Roles </Link></ListItem>
-            <ListItem leftIcon={<ContentSend />}><Link to="/privateDocs">My Docs</Link></ListItem>
-            <ListItem leftIcon={<ContentSend />}><Link to="/">Public Docs</Link></ListItem>
-            <ListItem leftIcon={<ContentSend />}><Link to="/roleDocs">Role Docs</Link></ListItem>
+            <ListItem
+              leftIcon={<ContentInbox />}
+            ><Link to="/documents">Manage Documents </Link></ListItem>
+            <ListItem
+              leftIcon={<ActionGrade />}
+            ><Link to="/users">Manage Users </Link></ListItem>
+            <ListItem
+              leftIcon={<ContentSend />}
+            ><Link to="/roles">Manage Roles </Link></ListItem>
+            <ListItem
+              leftIcon={<ContentSend />}
+            ><Link to="/privateDocs">My Docs</Link></ListItem>
+            <ListItem
+              leftIcon={<ContentSend />}
+            ><Link to="/">Public Docs</Link></ListItem>
+            <ListItem
+              leftIcon={<ContentSend />}
+            ><Link to="/roleDocs">Role Docs</Link></ListItem>
           </List>
           :
-          <List>
-            <ListItem leftIcon={<ContentInbox />}><Link to="/profile">Profile </Link></ListItem>
+          <List className="special-icon">
+            <ListItem
+              leftIcon={<ContentInbox />}
+            ><Link to="/profile">Profile </Link></ListItem>
             <ListItem
               primaryText="Documents"
               leftIcon={<ContentInbox />}

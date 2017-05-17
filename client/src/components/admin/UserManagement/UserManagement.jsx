@@ -1,20 +1,35 @@
 import React from 'react';
-import toastr from 'toastr';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-materialize';
 import { initUsers } from '../../../actions/userActions';
-import Nav from '../../navbar';
+import Nav from '../../Nav'; //eslint-disable-line
 import UserContainer from './UserContainer';
 
 
+/**
+ * Class to handle UserManagement component
+ * @class UserManagement
+ * @extends {React.Component}
+ */
 class UserManagement extends React.Component {
-  constructor(props) {
+  /**
+   * Creates an instance of UserManagement.
+   * @param {Object} props
+   * @memberof UserManagement
+   */
+  constructor(props) { //eslint-disable-line
     super(props);
   }
+
+      /**
+   * Hook Method
+   * @returns {none} none
+   * @memberOf UserManagement
+   */
   componentWillMount() {
     if (this.props.user.roleId === 1) {
-      this.props.initUsers().catch((err) => {
+      this.props.initUsers().catch(() => {
         browserHistory.push('/');
       });
     } else {
@@ -22,6 +37,11 @@ class UserManagement extends React.Component {
       browserHistory.push('/login');
     }
   }
+
+    /**
+   * @returns {Object} Jsx
+   * @memberOf UseManagement
+   */
   render() {
     return (
       <div>
@@ -45,7 +65,7 @@ UserManagement.propTypes = {
   users: React.PropTypes.array.isRequired,
   auth: React.PropTypes.object.isRequired
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   user: state.auth.user,
   users: state.manageUsers.allUsers

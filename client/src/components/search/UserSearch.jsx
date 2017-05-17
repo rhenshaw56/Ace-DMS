@@ -13,7 +13,7 @@ import * as userActions from '../../actions/userActions';
 export class UserSearch extends Component {
   /**
    * Creates an instance of UserSearch.
-   * @param {any} props
+   * @param {Object} props
    * @memberof UserSearch
    */
   constructor(props) {
@@ -28,8 +28,8 @@ export class UserSearch extends Component {
   /**
    * Function to watch for Updates on Search Input
    * @returns {none} none
-   * @param {any} inputValue
-   * @memberof Search
+   * @param {Object} inputValue
+   * @memberof UserSearch
    */
   onUpdateInput(inputValue) {
     this.setState({
@@ -42,7 +42,7 @@ export class UserSearch extends Component {
    * Function to Open the Editor after selecting a document
    * @param {none} none
    * @returns {none} none
-   * @memberof Search
+   * @memberof UserSearch
    */
   openEditor() {
     const selectedUser = this.state.inputValue;
@@ -56,7 +56,7 @@ export class UserSearch extends Component {
    * Function to map found user names
    * @param {names} names - concetenated user firstname and lastname
    * @returns {Object} first index of mappedUser
-   * @memberof Search
+   * @memberof UserSearch
    */
   mapUsers(names) {
     const { availableUsers } = this.props;
@@ -66,11 +66,11 @@ export class UserSearch extends Component {
   }
   /**
    * Function to format documents before opening the editor
-   * @param {Object} document
-   * @returns {Object} formattedDocument
-   * @memberof Search
+   * @param {Object} user
+   * @returns {Object} formattedUser
+   * @memberof UserSearch
    */
-  formatUser(user) {
+  formatUser(user) { // eslint-disable-line
     return {
       email: user.email,
       firstName: user.firstName,
@@ -84,11 +84,13 @@ export class UserSearch extends Component {
    * Function to handle searching of documents
    * @param {none} none
    * @returns {none} none
-   * @memberof Search
+   * @memberof UserSearch
    */
   performSearch() {
     const { availableUsers } = this.props;
-    const users = availableUsers.map(user => `${user.firstName} ${user.lastName}`);
+    const users = availableUsers.map(
+      user => `${user.firstName} ${user.lastName}`
+    );
     this.setState({
       dataSource: users
     });
@@ -98,7 +100,7 @@ export class UserSearch extends Component {
    * Function that renders Component into its parent
    * @param {none} none
    * @returns {Object} Jsx Object
-   * @memberof Search
+   * @memberof UserSearch
    */
   render() {
     return (
@@ -108,7 +110,7 @@ export class UserSearch extends Component {
         dataSource={this.state.dataSource}
         onUpdateInput={this.onUpdateInput}
         onNewRequest={this.openEditor}
-        maxSearchResults={15}
+        maxSearchResults={1}
         filter={AutoComplete.caseInsensitiveFilter}
       />
     );

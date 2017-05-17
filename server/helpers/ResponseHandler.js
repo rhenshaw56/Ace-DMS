@@ -5,11 +5,10 @@
 export default class ResponseHandler {
   /** Function to send custom response
    * @static
-   * @param {any} response
-   * @param {any} body
-   * @returns {Object} response
-   * @returns {Number} statusCode
-   * @returns {Object} body
+   * @param {Object} response - response
+   * @param {Number} statusCode - statusCode
+   * @param {Object} body - body
+   * @returns {Object} response - response body
    * @memberOf ResponseHandler
    */
   static sendResponse(response, statusCode, body) {
@@ -20,7 +19,6 @@ export default class ResponseHandler {
    * @param {Object} response
    * @param {Object} body
    * @returns {Object} response
-   * @returns {Object} body
    * @memberOf ResponseHandler
    */
   static send400(response, body) {
@@ -30,8 +28,8 @@ export default class ResponseHandler {
 
   /** Function to send response for a 401 status code error
    * @static
-   * @param {any} response
-   * @param {any} body
+   * @param {Object} response
+   * @param {Object} body
    * @returns {Object} response
    * @returns {Object} body
    * @memberOf ResponseHandler
@@ -42,8 +40,8 @@ export default class ResponseHandler {
   }
     /** Function to send response for a 403 status code error
    * @static
-   * @param {any} response
-   * @param {any} body
+   * @param {Object} response
+   * @param {Object} body
    * @returns {Object} response
    * @returns {Object} body
    * @memberOf ResponseHandler
@@ -55,8 +53,8 @@ export default class ResponseHandler {
   }
     /** Function to send response for a 404 status code error
    * @static
-   * @param {any} response
-   * @param {any} body
+   * @param {Object} response
+   * @param {Object} body
    * @returns {Object} response
    * @returns {Object} body
    * @memberOf ResponseHandler
@@ -67,8 +65,8 @@ export default class ResponseHandler {
   }
    /** Function to send response for a 404 status code error
    * @static
-   * @param {any} response
-   * @param {any} body
+   * @param {Object} response
+   * @param {Object} body
    * @returns {Object} response
    * @returns {Object} body
    * @memberOf ResponseHandler

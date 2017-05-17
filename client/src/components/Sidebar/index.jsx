@@ -6,13 +6,24 @@ import ListItem from 'material-ui/List/ListItem';
 import MenuList from './MenuList';
 
 
+/**
+ * @class Sidebar
+ * @extends {React.Component}
+ */
 class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    /**
+   * Hook Method to ensure this runs before component mounts
+   * @param {None} none
+   * @returns {none} none
+   * @memberOf Sidebar
+   */
   componentWillMount() {
     this.forceUpdate();
   }
+    /**
+   * @returns {Object} Jsx
+   * @memberOf Sidebar
+   */
   render() {
     const { user } = this.props;
     const isAdmin = user.roleId === 1;
@@ -27,7 +38,7 @@ class Sidebar extends React.Component {
         <h3 className="brand-logo">acedms</h3>
         <Link
           id="create-doc"
-          className="btn-floating btn-large waves-effect waves-light #26a69a"
+          className="btn-floating btn-large waves-effect waves-light #26a69a tooltipped"  // eslint-disable-line
           data-position="left" data-delay="50"
           data-tooltip="new document"
           to="/editor"

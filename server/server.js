@@ -2,11 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
-// import routes from './routes/index';
 import path from 'path';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackMiddleware from 'webpack-dev-middleware';
+import webpackMiddleware from 'webpack-dev-middleware'; // eslint-disable-line
 import webpackConfig from '../webpack.config';
 
 import routes from './routes/index';
@@ -17,7 +16,6 @@ const app = express();
 
 const router = express.Router();
 const port = process.env.PORT || 5600;
-
 
 
 // Load middlewares
@@ -43,9 +41,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 routes(router);
 app.use('/api-docs', express.static(path.join(__dirname, './public/api-docs')));
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`); // eslint-disable-line
 });
 app.use(router);
+// app.use('*', (req, res) => {
+//   // res.sendFile(`${__dirname}/../client/public/index.html`);
+//   express.static('../client/public/index.html');
+// });
+
 // app.use(cors());
 
 export default app;

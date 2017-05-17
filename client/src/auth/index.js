@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
 export const retrieveToken = () => localStorage.token;
 
@@ -31,5 +30,3 @@ export const setAuthorizationToken = (token) => {
     delete axios.defaults.headers.common.Authorization;
   }
 };
-
-

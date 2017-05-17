@@ -32,7 +32,7 @@ describe('<SignIn />', () => {
     const wrapper = shallow(<SignIn {...props} />);
     expect(wrapper.onChange).to.be.defined;  // eslint-disable-line
   });
-  it('should render four text inputs', () => {
+  it('should render two text inputs', () => {
     const wrapper = mount(
       <Provider store={store}>
         <SignIn {...props} />

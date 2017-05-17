@@ -4,6 +4,13 @@ import initialState from './initialState';
 
 let newState;
 
+/**
+ * User Reducer Function that handles manageUsers part of the store
+ * @export
+ * @param {Object} [state=initialState.manageUsers]
+ * @param {Object} action
+ * @returns
+ */
 export default function userReducer(state = initialState.manageUsers, action) {
   switch (action.type) {
   case types.SIGNUP_USER:
@@ -28,7 +35,8 @@ export default function userReducer(state = initialState.manageUsers, action) {
   case types.DISPLAY_USER:
     return Object.assign({},
         state, { viewMode: true }, { selectedUser: action.user });
-
+  case 'INIT_APP':
+    return Object.assign({}, state, { viewMode: false }, { selectedUser: {} });
   case types.DELETE_USER:
     newState = { ...state };
     newState.allUsers = [...state.allUsers].filter(

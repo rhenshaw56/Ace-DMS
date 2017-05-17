@@ -9,9 +9,9 @@ export default class Users {
   /**
    * Function to validate Request for new users
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf User
    */
@@ -32,9 +32,9 @@ export default class Users {
   /**
    * Function to validate Request for users on delete operations
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf User
    */
@@ -42,7 +42,6 @@ export default class Users {
     if (auth.verifyAdmin(req.decoded.roleId)
      || req.params.id === req.decoded.id) {
       next();
-
     } else if (!auth.verifyAdmin(req.decoded.roleId)) {
       ResponseHandler.send403(res,
           { message: 'Admin role required for this operation' });
@@ -53,9 +52,9 @@ export default class Users {
     /**
    * Function to validate Request for users on updates
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf User
    */
@@ -75,9 +74,9 @@ export default class Users {
     /**
    * Function to validate Get Request for users
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @param {any} next
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf User
    */
@@ -95,5 +94,4 @@ export default class Users {
     }
   }
 }
-
 

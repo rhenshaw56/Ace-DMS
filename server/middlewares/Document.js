@@ -9,9 +9,9 @@ export default class Document {
   /**
    * Function to validate Post Request for documents
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Document
    */
@@ -55,9 +55,9 @@ export default class Document {
   /**
    * Function to validate Get Request for documents
    * @static
-   * @param {any} request
-   * @param {any} response
-   * @param {any} next
+   * @param {Object} request
+   * @param {Object} response
+   * @param {Object} next
    * @returns {Object} validation message
    * @memberOf Document
    */

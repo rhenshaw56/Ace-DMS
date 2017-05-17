@@ -13,7 +13,7 @@ class RoleContainer extends React.Component {
   render() {
     const tableHeaders = [
   { alias: 'ID', sortable: true, dataAlias: 'id' },
-  { alias: 'Title', sortable: true, dataAlias: 'title' }
+  { alias: 'Title', sortable: false, dataAlias: 'title' }
     ];
     return (
       <RoleTable

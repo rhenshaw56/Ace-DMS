@@ -139,6 +139,7 @@ div#test1{
       font-size: 10px;
       margin: 15px;
       cursor: pointer;
+      height: 40%;
       }
       .card-actions:hover {
         font-size: 20px;
@@ -259,16 +260,42 @@ td, th {
   display: inline;
   // float: left;
 }
-div {
-  color: gray;
+div.ace-menu span {
+  color: lightgray !important;
   text-decoration-style: none;
 }
-a {
-  color: gray;
+div.ace-menu a {
+  color: lightgray !important;
   text-decoration-style: none;
 }
 .input-field label:not(.label-icon).active {
     font-size: 0.8rem;
     -webkit-transform: translateY(-140%);
     transform: translateY(-140%);
+}
+.special-icon svg{
+  color: ghostwhite !important;
+}
+span.ace-icon:hover{
+ font-size: 25px;
+ color: #26a69a;
+}
+span.ace-icon {
+  position: absolute
+}
+.verified{
+  color: #26a69a;
+}
+select#search-type{
+  display: block !important;
+  height: 2.2rem !important;
+  border: 0 !important;
+  background-color: inherit !important;
+  color: black;
+  font-size: 12px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+div.card-action.row{
+  height: 9%
 }

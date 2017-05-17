@@ -23,9 +23,39 @@ import * as roleActions from '../../../actions/roleActions';
  * @extends {Component}
  */
 class RoleTable extends Component {
+
+      /**
+   * Function that handles deletion of documents
+   * @param {Number} id - userId
+   * @param {Function} callback - to delete user after prompt
+   * @returns {Function} callback
+   * @memberOf DocumentTable
+   */
+  static handleDelete(id, callback) {
+      swal({  //eslint-disable-line
+        title: 'Are you sure?',
+        text: 'This Role will be totally deleted!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: true
+      },
+    () => {
+      callback(id);
+    }) .catch(() => {
+        swal({ //eslint-disable-line
+          title: 'Sorry!',
+          text: 'This Role cannot be deleted',
+          type: 'warning',
+          showConfirmButton: true
+        });
+    });
+  }
+
   /**
    * Creates an instance of RoleTable.
-   * @param {any} props
+   * @param {Object} props
    * @memberOf RoleTable
    */
   constructor(props) {
@@ -54,7 +84,10 @@ class RoleTable extends Component {
       offset: 0,
       sortHeader: null,
       data: nextProps.data,
-      page: nextProps.data ? nextProps.data.slice(this.state.offset, nextProps.limit) : [],
+      page: nextProps.data ?
+              nextProps.data.slice(this.state.offset, nextProps.limit)
+              :
+              [],
     });
     this.sortByColumn = this.sortByColumn.bind(this);
   }
@@ -84,10 +117,15 @@ class RoleTable extends Component {
     });
     this.handleSelectedDocument = this.handleSelectedDocument.bind(this);
   }
-  handleDelete(id) {
-    this.props.actions.deleteRole(id);
-  }
+
+    /**
+   * Function to handle Updates on document
+   * @param {Number} id - roleId
+   * @returns {None} none
+   * @memberOf RoleTable
+   */
   handleEdit(id) {
+    this.id = id;
   }
 
   /**
@@ -137,11 +175,12 @@ class RoleTable extends Component {
 
     return (
       <Table className="table" displaySelectAll={false}>
-        <TableHeader displaySelectAll={false}>
+        <TableHeader adjustForCheckbox>
           <TableRow>
             { tableHeaders && tableHeaders.map((header, index) => (
               <TableHeaderColumn
                 key={index}  //eslint-disable-line
+
               >
                 <div className="rowAlign">
                   { header.alias }
@@ -159,7 +198,6 @@ class RoleTable extends Component {
         </TableHeader>
         <TableBody
           stripedRows
-          preScanRows
         >
           {processedData.map((row, index) => (
             <TableRow
@@ -177,26 +215,23 @@ class RoleTable extends Component {
                 key={`${row.id} ${row.access}`}
 
               >{row.access}</TableRowColumn>
-              <TableRowColumn
-                key={`${row.id} ${row.ownerRoleId}`}
 
-              >{row.ownerRoleId === 1 ? 'Admin' : 'Regular'}</TableRowColumn>
               <TableRowColumn
                 key={`${row.id} ${row.ownerRoleId}`}
               ><FlatButton
-                key={`${index}flat${row.id}`}
+                key={`${index}flat${row.id}`}  // eslint-disable-line
                 label="Delete"
                 secondary
                 onTouchTap={
                 () => {
-                  this.handleDelete(row.id);
+                  RoleTable.handleDelete(row.id, this.props.actions.deleteRole);
                 }
               }
               /></TableRowColumn>
               <TableRowColumn
                 key={`${row.id} ${row.ownerRoleId}`}
               ><FlatButton
-                key={`${index}flat${row.id}`}
+                key={`${index}flat${row.id}`}  // eslint-disable-line
                 label="Edit"
                 secondary
                 onTouchTap={
@@ -215,7 +250,8 @@ class RoleTable extends Component {
               <div
                 className="footerControls"
               >
-                { `${Math.min((offset + 1), total)} - ${Math.min((offset + limit), total)} of ${total}` }
+                { `${Math.min((offset + 1), total)}
+                 - ${Math.min((offset + limit), total)} of ${total}` }
                 <IconButton
                   disabled={offset === 0}
                   onClick={this.paginateBack}

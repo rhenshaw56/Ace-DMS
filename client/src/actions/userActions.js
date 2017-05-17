@@ -5,11 +5,10 @@ import types from './actionTypes';
 import { setAuthorizationToken } from '../auth';
 
 
-
 /**
  * Function to dispatch action type of INIT_USERS
  * @export
- * @param {Object} users
+ * @param {Array} users
  * @returns {Object} action
  */
 export function loadUser(users) {
@@ -172,12 +171,14 @@ export function signup(user) {
  * @returns {Object} action
  */
 export function loadUsers(limit, offset) {
-  return dispatch => axios.get(`/api/users?limit=${limit}&offset=${offset}`).then((res) => {
-    dispatch(loadUser(res.data));
-  });
+  return dispatch => axios.get(
+          `/api/users?limit=${limit}&offset=${offset}`
+          ).then((res) => {
+            dispatch(loadUser(res.data));
+          });
 }
 
-/** 
+/**
  * Async Function to handle loading of all users
  * @export
  * @param {Number} id
@@ -211,6 +212,7 @@ export function getUsers() {
 export function editUser(user, id) {
   return dispatch => axios.put(`/api/users/${id}`, user).then((response) => {
     dispatch(updateUser(response.data));
+    // dispatch(setCurrentUser(response.data));
   });
 }
 
@@ -252,15 +254,34 @@ export function login(user) {
       localStorage.setItem('jwtToken', token);
       axios.defaults.headers.common.Authorization = token;
       dispatch(setCurrentUser(response.data));
-      browserHistory.push('/');
+      return browserHistory.push('/');
     } else if (response.status === 401) {
       return toastr.error('User does not exist!');
-    } else {
-      return toastr.error('Invalid Login details!');
     }
-  }).catch(() => {
     return toastr.error('Invalid Login details!');
-  });
+  }).catch(() => toastr.error('Invalid Login details!'));
+}
+/**
+ * Function to handle app initialization
+ * @export
+ * @param {Object} user
+ * @returns {Object} dispatch
+ */
+export function init(user) {
+  return {
+    type: 'INIT_APP',
+    user
+  };
+}
+
+/**
+ * Function to handle app initialization
+ * @export
+ * @param {Object} user
+ * @returns {Object} dispatch
+ */
+export function initApp(user) {
+  return dispatch => dispatch(init(user));
 }
 
 /**
@@ -271,7 +292,6 @@ export function login(user) {
  */
 export function logout() {
   return (dispatch) => {
-    const token = localStorage.getItem('jwtToken');
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
