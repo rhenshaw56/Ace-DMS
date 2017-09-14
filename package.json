@@ -4,7 +4,7 @@
   "description": "a document management system",
   "main": "server.js",
   "scripts": {
-    "start:server": "nodemon server/server.js --exec babel-node",
+    "start:server": "pm2 start server/server.js --interpreter babel-node --watch",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test": "npm run test:client && npm run test:server",
     "test-e2e": "npm run undo:migrations && npm run migrations && npm run seeds && node_modules/.bin/nightwatch --config nightwatch.conf.js",
