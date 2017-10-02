@@ -79,6 +79,8 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.17.4",
     "materialize-css": "^0.98.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.14",
     "morgan": "^1.7.0",
     "nightwatch": "^0.9.15",
     "nock": "^9.0.13",

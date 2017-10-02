@@ -1,13 +1,41 @@
-import model from '../newModels';
-import Auth from '../middlewares/Auth';
-import ErrorHandler from '../helpers/ErrorHandler';
-import ResponseHandler from '../helpers/ResponseHandler';
-import filter from '../helpers/queryFilter';
+import model from '../../models';
+import Auth from '../../middlewares/Auth';
+import ErrorHandler from '../../helpers/ErrorHandler';
+import ResponseHandler from '../../helpers/ResponseHandler';
+import filter from '../../helpers/queryFilter';
 
 /**
  * @class UserController
  */
-class UserController {
+class UserHandler {
+
+  static async getAllUsers(root, data) {
+    const users = await model.User.findAll({});
+    return users;
+  }
+
+  static async creatUser(root, data) {
+    const newUser = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.authProvider.email,
+      password: data.authProvider.password,
+      roleId: 2
+    };
+    const existingUser = await model.User.findOne({ where: { email: newUser.email } });
+    if (existingUser) {
+      return 'Error!' // ResponseHandler.send409(response);
+    }
+    const user = await model.User.create(newUser);
+    console.log("user==>", user);
+    const token = Auth.generateToken(newUser);
+    Auth.activateToken(user, token);
+    return Object.assign(
+                 {},
+                 UserHandler.formatUserDetails(user, token),
+                 { roleId: user.roleId }
+               );
+  }
   /**
    * Function used to format output data for user details
    * @static
@@ -372,4 +400,4 @@ class UserController {
   }
 }
 
-export default UserController;
+export default UserHandler;

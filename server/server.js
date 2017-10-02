@@ -7,6 +7,7 @@ import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackMiddleware from 'webpack-dev-middleware'; // eslint-disable-line
 import webpackConfig from '../webpack.config';
+import db from './db';
 
 import routes from './routes/index';
 
@@ -16,6 +17,10 @@ const app = express();
 
 const router = express.Router();
 const port = process.env.PORT || 5600;
+
+const mongoUri = 'mongodb://localhost:27017/ace_dms';
+
+db.connect(mongoUri);
 
 
 // Load middlewares
