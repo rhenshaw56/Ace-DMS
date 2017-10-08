@@ -17,6 +17,9 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  roles: {
+    type: Array
   }
 });
 
@@ -43,6 +46,7 @@ UserSchema.pre('save', function (next) {
       }
         // override the cleartext password with the hashed one
       user.password = hash;
+      user.roles.push('default');
       next();
     });
   });

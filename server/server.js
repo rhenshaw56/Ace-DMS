@@ -10,7 +10,9 @@ import webpackMiddleware from 'webpack-dev-middleware'; // eslint-disable-line
 import webpackConfig from '../webpack.config';
 import db from './newModels';
 import schema from './schema';
+import DMS from './init';
 
+DMS.init();
 
 dotenv.config();
 

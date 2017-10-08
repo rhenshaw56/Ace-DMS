@@ -25,18 +25,14 @@ class UserHandler {
     const existingUser = await User.find({
       $or: [{ email: newUser.email }, { userName: newUser.userName }]
     });
-    if (existingUser) {
+    if (existingUser.length > 0) {
       throw new Error('This user already already exist.');
     }
-    try {
-      const user = await User.create(newUser);
-      return Object.assign(
+    const user = await User.create(newUser);
+    return Object.assign(
                  {},
                  UserHandler.formatUserDetails(user),
                );
-    } catch (e) {
-      throw new Error('User with this username already exist.');
-    }
   }
   /**
    * Function used to format output data for user details
@@ -50,8 +46,7 @@ class UserHandler {
     return {
       id: user.id,
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      userName: user.firstName,
       createdAt: user.createdAt,
       token
     };
