@@ -1,4 +1,4 @@
-import model from '../../models';
+// import model from '../../models';
 import Auth from '../../middlewares/Auth';
 import ErrorHandler from '../../helpers/ErrorHandler';
 import ResponseHandler from '../../helpers/ResponseHandler';
@@ -9,32 +9,34 @@ import filter from '../../helpers/queryFilter';
  */
 class UserHandler {
 
-  static async getAllUsers(root, data) {
-    const users = await model.User.findAll({});
-    return users;
-  }
+  // static async getAllUsers(root, data) {
+  //   const users = await model.User.findAll({});
+  //   return users;
+  // }
 
-  static async creatUser(root, data) {
+  static async creatUser(root, data, { db }) {
+    const { User } = db;
     const newUser = {
-      firstName: data.firstName,
-      lastName: data.lastName,
+      userName: data.userName,
       email: data.authProvider.email,
       password: data.authProvider.password,
-      roleId: 2
     };
-    const existingUser = await model.User.findOne({ where: { email: newUser.email } });
+
+    const existingUser = await User.find({
+      $or: [{ email: newUser.email }, { userName: newUser.userName }]
+    });
     if (existingUser) {
-      return 'Error!' // ResponseHandler.send409(response);
+      throw new Error('This user already already exist.');
     }
-    const user = await model.User.create(newUser);
-    console.log("user==>", user);
-    const token = Auth.generateToken(newUser);
-    Auth.activateToken(user, token);
-    return Object.assign(
+    try {
+      const user = await User.create(newUser);
+      return Object.assign(
                  {},
-                 UserHandler.formatUserDetails(user, token),
-                 { roleId: user.roleId }
+                 UserHandler.formatUserDetails(user),
                );
+    } catch (e) {
+      throw new Error('User with this username already exist.');
+    }
   }
   /**
    * Function used to format output data for user details

@@ -23,7 +23,7 @@ const UserSchema = new Schema({
 /**
  * Pre-save hook
  */
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function (next) {
   const user = this;
 
     // only hash the password if has been saved or modified or is new
@@ -36,7 +36,8 @@ UserSchema.pre('save', (next) => {
     }
 
     // hash the password using our new salt
-    bcrypt.hash(user.password, salt, (err, hash) => {
+    // user.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) {
         return next(err);
       }

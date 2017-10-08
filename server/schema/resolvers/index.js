@@ -1,5 +1,5 @@
 import UserHandler from './user';
-import db from '../../models';
+// import db from '../../models';
 
 const links = [
   {
@@ -16,11 +16,10 @@ const links = [
 
 const resolver = {
   Query: {
-    allLinks: () => links,
-    allUsers: (root, data) => UserHandler.getAllUsers(root, data),
+    allUsers: (root, data, db) => UserHandler.getAllUsers(root, data, db),
   },
   Mutation: {
-    createUser: async (root, data) => UserHandler.creatUser(root, data),
+    createUser: async (root, data, db) => UserHandler.creatUser(root, data, db),
   }
 };
 
