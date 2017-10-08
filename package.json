@@ -4,6 +4,7 @@
   "description": "a document management system",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server/server.js --exec babel-node",
     "start:server": "pm2 start server/server.js --interpreter babel-node --watch",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test": "npm run test:client && npm run test:server",

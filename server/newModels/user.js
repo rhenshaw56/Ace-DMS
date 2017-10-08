@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt-nodejs';
-import mongoose from 'mongoose';
+import mongoose from '../db';
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   userName: {
@@ -26,7 +26,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save', (next) => {
   const user = this;
 
-    //only hash the password if has been saved or modified or is new
+    // only hash the password if has been saved or modified or is new
   if (!user.isModified('password')) {
     return next();
   }

@@ -7,7 +7,7 @@ import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackMiddleware from 'webpack-dev-middleware'; // eslint-disable-line
 import webpackConfig from '../webpack.config';
-import db from './db';
+import db from './newModels';
 
 import routes from './routes/index';
 

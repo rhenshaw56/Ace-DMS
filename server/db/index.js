@@ -1,31 +1,25 @@
 // Import the mongoose module
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const db = {};
+dotenv.config();
 
-db.connect = (MONGOURI) => {
-  mongoose.connect(MONGOURI, {
-    useMongoClient: true
-  });
-  const dB = mongoose.connection;
+mongoose.Promise = global.Promise;
 
-  dB.on('error', console.error.bind(console, 'MongoDB connection error:')); // eslint-disable-line
-  db.once('open', () => {
-    console.log("CONNECTED TO MONGODB"); // eslint-disable-line
-  });
-};
+mongoose.connect(process.env.MONGO_URI, {
+  useMongoClient: true
+});
 
-// Set up default mongoose connection
-// const mongoDB = 'mongodb://127.0.0.1/ace_dms';
+const connection = mongoose.connection;
 
-// mongoose.connect(mongoDB, {
-//   useMongoClient: true
-// });
+connection.on('error', console.error.bind(console, 'MongoDB connection error:')); // eslint-disable-line
+connection.once('open', () => {
+  console.log("CONNECTED TO MONGODB"); // eslint-disable-line
+});
 
-// Get the default connection
-// const db = mongoose.connection;
+connection.on('close', () => {
+  console.info('MongoDB connection closed'); // eslint-disable-line
+  process.exit(0);
+});
 
-// // Bind connection to error event (to get notification of connection errors)
-// db.on('error', console.error.bind(console, 'MongoDB connection error:')); // eslint-disable-line
-
-export default db;
+export default mongoose;
