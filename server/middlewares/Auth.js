@@ -22,10 +22,8 @@ export default class Auth {
     return jwt.sign(
       {
         id: user.id,
-        roleId: user.roleId,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName
+        userName: user.userName,
       }, secret, { expiresIn: 57600 });
   }
    /**
@@ -102,8 +100,8 @@ export default class Auth {
    * @returns {none} none
    * @memberOf Auth
    */
-  static activateToken(user, currentToken) {
-    return user.update({ currentToken });
+  static activateToken(response, currentToken) {
+    return response.header('x-auth', currentToken);
   }
 
    /**
@@ -115,5 +113,18 @@ export default class Auth {
    */
   static verifyAdmin(roleId) {
     return Number(roleId) === 1;
+  }
+
+  static validateLogin(data) {
+    let status = true;
+    if (!data.authProvider.email) {
+      status = false;
+      throw new Error('No Email Provided!');
+    }
+    if (!data.authProvider.password) {
+      status = false;
+      throw new Error('No Password Provided!');
+    }
+    return status;
   }
 }

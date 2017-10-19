@@ -5,17 +5,34 @@ import ResponseHandler from '../../helpers/ResponseHandler';
 import filter from '../../helpers/queryFilter';
 
 /**
- * @class UserController
+ * @class UserHandler
  */
 class UserHandler {
 
-  // static async getAllUsers(root, data) {
-  //   const users = await model.User.findAll({});
-  //   return users;
-  // }
+  static async getAllUsers(root, data, { db: { User }, req }) {
+    const queryOptions = { ...data };
+    if (data) {
+      const user = await User.findOne(queryOptions);
+      if (user) {
+        return Object.assign(
+          {},
+          UserHandler.formatUserDetails(user),
+        );
+      }
+      throw new Error('User Not Found!');
+    }
+    return User.find({});
+  }
 
-  static async creatUser(root, data, { db }) {
-    const { User } = db;
+  /**
+   * GraphQL handler that handles request for new users
+   * @static
+   * @param {Object} root
+   * @param {Object} data
+   * @returns {Object} db
+   * @memberOf UserHandler
+   */
+  static async createUser(root, data, { db: { User }, req, res }) {
     const newUser = {
       userName: data.userName,
       email: data.authProvider.email,
@@ -29,10 +46,43 @@ class UserHandler {
       throw new Error('This user already already exist.');
     }
     const user = await User.create(newUser);
+    const token = Auth.generateToken(user);
+    Auth.activateToken(res, token);
     return Object.assign(
                  {},
-                 UserHandler.formatUserDetails(user),
+                 UserHandler.formatUserDetails(user, token),
                );
+  }
+
+  /** GraphQL handler to handle login action for users
+   * @static
+   * @param {Object} root
+   * @param {Object} data
+   * @returns {Object} db
+   * @memberOf UserHandler
+   */
+  static async signInUser(root, data, { db: { User }, req, res }) {
+    if (Auth.validateLogin(data)) {
+      const registeredUser = await User.findOne({
+        email: data.authProvider.email
+      });
+      if (registeredUser) {
+        if (registeredUser.comparePassword(
+          data.authProvider.password,
+          registeredUser)
+        ) {
+          const token = Auth.generateToken(registeredUser);
+          Auth.activateToken(res, token);
+          return Object.assign(
+            {},
+            UserHandler.formatUserDetails(registeredUser, token),
+          );
+        }
+        throw new Error('Password does not match!.');
+      } else {
+        throw new Error('Invalid Email! User is not Registered!.');
+      }
+    }
   }
   /**
    * Function used to format output data for user details
@@ -47,49 +97,11 @@ class UserHandler {
       id: user.id,
       email: user.email,
       userName: user.firstName,
-      createdAt: user.createdAt,
+      roles: user.roles,
       token
     };
   }
 
-
-  /**
-   * Request handler that handles request for new users
-   * @static
-   * @param {Object} request
-   * @param {Object} response
-   * @returns {Object} response
-   * @memberOf UserController
-   */
-  static createUser(request, response) {
-    const user = request.body;
-    user.roleId = user.roleId || 2;
-    model.User.findOne({ where: { email: user.email } })
-     .then((existingUser) => {  //eslint-disable-line
-       if (existingUser) {
-         return ResponseHandler.send409(response);
-       }
-       model.User.create(request.body)
-        .then((newUser) => {
-          const token = Auth.generateToken(newUser);
-          Auth.activateToken(newUser, token)
-           .then(() => {
-             ResponseHandler.sendResponse(
-               response,
-               201,
-               Object.assign(
-                 {},
-                 UserController.formatUserDetails(newUser, token),
-                 { roleId: newUser.roleId }
-               )
-             );
-           });
-        })
-        .catch((error) => {
-          ErrorHandler.handleRequestError(response, error);
-        });
-     });
-  }
   /** Function to handle login action for users
    * @static
    * @param {Object} request

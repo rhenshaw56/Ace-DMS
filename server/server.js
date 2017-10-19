@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
-// import path from 'path';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -32,11 +31,11 @@ if (process.env.NODE_ENV !== 'test') {
   }));
   app.use(webpackHotMiddleware(compiler));
 }
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({
-  context: { db },
+const buildOptions = (req, res) => ({
+  context: { db, req, res },
   schema
-}));
+});
+app.use('/graphql', bodyParser.json(), graphqlExpress(buildOptions));
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',

@@ -1,25 +1,18 @@
 import UserHandler from './user';
-// import db from '../../models';
 
-const links = [
-  {
-    id: 1,
-    url: 'http://graphql.org/',
-    description: 'The Best Query Language'
-  },
-  {
-    id: 2,
-    url: 'http://dev.apollodata.com',
-    description: 'Awesome GraphQL Client'
-  },
-];
 
 const resolver = {
   Query: {
-    allUsers: (root, data, db) => UserHandler.getAllUsers(root, data, db),
+    getUser:
+    (root, data, db, req) => UserHandler.getAllUsers(root, data, db, req),
+    allUsers:
+      (root, data, db, req) => UserHandler.getAllUsers(root, data, db, req),
   },
   Mutation: {
-    createUser: async (root, data, db) => UserHandler.creatUser(root, data, db),
+    createUser:
+      async (root, data, db, req) => UserHandler.createUser(root, data, db, req),
+    signInUser:
+      async (root, data, db, req) => UserHandler.signInUser(root, data, db, req)
   }
 };
 
