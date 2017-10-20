@@ -24,14 +24,12 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  auth: React.PropTypes.object.isRequired,
-  isLoggedIn: React.PropTypes.bool.isRequired
+  children: React.PropTypes.node.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  isLoggedIn: state.auth.isLoggedIn
+  auth: state.rootReducer.auth,
+  isLoggedIn: state.rootReducer.auth.isLoggedIn
 });
 
 export default connect(mapStateToProps)(App);

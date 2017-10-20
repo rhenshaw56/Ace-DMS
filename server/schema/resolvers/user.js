@@ -11,7 +11,9 @@ class UserHandler {
 
   static async getAllUsers(root, data, { db: { User }, req }) {
     const queryOptions = { ...data };
-    if (data) {
+    console.log("data", Object.keys(data).length);
+    const isValidData = Object.keys(data).length > 0 && data.constructor === Object;
+    if (isValidData) {
       const user = await User.findOne(queryOptions);
       if (user) {
         return Object.assign(
@@ -21,7 +23,9 @@ class UserHandler {
       }
       throw new Error('User Not Found!');
     }
-    return User.find({});
+    const users = await User.find({});
+    console.log("Users", users);
+    return users;
   }
 
   /**
@@ -32,7 +36,7 @@ class UserHandler {
    * @returns {Object} db
    * @memberOf UserHandler
    */
-  static async createUser(root, data, { db: { User }, req, res }) {
+  static async createUser(root, data, { db: { User }, req }) {
     const newUser = {
       userName: data.userName,
       email: data.authProvider.email,
@@ -47,7 +51,6 @@ class UserHandler {
     }
     const user = await User.create(newUser);
     const token = Auth.generateToken(user);
-    Auth.activateToken(res, token);
     return Object.assign(
                  {},
                  UserHandler.formatUserDetails(user, token),
@@ -61,7 +64,8 @@ class UserHandler {
    * @returns {Object} db
    * @memberOf UserHandler
    */
-  static async signInUser(root, data, { db: { User }, req, res }) {
+  static async signInUser(root, data, { db: { User }, req }) {
+    console.log("req.headers()", req.headers);
     if (Auth.validateLogin(data)) {
       const registeredUser = await User.findOne({
         email: data.authProvider.email
@@ -72,7 +76,6 @@ class UserHandler {
           registeredUser)
         ) {
           const token = Auth.generateToken(registeredUser);
-          Auth.activateToken(res, token);
           return Object.assign(
             {},
             UserHandler.formatUserDetails(registeredUser, token),

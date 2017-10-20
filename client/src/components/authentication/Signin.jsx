@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/userActions';
 import Nav from '../../components/Nav'; // eslint-disable-line
 import Footer from '../../components/footer';
+import { gql, graphql } from 'react-apollo'
 
 /**
  * @class Signin
@@ -31,7 +32,12 @@ export class Signin extends React.Component {
    */
   onSubmit(e) {
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.mutate({
+      variables: { ...this.state }
+    }).then((response) => {
+      const token = response.data.signInUser.token;
+      localStorage.setItem('token', token);
+    });
   }
   /**
    * @param {e} e: browser event
@@ -46,6 +52,7 @@ export class Signin extends React.Component {
    * @memberOf Signin
    */
   render() {
+    console.log("PROPS", this.props);
     return (
       <div>
         <Nav
@@ -116,8 +123,38 @@ Signin.contextTypes = {
 Signin.propTypes = {
   login: React.PropTypes.func.isRequired,
   auth: React.PropTypes.object.isRequired,
+  mutate: React.PropTypes.func.isRequired
 };
+
+const query = gql` query {
+  allUsers {
+    id
+    email
+    userName
+  }
+}
+`;
+
+const mutation = gql`
+mutation SignInUser($email: String!, $password: String!) {
+  signInUser(
+    authProvider: {
+      email: $email
+      password: $password
+    }
+  ) {
+    id
+    email
+    token
+  }
+}
+`;
+
+const SignInWithData = graphql(mutation)(
+  graphql(query)(Signin)
+);
+
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.rootReducer.auth,
 });
-export default connect(mapStateToProps, { login })(Signin);
+export default connect(mapStateToProps, { login })(SignInWithData);

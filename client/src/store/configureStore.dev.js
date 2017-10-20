@@ -1,15 +1,20 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import { ApolloClient } from 'react-apollo';
 import rootReducer from '../reducers';
 
 
+const client = new ApolloClient();
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState) { // eslint-disable-line
   return createStore(
-    rootReducer,
+    combineReducers({
+      rootReducer,
+      apollo: client.reducer()
+    }),
     initialState,
-    compose(applyMiddleware(thunk),
+    compose(
+      applyMiddleware(client.middleware(), thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
